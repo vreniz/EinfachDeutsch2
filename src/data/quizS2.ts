@@ -18,15 +18,16 @@ export interface Question {
       answer: 2,
     },
     {
-      question: "Wie buchstabiert man 'Berlin'? (How do you spell 'Berlin'?)",
+      question: "Wie buchstabiert man das Wort für 'Italy' (country) auf Deutsch? (How do you spell the word for 'Italy' in German?)",
       options: [
-        "B-E-R-L-I-N", // correcta
-        "B-E-R-N-L-I",
-        "B-E-L-R-I-N",
-        "B-E-R-L-N-I",
+        "I-T-A-L-I-E-N",    // correcta
+        "I-T-A-L-I-E-N-E",
+        "I-T-A-L-E-I-N",
+        "I-T-A-L-I-E-N-E-R",
       ],
       answer: 0,
     },
+    
     {
       question: "Was ist ein Umlaut? (What is an umlaut?)",
       options: [
@@ -48,15 +49,24 @@ export interface Question {
       answer: 1,
     },
     {
-      question: "Wie sagt man '10' auf Deutsch? (How do you say '10' in German?)",
+      question: "Wie sagt man '11' auf Deutsch? (How do you say '11' in German?)",
       options: [
-        "elf",
-        "zehn", // correcta
+        "elf",// correcta
+        "zehn", 
         "zwanzig",
         "eins",
       ],
-      answer: 1,
-    },
+      answer: 0,
+    },{
+      question: "Wie sagt man '15' auf Deutsch? (How do you say '15' in German?)",
+      options: [
+        "fünfzehn",   // correcta
+        "fünfzig",
+        "vierzehn",
+        "fünf",
+      ],
+      answer: 0,
+    },    
     {
       question: "Was ist das Personalpronomen für 'we'? (What is the personal pronoun for 'we'?)",
       options: [
@@ -222,8 +232,9 @@ export interface Question {
           "siebzhen"
         ],
         answer: 0
-      },{
-        question: "Welcher Buchstabe wird im deutschen Alphabet 'yot' genannt? (Which letter is called 'yot' in the German alphabet?)",
+      },
+      {
+        question: "Welcher Buchstabe wird im deutschen Alphabet mit 'jot' ausgesprochen? (Which letter is pronounced 'jot' in the German alphabet?)",
         options: [
           "Y",
           "J",
@@ -231,7 +242,8 @@ export interface Question {
           "Z"
         ],
         answer: 1
-      },{
+      }
+      ,{
         question: "Was ist das Personalpronomen für 'it' auf Deutsch? (What is the personal pronoun for 'it' in German?)",
         options: [
           "es",

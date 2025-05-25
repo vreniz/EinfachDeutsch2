@@ -310,7 +310,7 @@ const lessonBoards = [
             <div style={{ marginLeft: 18, textAlign: "left" }}>
               <div>Hallo Lena! Ich heiße Marco. Ich komme aus Spanien.</div>
               <div style={{ fontSize: "0.98rem", color: "#475569", marginTop: 2 }}>
-                Hi Lina! My name is Marco. I come from Spain.
+                Hi Lena! My name is Marco. I come from Spain.
               </div>
             </div>
           </div>

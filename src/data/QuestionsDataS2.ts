@@ -18,15 +18,16 @@ export interface Question {
       answer: 2,
     },
     {
-      question: "Wie buchstabiert man 'Berlin'? (How do you spell 'Berlin'?)",
+      question: "Wie buchstabiert man das Wort für 'Spanish' (nationality) auf Deutsch? (How do you spell the word for 'Spanish' in German?)",
       options: [
-        "B-E-R-L-I-N", // correcta
-        "B-E-R-N-L-I",
-        "B-E-L-R-I-N",
-        "B-E-R-L-N-I",
+        "S-P-A-N-I-S-C-H",  // correcta
+        "S-P-A-I-N-I-S-C-H",
+        "S-P-A-N-S-I-C-H",
+        "S-P-A-N-I-C-H",
       ],
       answer: 0,
-    },
+    },    
+    
     {
       question: "Was ist die richtige Reihenfolge? (Which is the correct order?)",
       options: [

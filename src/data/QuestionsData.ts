@@ -33,10 +33,10 @@ export interface Question {
       options: [
         "Ich komme aus Frankreich.",
         "Ich bin Studentin.",
-        "Ich heiße Paul.",
+        "Ich bin Koch von Beruf.",
         "Ich wohne in München.",
       ],
-      answer: 1,
+      answer: 2,
     },
     {
       question: "Woher kommst du? (Where are you from?)",

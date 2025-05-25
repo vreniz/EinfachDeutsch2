@@ -188,7 +188,7 @@ export const quizQuestions = [
       options: [
         "Ich heiße Maria.",
         "Ich komme aus Mexiko.",
-        "Ich bin Lehrerin von Beruf.",
+        "Ich bin Ingenieur von Beruf.",
         "Ich wohne in Madrid.",
       ],
       answer: 2

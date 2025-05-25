@@ -14,12 +14,12 @@ export const clozeTestSets = [
     {
       sentences: [
         "Guten Morgen! Ich _____ Pablo.",
-        "Ich _____ aus Mexiko.",
-        "Ich bin _____ von Beruf.",
-        "Und _____ ?"
+        "Ich komme aus _____.",
+        "Ich bin _____.",
+        "Und _____?"
       ],
-      options: ["komme", "bin", "du", "Student"],
-      answers: ["bin", "komme", "Student", "du"],
+      options: ["Mexiko", "bin", "du", "Student"],
+      answers: ["bin", "Mexiko", "Student", "du"],
     },
     {
       sentences: [
@@ -36,23 +36,45 @@ export const clozeTestSets = [
       sentences: [
         "_____ Morgen! Ich bin Anna.",
         "Ich _____ Studentin.",
-        "Ich _____ aus Spanien.",
+        "Ich komme aus _____.",
         "_____ du auch Student?",
       ],
-      options: ["Guten", "komme", "bin", "Bist"],
-      answers: ["Guten", "bin", "komme", "Bist"],
+      options: ["Guten", "Italien", "bin", "Bist"],
+      answers: ["Guten", "bin", "Italien", "Bist"],
     },
     // Cloze 5
     {
       sentences: [
         "Wie _____ du?",
         "Ich _____ Julia.",
-        "Ich _____ Lehrerin von Beruf.",
+        "Ich bin _____ von Beruf.",
         "Und _____?",
       ],
-      options: ["heiße", "bist", "bin", "du"],
-      answers: ["bist", "heiße", "bin", "du"],
+      options: ["heiße", "bist", "Anwältin", "du"],
+      answers: ["bist", "heiße", "Anwältin", "du"],
     },
+    {
+      sentences: [
+        "Ich komme aus _____.",
+        "_____ du aus Frankreich?",
+        "Mein Freund _____ in Rom.",
+        "Wir _____ aus England.",
+      ],
+      options: ["USA", "Bist", "wohnt", "kommen"],
+      answers: ["USA", "Bist", "wohnt", "kommen"],
+    },
+    {
+      sentences: [
+        "Mein Onkel ist _____.",
+        "Ich _____ Pilot.",
+        "_____ du Architektin?",
+        "Sie _____ Journalistin.",
+      ],
+      options: ["Koch", "bin", "Bist", "ist"],
+      answers: ["Koch", "bin", "Bist", "ist"],
+    }
+    
+    
     
   ];
   

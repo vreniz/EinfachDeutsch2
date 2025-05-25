@@ -13,13 +13,13 @@ export const clozeTestSets = [
     },
     {
       sentences: [
-        "Eins, zwei, _____, vier, fünf.",
+        "Eins, zwei, _____ , vier, fünf.",
         "Ich bin _____ Jahre alt.",
-        "Zwölf auf Deutsch heißt _____ .",
-        "Wie _____ bist du?",
+        "Wie sagt man '12' auf Deutsch? _____ .",
+        "Wie _____ du?",
       ],
-      options: ["drei", "zwölf", "zehn", "alt"],
-      answers: ["drei", "zehn", "zwölf", "alt"],
+      options: ["drei", "zehn", "zwölf", "heißt"],
+      answers: ["drei", "zehn", "zwölf", "heißt"],
     },
     {
       sentences: [
@@ -33,23 +33,25 @@ export const clozeTestSets = [
     },
     {
       sentences: [
-        "_____ bist freundlich.",
-        "Sie _____ aus Deutschland.",
-        "_____ spreche ein bisschen Deutsch.",
-        "_____ lebt in Berlin.",
+        "_____ bist freundlich.",          // Du
+        "Sie _____ aus Deutschland.",      // kommt
+        "_____ spreche ein bisschen Deutsch.", // Ich
+        "_____ lebt in Berlin.",           // Sie
       ],
-      options: ["Du", "Ich", "Sie", "lebt"],
-      answers: ["Du", "Sie", "Ich", "Sie"],
+      options: ["Du", "Ich", "Sie", "kommt"],
+      answers: ["Du", "kommt", "Ich", "Sie"],
     },
+
     {
       sentences: [
-        "_____ heißt du?",
-        "Ich _____ Ben.",
-        "Wie _____ du?",
-        "Ich _____ aus Mexiko.",
+        "_____ heißt du?",             // Wie
+        "Ich _____ Ben.",              // heiße
+        "Woher _____ du?",             // kommst
+        "Ich _____ aus Mexiko.",       // komme
       ],
       options: ["Wie", "heiße", "kommst", "komme"],
       answers: ["Wie", "heiße", "kommst", "komme"],
     }
+    
   ];
   
