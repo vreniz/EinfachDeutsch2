@@ -1,0 +1,249 @@
+.food-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #22c55e;
+    border: none;
+    padding: 0.7rem 2.1rem;
+    border-radius: 2rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-top: 2.1rem;
+    margin-left: 2.1rem;
+    margin-bottom: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px #22c55e77;
+    transition: background 0.16s, box-shadow 0.18s, transform 0.16s;
+    outline: none;
+    letter-spacing: 1px;
+    align-self: flex-start;
+  }
+  .food-back-btn:hover,
+  .food-back-btn:focus {
+    background: #16a34a;
+    box-shadow: 0 8px 28px #22c55ebb;
+    transform: scale(1.045);
+  }
+  
+  .arrow-icon {
+    font-size: 1.5rem;
+    margin-right: 0.2rem;
+  }
+  
+  .food-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #065f46;
+    margin-top: 0.1em;
+    letter-spacing: 1.2px;
+  }
+  
+  .flashcardfood-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 450px;
+  }
+  
+  .flashcardfood-instructions {
+    margin-top: 1.5rem;
+    color: #065f46;
+    font-size: 1.1rem;
+    opacity: 0.92;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  
+  .flashcardfood-card {
+    width: 570px;
+    max-width: 98vw;
+    min-height: 360px;
+    background: #22c55e;
+    border-radius: 2.2rem;
+    margin-bottom: 2.2rem;
+    margin-top: 1.3rem;
+    box-shadow: 0 4px 30px #22c55e77;
+    color: #fff;
+    padding: 2.5rem 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.28s cubic-bezier(0.51,1.08,0.29,0.99), opacity 0.2s;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+  .flashcardfood-card.slide-right {
+    transform: translateX(320px) rotate(18deg);
+    opacity: 0.01;
+  }
+  .flashcardfood-card.slide-left {
+    transform: translateX(-320px) rotate(-18deg);
+    opacity: 0.01;
+  }
+  .flashcardfood-category {
+    background: #065f46;
+    border-radius: 1rem 1rem 0 0;
+    padding: 0.7rem 1.6rem;
+    margin-top: -2.5rem;
+    margin-bottom: 1.6rem;
+    font-size: 1.35rem;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    color: #fff;
+  }
+  .flashcardfood-word {
+    font-size: 1.5rem !important;
+    font-weight: bold;
+    margin: 1.2rem 0 0.2rem 0;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    word-break: break-word;
+    width: 100%;
+    text-align: center;
+  }
+  .flashcardfood-img {
+    width: 98px;
+    height: auto;
+    object-fit: cover;
+    margin-right: -0.5rem !important;
+    vertical-align: middle;
+  }
+  .flashcardfood-translation {
+    font-size: 1.4rem;
+    margin: 0.2rem 0 1.1rem 0;
+    color: #fff;
+  }
+  .flashcardfood-use {
+    font-size: 1.14rem;
+    margin-top: 1rem;
+    color: #fff;
+    line-height: 1.4;
+    text-align: center;
+    max-width: 95%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    display: block;
+  }
+  .flashcardfood-progress {
+    font-weight: 600;
+    margin-bottom: 1.4rem;
+    color: #065f46;
+    font-size: 1.05rem;
+  }
+  .flashcardfood-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1.2rem;
+  }
+  .flashcardfood-btn {
+    padding: 0.85rem 2.3rem;
+    border-radius: 2rem;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 0 1.3rem;
+    cursor: pointer !important;
+    background: #bbf7d0;
+    color: #065f46;
+    box-shadow: 0 2px 14px #22c55e66;
+    transition: background 0.14s;
+  }
+  .flashcardfood-btn.know {
+    background: #4ade80 !important;
+    color: #065f46;
+    cursor: pointer !important;
+  }
+  .flashcardfood-btn.again {
+    background: #78f5a4 !important;
+    color: #065f46;
+    cursor: pointer !important;
+  }
+ .flashcardfood-btn.know:hover,
+ .flashcardfood-btn.again:hover {
+  color: #fff !important;
+  }
+  .flashcardfood-btn.restart {
+    background: #fbbf24;
+    color: #065f46;
+    margin: 2.5rem auto 0 auto;
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 0.85rem 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: 0 2px 14px #22c55e44;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .flashcardfood-btn.restart:hover {
+    background: #22c55e;
+    color: #fff;
+  }
+  
+  .flashcardfood-card.flashcardfood-finished {
+    background: #bbf7d0 !important;
+    color: #065f46 !important;
+    box-shadow: 0 4px 30px #22c55e77;
+  }
+  .flashcardfood-card.flashcardfood-finished .flashcardfood-word {
+    color: #065f46 !important;
+    font-size: 2.1rem;
+    text-align: center;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .flashcardfood-btn,
+  .flashcardfood-btn.know,
+  .flashcardfood-btn.again {
+    cursor: pointer !important;
+  }
+  
+  @media (max-width: 500px) {
+    .flashcardfood-card {
+      width: 97vw;
+      min-width: 0;
+      padding-left: 0.8rem;
+      padding-right: 0.8rem;
+    }
+    .flashcardfood-category {
+      font-size: 1.1rem;
+      padding: 0.6rem 0.7rem;
+    }
+    .flashcardfood-word {
+      font-size: 1.25rem;
+    }
+    .flashcardfood-translation {
+      font-size: 1.05rem;
+    }
+    .flashcardfood-use {
+      font-size: 0.98rem;
+      line-height: 1.35;
+      max-width: 99%;
+    }
+    .flashcardfood-actions {
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .flashcardfood-btn {
+      font-size: 1rem;
+      width: 95%;
+      margin: 0 auto;
+      padding: 0.7rem 0;
+    }
+  }
+  

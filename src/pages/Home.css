@@ -1,0 +1,179 @@
+.homepage-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.home-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+  font-family: sans-serif;
+}
+
+.klaus {
+  max-width: 300px;
+  height: auto;
+  filter: drop-shadow(0 8px 32px #38bdf880); /* Sombra azul suave */
+}
+
+.levels-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-left: -15rem;
+}
+
+.level-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 750px;
+  width: 100%;
+}
+
+.level {
+  padding: 3rem 3rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 1.8rem;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.level:hover {
+  transform: scale(1.05);
+}
+
+.level-a1 { background-color: #38bdf8; }
+.level-a2 { background-color: #ec4899; }
+.level-b1 { background-color: #6366f1; }
+.level-b2 { background-color: #8b5cf6; }
+.level-c1 { background-color: #3b82f6; }
+.level-c2 { background-color: #f97316; }
+
+.home-subtitle {
+  text-align: center;
+  font-size: 1.25rem;
+  color: #334155;
+  margin-bottom: 0.5rem;
+  font-family: sans-serif;
+}
+
+.home-subtitle-translation {
+  text-align: center;
+  font-size: 1rem;
+  color: #64748b;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.highlight-de {
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.18);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.modal-box {
+  background: #fff;
+  border-radius: 1.7rem;
+  box-shadow: 0 4px 32px #38bdf855;
+  padding: 2.2rem 2rem 1.5rem 2rem;
+  text-align: center;
+  max-width: 350px;
+  width: 92vw;
+}
+
+.modal-box h3 {
+  color: #0ea5e9;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+}
+
+.modal-box p {
+  color: #475569;
+  font-size: 1.1rem;
+  margin-bottom: 1.4rem;
+}
+
+.modal-btn {
+  background: #38bdf8;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2.3rem;
+  border-radius: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
+}
+.modal-btn:hover, .modal-btn:focus {
+  background: #0ea5e9;
+}
+
+
+
+@media (max-width: 1200px) {
+  .homepage-content {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .home-title {
+    font-size: 2rem;
+    margin-top: 1rem;
+  }
+
+  .klaus {
+    max-width: 180px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 8px 32px #38bdf880); /* Sombra azul suave */
+  }
+
+  .levels-container {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .level-buttons {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.2rem;
+  }
+
+  .level {
+    font-size: 1.5rem;
+    padding: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .home-subtitle-translation {
+    font-size: 0.95rem;
+  }
+}

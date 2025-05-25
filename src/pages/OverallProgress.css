@@ -1,0 +1,223 @@
+/* OverallProgress.css */
+.overall-progress-container {
+    max-width: 480px;
+    margin: 70px auto 0 auto;
+    padding: 38px 22px 48px 22px;
+    background: linear-gradient(135deg, #f7f6fd 60%, #f0faff 100%);
+    border-radius: 36px;
+    box-shadow: 0 8px 32px #aadfff19;
+    text-align: center;
+    position: relative;
+    border: 2.2px solid #e3e3fa;
+  }
+  
+  .progress-header-row h2 {
+    color: #4474cf;
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-bottom: 0.3em;
+    letter-spacing: 0.8px;
+  }
+  
+  .level-chip {
+    display: inline-block;
+    background: linear-gradient(90deg, #38bdf8, #1769aa);
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 0.45em 1.2em;
+    margin: 1em 0 1em 0;
+    font-size: 1.18em;
+    letter-spacing: 1px;
+  }
+  
+  .chip-level {
+    color: #ffe156;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }  
+  .overall-progress-description {
+    color: #5b6ee7;
+    margin-bottom: 2em;
+    font-size: 1.08rem;
+    font-weight: 500;
+    line-height: 1.65;
+    letter-spacing: 0.2px;
+  }
+  
+  .overall-progress-tip {
+    margin-top: 34px;
+    padding: 18px 15px;
+    background: linear-gradient(90deg, #fff6d4 85%, #ffe7f5 100%);
+    border-radius: 20px;
+    color: #cd8b25;
+    font-size: 1.09rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 1px 8px #ffe07c20;
+    max-width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1.6px solid #faebc7;
+  }
+  
+  .overall-progress-tip b {
+    color: #db5a95;
+    font-weight: 800;
+  }
+  
+  .overall-progress-tip span {
+    font-size: 1.05em;
+  }
+  
+  .exp-bar-cute-container {
+    width: 100%;
+    max-width: 340px;
+    margin: 32px auto 0 auto;
+  }
+  
+  .exp-bar-cute-bg {
+    background: #eee4ff;
+    border-radius: 20px;
+    height: 32px;
+    overflow: hidden;
+    position: relative;
+    border: 1.5px solid #e2cfff;
+  }
+  
+  .exp-bar-cute-fill {
+    background: linear-gradient(90deg, #80e0fd, #d2a3ff 90%);
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.6s cubic-bezier(.87,0,.13,1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    font-weight: 700;
+    font-size: 1.18em;
+    color: #fff8e9;
+    padding-right: 16px;
+    box-shadow: 0 3px 12px #d6b0fa3c;
+  }
+  
+  .exp-bar-cute-label {
+    position: absolute;
+    width: 100%;
+    top: 0; left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: #595a7c;
+    font-size: 1.13em;
+    letter-spacing: 0.8px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .close-x-btn {
+    position: absolute;
+    top: 18px;
+    left: 18px;        /* <-- Cambiado a left */
+    background: none;
+    border: none;
+    font-size: 2.1rem;
+    color: #db5a95;
+    cursor: pointer;
+    font-weight: 800;
+    transition: color 0.18s, background 0.18s;
+    z-index: 10;
+    line-height: 1;
+    padding: 0 8px;
+  }
+  .close-x-btn:hover {
+    color: #4474cf;
+    background: #e0e7ff;
+    border-radius: 50%;
+  }
+  
+  
+
+/*OLD STYLE */
+/*.overall-progress-container {
+    max-width: 500px;
+    margin: 80px auto 0 auto;
+    padding: 42px 28px 55px 28px;
+    background: linear-gradient(135deg,#87c6e4 65%,#c1b3e5 100%);
+    border-radius: 36px;
+    box-shadow: 0 4px 32px #1769aa22;
+    text-align: center;
+    position: relative;
+  }
+  
+  .progress-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 0.6em;
+  }
+  
+  .progress-icon-spark {
+    width: 34px;
+    height: 34px;
+    vertical-align: middle;
+    filter: drop-shadow(0 2px 6px #38bdf84a);
+  }
+  
+  .overall-progress-container h2 {
+    margin-bottom: 0px;
+    color: #1769aa;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  .level-chip {
+    display: inline-block;
+    background: linear-gradient(90deg, #38bdf8, #1769aa);
+    color: #fff;
+    border-radius: 25px;
+    font-weight: 600;
+    padding: 0.45em 1.2em;
+    margin: 1em 0 1em 0;
+    font-size: 1.18em;
+    letter-spacing: 1px;
+  }
+  
+  .chip-level {
+    color: #ffe156;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  
+  .overall-progress-description {
+    color: #385674;
+    margin-bottom: 2em;
+    font-size: 1.07rem;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  
+  .overall-progress-tip {
+    margin-top: 28px;
+    padding: 15px 15px 15px 15px;
+    background: #fffbe8;
+    border-radius: 18px;
+    color: #b27600;
+    font-size: 1.08rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    box-shadow: 0 1px 7px #eab30815;
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+  }*/
+  

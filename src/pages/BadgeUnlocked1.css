@@ -1,0 +1,98 @@
+.badge-unlocked-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    min-height: 60vh;
+    justify-content: center;
+  }
+  
+  .badge-unlocked-row {
+    display: flex;
+    align-items: flex-start;  /* Para que badge y Klaus estén arriba */
+    gap: 6rem;               /* Más separación entre Klaus y medalla */
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .klaus-badge-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 430px;
+  }
+  
+  .klaus-badge-img {
+    width: 500px !important;      /* Más grande el pinguino */
+    height: auto;
+    margin-bottom: 1.6rem;
+  }
+  
+  
+  .badge-section-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 370px;
+  }
+  
+  .badge-section-title {
+    color: #1769aa;
+    font-size: 2rem;         /* Más grande y llamativo */
+    font-weight: bold;
+    margin-bottom: 1.6rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+  .badge-img {
+    width: 250px;              /* Medalla mucho más grande */
+    margin-bottom: 0.7rem;
+  }
+  
+  .badge-section-label {
+    color: #1769aa;
+    font-size: 2.1rem;
+    font-weight: bold;
+    margin-top: -2.6rem;
+    margin-bottom: 1.2rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  
+  .finish-section-btn {
+    background: #1769aa;
+    color: #fff;
+    border: none;
+    border-radius: 2.1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1.1rem 3.8rem;
+    margin-top: 2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 18px #2196f321;
+    letter-spacing: 1px;
+    transition: background 0.18s;
+  }
+  
+  /* Responsive para móvil */
+  @media (max-width: 900px) {
+    .badge-unlocked-row {
+      gap: 2rem;
+    }
+    .klaus-badge-img, .badge-img {
+      width: 160px;
+    }
+    .badge-section-title {
+      font-size: 2.1rem;
+    }
+    .badge-section-label {
+      font-size: 1.3rem;
+    }
+  }
+  .badge-unlocked-container .mark-as-done-btn {
+    margin-top: -1rem !important;   /* Más pequeño que el valor por defecto */
+    margin-bottom: 0.7rem !important;
+  }
+  

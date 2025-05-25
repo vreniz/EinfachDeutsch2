@@ -1,0 +1,234 @@
+.flashcardhouse-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #f472b6;
+  border: none;
+  padding: 0.7rem 2.1rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 2.1rem;
+  margin-left: 2.1rem;
+  margin-bottom: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 4px 18px #f472b677;
+  transition: background 0.16s, box-shadow 0.18s, transform 0.16s;
+  outline: none;
+  letter-spacing: 1px;
+  align-self: flex-start;
+}
+.flashcardhouse-back-btn:hover,
+.flashcardhouse-back-btn:focus {
+  background: #f160ae;
+  box-shadow: 0 8px 28px #f472b6bb;
+  transform: scale(1.045);
+}
+.flashcardhouse-arrow-icon {
+  font-size: 1.5rem;
+  margin-right: 0.2rem;
+}
+
+.flashcardhouse-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 450px;
+}
+
+.flashcardhouse-instructions {
+  margin-top: 1.5rem;
+  color: #ad1457 !important;
+  font-size: 1.1rem;
+  opacity: 0.92;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.flashcardhouse-card {
+  width: 570px;
+  max-width: 98vw;
+  min-height: 360px;
+  background: #f472b6 !important;
+  border-radius: 2.2rem;
+  margin-bottom: 2.2rem;
+  margin-top: 1.3rem;
+  box-shadow: 0 4px 30px #f472b677;
+  color: #fff;
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.28s cubic-bezier(0.51,1.08,0.29,0.99), opacity 0.2s;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.flashcardhouse-card.slide-right {
+  transform: translateX(320px) rotate(18deg);
+  opacity: 0.01;
+}
+.flashcardhouse-card.slide-left {
+  transform: translateX(-320px) rotate(-18deg);
+  opacity: 0.01;
+}
+
+.flashcardhouse-category {
+  background: #ad1457;
+  border-radius: 1rem 1rem 0 0;
+  padding: 0.7rem 1.6rem;
+  margin-top: -2.5rem;
+  margin-bottom: 1.6rem;
+  font-size: 1.35rem;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 1px;
+  box-sizing: border-box;
+}
+
+.flashcardhouse-word {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1.2rem 0 0.2rem 0;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  word-break: break-word;
+  width: 100%;
+  text-align: center;
+}
+
+.flashcardhouse-img {
+  width: 90px;
+  height: 83px;
+  object-fit: cover;
+  margin-right: -0.5rem !important;
+  vertical-align: middle;
+}
+
+.flashcardhouse-translation {
+  font-size: 1.4rem;
+  margin: 0.2rem 0 1.1rem 0;
+  color: #fce7f3;
+}
+
+.flashcardhouse-use {
+  font-size: 1.14rem;
+  margin-top: 1rem;
+  color: #fdf2f8;
+  line-height: 1.4;
+  text-align: center;
+  max-width: 95%;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  display: block;
+}
+
+.flashcardhouse-progress {
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  color: #ad1457;
+  font-size: 1.05rem;
+}
+
+.flashcardhouse-actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.2rem;
+}
+
+.flashcardhouse-btn {
+  padding: 0.85rem 2.3rem;
+  border-radius: 2rem;
+  border: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0 1.3rem;
+  cursor: pointer !important;
+  background: #fbcfe8 !important;
+  color: #ad1457;
+  box-shadow: 0 2px 14px #f472b666;
+  transition: background 0.14s;
+}
+.flashcardhouse-btn.know {
+  background: #f9a8d4 !important;
+  color: #ad1457;
+}
+.flashcardhouse-btn.again {
+  background: #fbcfe8 !important;
+  color: #ad1457;
+}
+ .flashcardhouse-btn.know:hover,
+ .flashcardhouse-btn.again:hover {
+  color: #fff !important;
+ }
+.flashcardhouse-btn.restart {
+  background: #de77ba !important;
+  color: #ad1457 !important;
+  margin: 2.5rem auto 0 auto;
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 0.85rem 2.5rem;
+  border: none;
+  border-radius: 2rem;
+  box-shadow: 0 2px 14px #fbbf2444;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.flashcardhouse-btn.restart:hover {
+  background: #f472b6 !important;
+  color: #fff !important;
+}
+
+.flashcardhouse-card.flashcardhouse-finished {
+  background: #fbcfe8 !important;
+  color: #fff !important;
+  box-shadow: 0 4px 30px #f472b677;
+}
+.flashcardhouse-card.flashcardhouse-finished .flashcardhouse-word {
+  color: #ad1457 !important;
+}
+
+@media (max-width: 500px) {
+  .flashcardhouse-card {
+    width: 97vw;
+    min-width: 0;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+  }
+  .flashcardhouse-category {
+    font-size: 1.1rem;
+    padding: 0.6rem 0.7rem;
+  }
+  .flashcardhouse-word {
+    font-size: 1.25rem;
+  }
+  .flashcardhouse-translation {
+    font-size: 1.05rem;
+  }
+  .flashcardhouse-use {
+    font-size: 0.98rem;
+    line-height: 1.35;
+    max-width: 99%;
+  }
+  .flashcardhouse-actions {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .flashcardhouse-btn {
+    font-size: 1rem;
+    width: 95%;
+    margin: 0 auto;
+    padding: 0.7rem 0;
+  }
+}
