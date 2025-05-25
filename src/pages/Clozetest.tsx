@@ -37,7 +37,7 @@ const ClozeTest = () => {
 
   return (
     <div className="cloze-container">
-      <div className="cloze-instructions">Select or type the words below in the correct order to complete the sentences.</div>
+      <div className="cloze-instructions">Select or type the words below in the correct order.</div>
       <div className="cloze-card">
         <div className="cloze-title">
           Vervollständige die Sätze (Complete the sentences):
