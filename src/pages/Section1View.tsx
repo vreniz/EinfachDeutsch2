@@ -749,7 +749,7 @@ export default function Section1View() {
                 <div className="section-content">
                   {activityView === "" ? (
                     <>
-                      <p>Choose a learning activity from the dropdown menu on the left.</p>
+                      <p>Choose a learning activity from the dropdown menu.</p>
                       <div className="klaus-activity-container" style={{ marginTop: "60px" }}>
                         <img src={klaus2} className="klaus-img" alt="Klaus Activity mascot" />
                       </div>
