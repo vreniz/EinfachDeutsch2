@@ -109,7 +109,25 @@
       display: block;
       position: static;
     }
-  
+    .quiz-instructions {
+      font-size: 0.85rem !important;
+      padding: 0.5rem 0.6rem;
+      width: 98vw;
+      max-width: 99vw;
+      text-align: center;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      margin-bottom: 1rem;
+      margin-top: 0.5rem;
+      box-sizing: border-box;
+      line-height: 1.35;
+    }
+    .quiz-badge-btn,
+    .mark-as-done-btn {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
     
   }
 
