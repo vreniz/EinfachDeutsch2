@@ -77,6 +77,15 @@
     font-size: 1.18rem;
     padding: 0 0.3rem;
   }
+  .flashcard-instructions {
+    font-size: 0.97rem;
+    padding: 0.5rem 0.2rem 0.4rem 0.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: -0.5rem;
+    max-width: 98vw;
+    word-break: break-word;
+    text-align: center;
+    line-height: 1.36;}
 }
 
 .flashcard-translation {
@@ -158,7 +167,7 @@
 }
 
 /* ----------- RESPONSIVE ------------ */
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   .flashcard-card {
     width: 97vw;
     min-width: 0;
@@ -190,6 +199,15 @@
     margin: 0 auto;
     padding: 0.7rem 0;
   }
+  .flashcard-instructions {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.2rem 0.4rem 0.2rem;
+    margin-top: 1.2rem;
+    margin-bottom: -0.5rem;
+    max-width: 98vw;
+    word-break: break-word;
+    text-align: center;
+    line-height: 1.36;}
 }
 
 .flashcard-btn.restart {
