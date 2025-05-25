@@ -245,6 +245,17 @@ html, body {
 
 
 @media (max-width: 600px) {
+
+  .section-content > p, .intro-reminder.tip {
+    font-size: 0.84rem !important;
+    padding: 0.7rem 0.7rem 0.5rem 0.7rem;
+    word-break: break-word !important;
+    max-width: 98vw;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.3;
+    
+  }
   .section-view-container {
     flex-direction: column;
     align-items: center;
@@ -378,4 +389,5 @@ html, body {
   background: #2563eb;
   color: #fff;
 }
+
 
