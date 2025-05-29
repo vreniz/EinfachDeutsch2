@@ -1,7 +1,6 @@
 // src/pages/Profile.tsx
 import Navbar from './Navbar';
 import { useUser } from '../Context/UserContext';
-import './Profile.css';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,11 +52,11 @@ export default function Profile() {
   return (
     <>
       <Navbar />
-      <div className="profile-container">
-        <div className="profile-card">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-cyan-50 flex items-center justify-center p-4">
+        <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative border border-blue-100">
           {/* X Cerrar */}
           <button
-            className="profile-close-btn"
+            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 hover:bg-blue-100 transition-colors duration-200 cursor-pointer"
             title="Back to Home"
             onClick={() => navigate('/home')}
           >
@@ -67,29 +66,22 @@ export default function Profile() {
             </svg>
           </button>
 
-          <div className="profile-avatar" style={{ position: 'relative' }}>
+          <div className="relative flex justify-center items-center mb-4">
             <img
               src={avatarSrc}
               alt="User avatar"
-              style={{
-                width: 120,
-                height: 120,
-                borderRadius: "50%",
-                objectFit: "cover",
-                border: "4px solid #3b82f6",
-                background: "#e0e7ff"
-              }}
+              className="w-30 h-30 rounded-full object-cover border-4 border-blue-500 bg-blue-50"
             />
             {/* Editar foto */}
             <button
-              className="profile-edit-btn"
+              className="absolute bottom-0 right-1/2 transform translate-x-1/2 translate-y-2 w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-xl font-bold hover:bg-blue-600 transition-colors duration-200 cursor-pointer shadow-lg"
               onClick={() => fileInputRef.current?.click()}
               title="Change profile picture"
             >+</button>
             <input
               type="file"
               accept="image/*"
-              style={{ display: "none" }}
+              className="hidden"
               ref={fileInputRef}
               onChange={handlePhotoChange}
             />
@@ -97,31 +89,31 @@ export default function Profile() {
 
           {!editing ? (
             <>
-              <h2 className="profile-name">
+              <h2 className="text-3xl text-blue-600 font-bold mb-1 text-center">
                 {user?.name} {user?.lastName}
               </h2>
-              <p className="profile-email">{user?.email}</p>
-              <div className="profile-info">
-                <div>
-                  <span className="profile-label">Birthdate:</span>
-                  <span className="profile-value">{user?.birthDate}</span>
+              <p className="text-blue-500 text-base mb-5 font-medium text-center">{user?.email}</p>
+              <div className="mt-5 w-full">
+                <div className="flex justify-between text-lg my-3">
+                  <span className="text-blue-600 font-semibold">Birthdate:</span>
+                  <span className="text-blue-500">{user?.birthDate}</span>
                 </div>
-                <div>
-                  <span className="profile-label">Country:</span>
-                  <span className="profile-value">{user?.country}</span>
+                <div className="flex justify-between text-lg my-3">
+                  <span className="text-blue-600 font-semibold">Country:</span>
+                  <span className="text-blue-500">{user?.country}</span>
                 </div>
               </div>
               <button
-                className="profile-edit-profile-btn"
+                className="w-full bg-blue-500 text-white font-bold text-lg py-3 rounded-3xl mt-6 hover:bg-blue-600 transition-colors duration-200 cursor-pointer shadow-md"
                 onClick={() => setEditing(true)}
               >
                 Edit Profile
               </button>
             </>
           ) : (
-            <form className="profile-form" onSubmit={handleSave}>
+            <form className="w-full flex flex-col gap-4" onSubmit={handleSave}>
               <input
-                className="profile-input"
+                className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="text"
                 value={form.name}
                 placeholder="Name"
@@ -129,7 +121,7 @@ export default function Profile() {
                 required
               />
               <input
-                className="profile-input"
+                className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="text"
                 value={form.lastName}
                 placeholder="Last Name"
@@ -137,7 +129,7 @@ export default function Profile() {
                 required
               />
               <input
-                className="profile-input"
+                className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="email"
                 value={form.email}
                 placeholder="Email"
@@ -145,7 +137,7 @@ export default function Profile() {
                 required
               />
               <input
-                className="profile-input"
+                className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="date"
                 value={form.birthDate}
                 placeholder="Birthdate"
@@ -153,22 +145,22 @@ export default function Profile() {
                 required
               />
               <input
-                className="profile-input"
+                className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="text"
                 value={form.country}
                 placeholder="Country"
                 onChange={e => setForm(f => ({ ...f, country: e.target.value }))}
                 required
               />
-              <div className="profile-edit-actions">
+              <div className="flex gap-3 mt-4">
                 <button
-                  className="profile-save-btn"
+                  className="flex-1 bg-blue-500 text-white font-bold text-base py-3 rounded-xl hover:bg-blue-600 transition-colors duration-200 cursor-pointer"
                   type="submit"
                 >
                   Save
                 </button>
                 <button
-                  className="profile-cancel-btn"
+                  className="flex-1 bg-gray-300 text-gray-700 font-bold text-base py-3 rounded-xl hover:bg-gray-400 transition-colors duration-200 cursor-pointer"
                   type="button"
                   onClick={() => {
                     setEditing(false);

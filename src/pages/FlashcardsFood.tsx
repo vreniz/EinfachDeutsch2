@@ -1,34 +1,34 @@
 // src/pages/FlashcardsFood.tsx
-import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './Navbar';
-import { vocabularyFood } from '../data/VocabularyFood';
-import './FlashcardsFood.css';
-
-const FOOD_COLOR = "#22c55e";
-const FOOD_ACCENT = "#065f46";
+import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
+import { vocabularyFood } from "../data/VocabularyFood";
 
 export default function FlashcardsFood() {
   const [queue, setQueue] = useState([...vocabularyFood]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [animDirection, setAnimDirection] = useState<'left' | 'right' | ''>('');
+  const [animDirection, setAnimDirection] = useState<"left" | "right" | "">("");
   const [knownCount, setKnownCount] = useState(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  function handleAction(action: 'know' | 'studyAgain') {
-    setAnimDirection(action === 'know' ? 'right' : 'left');
+  function handleAction(action: "know" | "studyAgain") {
+    setAnimDirection(action === "know" ? "right" : "left");
     setTimeout(() => {
-      setAnimDirection('');
+      setAnimDirection("");
       if (queue.length === 0) return;
 
-      let newQueue = [...queue];
-      if (action === 'know') {
+      const newQueue = [...queue];
+      if (action === "know") {
         newQueue.splice(currentIndex, 1);
-        setKnownCount(kc => kc + 1);
-      } else if (action === 'studyAgain') {
+        setKnownCount((kc) => kc + 1);
+      } else if (action === "studyAgain") {
         const flashcard = newQueue.splice(currentIndex, 1)[0];
-        newQueue.splice(Math.min(currentIndex + 3, newQueue.length), 0, flashcard);
+        newQueue.splice(
+          Math.min(currentIndex + 3, newQueue.length),
+          0,
+          flashcard
+        );
       }
 
       if (newQueue.length === 0) {
@@ -36,9 +36,7 @@ export default function FlashcardsFood() {
         setCurrentIndex(0);
       } else {
         setQueue(newQueue);
-        setCurrentIndex((prev) =>
-          prev >= newQueue.length ? 0 : prev
-        );
+        setCurrentIndex((prev) => (prev >= newQueue.length ? 0 : prev));
       }
     }, 280);
   }
@@ -46,7 +44,7 @@ export default function FlashcardsFood() {
   function handleRestart() {
     setQueue([...vocabularyFood]);
     setCurrentIndex(0);
-    setAnimDirection('');
+    setAnimDirection("");
     setKnownCount(0);
   }
 
@@ -54,15 +52,10 @@ export default function FlashcardsFood() {
   function BackButton() {
     return (
       <button
-        className="food-back-btn"
-        style={{
-          background: FOOD_COLOR,
-          color: "#fff",
-          fontWeight: "bold"
-        }}
-        onClick={() => navigate('/practice')}
+        className="flex items-center gap-2 bg-green-500 border-none py-3 px-8 rounded-3xl font-bold text-xl text-white mt-8 ml-8 mb-5 cursor-pointer shadow-lg hover:bg-green-600 hover:shadow-xl hover:scale-105 transition-all duration-150 outline-none tracking-wide self-start"
+        onClick={() => navigate("/practice")}
       >
-        <span className="arrow-icon">←</span>
+        <span className="text-xl">←</span>
         <span>FOOD</span>
       </button>
     );
@@ -76,14 +69,11 @@ export default function FlashcardsFood() {
         <img
           src={img}
           alt={alt}
-          className="flashcardfood-img"
-          style={{ marginRight: "0.6em" }}
+          className="w-24 h-20 object-cover -mr-2 align-middle"
         />
       );
     }
-    return (
-      <span style={{ fontSize: "2.5rem", marginRight: "0.6em" }}>{img}</span>
-    );
+    return <span className="text-4xl mr-2">{img}</span>;
   }
 
   if (queue.length === 0) {
@@ -91,15 +81,19 @@ export default function FlashcardsFood() {
       <div>
         <Navbar />
         <BackButton />
-        <div className="flashcard-container">
-          <div className="flashcardfood-card flashcardfood-finished">
-            <div className="flashcardfood-category" style={{ background: FOOD_ACCENT }}>
+        <div className="flex flex-col items-center min-h-screen pt-20">
+          <div className="bg-green-100 text-green-800 p-10 rounded-3xl shadow-xl max-w-md w-full mx-auto text-center border-2 border-green-200 sm:w-[97vw] sm:min-w-0 sm:px-3 sm:py-8">
+            <div className="bg-green-800 text-white text-xl font-bold rounded-2xl rounded-b-none py-3 px-6 -mt-10 mb-6 w-full text-center tracking-wide box-border">
               ¡Well Done!
             </div>
-            <div className="flashcardfood-word">
-              You've completed all the flashcards! 🎉<br /> Keep up the good work!
+            <div className="text-green-800 text-3xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
+              You've completed all the flashcards! 🎉
+              <br /> Keep up the good work!
             </div>
-            <button className="flashcardfood-btn restart" onClick={handleRestart} style={{ background: FOOD_COLOR }}>
+            <button
+              className="bg-green-500 text-green-800 font-bold text-lg py-3 px-10 border-none rounded-3xl shadow-md cursor-pointer transition-colors duration-150 hover:bg-green-600 hover:text-white mx-auto mt-10 block"
+              onClick={handleRestart}
+            >
               Restart
             </button>
           </div>
@@ -114,44 +108,49 @@ export default function FlashcardsFood() {
     <div>
       <Navbar />
       <BackButton />
-      <div className="flashcard-container">
-        <div className="flashcardfood-instructions" style={{ color: FOOD_ACCENT }}>
+      <div className="flex flex-col items-center min-h-screen pt-20">
+        <div className="text-green-800 text-lg font-medium mb-6 text-center tracking-wide">
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`flashcardfood-card ${animDirection ? 'slide-' + animDirection : ''}`}
+          className={`bg-green-500 shadow-2xl p-10 rounded-3xl max-w-md w-full mx-auto text-center text-white relative transition-transform duration-300 ${
+            animDirection === "left"
+              ? "-translate-x-full opacity-0"
+              : animDirection === "right"
+              ? "translate-x-full opacity-0"
+              : ""
+          } sm:w-[97vw] sm:min-w-0 sm:px-3 sm:py-8`}
           ref={cardRef}
-          style={{ background: FOOD_COLOR, boxShadow: "0 4px 30px #22c55e77" }}
         >
-          <div className="flashcardfood-category" style={{ background: FOOD_ACCENT }}>
+          <div className="bg-green-800 text-white text-xl font-bold rounded-2xl rounded-b-none py-3 px-6 -mt-10 mb-6 w-full text-center tracking-wide box-border">
             {flashcard.category}
           </div>
-          <div className="flashcardfood-word">
+          <div className="text-white text-2xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
             {renderFlashcardImage(flashcard.imageUrl, flashcard.german)}
-            <span style={{ fontWeight: 600, fontSize: "2rem" }}>
-              {flashcard.german}
-            </span>
+            <span className="font-semibold text-3xl">{flashcard.german}</span>
           </div>
-          <div className="flashcardfood-translation">{flashcard.translation}</div>
+          <div className="text-white text-xl mt-1 mb-4">
+            {flashcard.translation}
+          </div>
           {flashcard.use && (
-            <div className="flashcardfood-use">{flashcard.use}</div>
+            <div className="text-white text-lg mt-4 leading-relaxed text-center max-w-[95%] break-words whitespace-normal block">
+              {flashcard.use}
+            </div>
           )}
         </div>
-        <div className="flashcardfood-progress">
+        <div className="font-semibold mb-6 text-green-800 text-lg">
           Flashcards Known: {knownCount} of {vocabularyFood.length}
         </div>
-        <div className="flashcardfood-actions">
+        <div className="w-full flex justify-around mt-5 sm:flex-col sm:gap-5">
           <button
-            className="flashcardfood-btn again"
-            onClick={() => handleAction('studyAgain')}
-            style={{ background: "#bbf7d0", color: "#065f46" }}
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-green-200 text-green-800 shadow-md transition-colors duration-150 hover:text-white sm:text-base sm:w-[95%] sm:mx-auto sm:py-3 sm:px-0"
+            onClick={() => handleAction("studyAgain")}
           >
             STUDY AGAIN
           </button>
           <button
-            className="flashcardfood-btn know"
-            onClick={() => handleAction('know')}
-            style={{ background: "#4ade80", color: "#065f46" }}
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-green-400 text-green-800 shadow-md transition-colors duration-150 hover:text-white sm:text-base sm:w-[95%] sm:mx-auto sm:py-3 sm:px-0"
+            onClick={() => handleAction("know")}
           >
             KNOW
           </button>

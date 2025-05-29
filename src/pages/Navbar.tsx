@@ -1,5 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom';
-import './Navbar.css';
 import { useState } from 'react';
 import { useUser } from '../Context/UserContext';
 
@@ -16,28 +15,27 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <img src="https://flagcdn.com/w320/de.png" alt="German flag" className="flag" />
-        <span><span className="white">EINFACH</span><span className="red">DEUTSCH</span></span>
+    <nav className="flex justify-between items-center bg-sky-400 px-8 py-3 font-sans flex-wrap">
+      <div className="flex items-center text-xl font-bold gap-2">
+        <img src="https://flagcdn.com/w320/de.png" alt="German flag" className="w-8 h-auto rounded" />
+        <span><span className="text-white">EINFACH</span><span className="text-red-600">DEUTSCH</span></span>
       </div>
 
-      <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+      <button className="hidden max-md:block text-3xl text-white bg-none border-none cursor-pointer ml-auto" onClick={() => setMenuOpen(!menuOpen)}>
         ☰
       </button>
 
-      <div className={`navbar-links ${menuOpen ? 'open' : ''}`}>
-        <Link to="/home">Home</Link>
-        <Link to="/practice">Practice</Link>
-        <Link to="/progress">Overall Progress</Link>
-        <div className="navbar-user" onClick={() => setShowDropdown(!showDropdown)}>
+      <div className={`flex gap-8 flex-wrap ${menuOpen ? 'max-md:flex max-md:flex-col max-md:w-full max-md:mt-4' : 'max-md:hidden'}`}>
+        <Link to="/home" className="text-white no-underline font-bold hover:text-slate-900 transition-colors">Home</Link>
+        <Link to="/practice" className="text-white no-underline font-bold hover:text-slate-900 transition-colors">Practice</Link>
+        <Link to="/progress" className="text-white no-underline font-bold hover:text-slate-900 transition-colors">Overall Progress</Link>
+        <div className="relative font-bold text-white cursor-pointer" onClick={() => setShowDropdown(!showDropdown)}>
           <span>{user ? user.name : 'USER'} ▾</span>
           {showDropdown && (
-            <div className="dropdown">
-              <button onClick={() => { setShowDropdown(false); navigate('/profile'); }}>Profile</button>
-              <button onClick={() => { setShowDropdown(false); navigate('/reminder'); }}>Reminder</button>
-              <button onClick={handleSignOut}>Sign out</button>
-              {/* 👆 LLAMA handleSignOut */}
+            <div className="absolute top-10 right-0 bg-sky-300/95 rounded-2xl flex flex-col p-4 gap-2 z-[1000] w-44 shadow-lg">
+              <button onClick={() => { setShowDropdown(false); navigate('/profile'); }} className="bg-none border-none text-white font-bold text-center cursor-pointer hover:text-slate-900 py-1">Profile</button>
+              <button onClick={() => { setShowDropdown(false); navigate('/reminder'); }} className="bg-none border-none text-white font-bold text-center cursor-pointer hover:text-slate-900 py-1">Reminder</button>
+              <button onClick={handleSignOut} className="bg-none border-none text-white font-bold text-center cursor-pointer hover:text-slate-900 py-1">Sign out</button>
             </div>
           )}
         </div>

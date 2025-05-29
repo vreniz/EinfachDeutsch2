@@ -3,10 +3,6 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { vocabularySchool } from '../data/VocabularySchool';
-import './FlashcardsSchool.css'; // Usa tu archivo CSS amarillo
-
-const SCHOOL_COLOR = "#fbbf24";
-const SCHOOL_ACCENT = "#b45309"; // Un amarillo-marrón para contraste, puedes ajustar
 
 export default function FlashcardsSchool() {
   const [queue, setQueue] = useState([...vocabularySchool]);
@@ -54,15 +50,10 @@ export default function FlashcardsSchool() {
   function BackButton() {
     return (
       <button
-        className="school-back-btn"
-        style={{
-          background: SCHOOL_COLOR,
-          color: "#fff",
-          fontWeight: "bold"
-        }}
+        className="flex items-center gap-2.5 bg-amber-400 border-none py-3 px-8 rounded-3xl font-bold text-xl text-white mt-8 ml-8 mb-5 cursor-pointer shadow-[0_4px_18px_rgba(251,191,36,0.47)] transition-all duration-150 outline-none tracking-wide self-start hover:bg-yellow-500 hover:shadow-[0_8px_28px_rgba(251,191,36,0.73)] hover:scale-105 focus:bg-yellow-500 focus:shadow-[0_8px_28px_rgba(251,191,36,0.73)] focus:scale-105"
         onClick={() => navigate('/practice')}
       >
-        <span className="arrow-icon">←</span>
+        <span className="text-2xl mr-1">←</span>
         <span>SCHOOL</span>
       </button>
     );
@@ -73,15 +64,15 @@ export default function FlashcardsSchool() {
       <div>
         <Navbar />
         <BackButton />
-        <div className="flashcardschool-container">
-          <div className="flashcardschool-card flashcardschool-finished">
-            <div className="flashcardschool-category" style={{ background: SCHOOL_ACCENT }}>
+        <div className="flex flex-col items-center min-h-[450px]">
+          <div className="w-[570px] max-w-[98vw] min-h-[360px] bg-amber-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-amber-800 p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
+            <div className="bg-amber-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
               ¡Well Done!
             </div>
-            <div className="flashcardschool-word">
+            <div className="text-2xl font-bold mt-10 mb-10 text-center leading-5 text-amber-800">
               You've completed all the flashcards! 🎉<br /> Keep up the good work!
             </div>
-            <button className="flashcardschool-btn restart" onClick={handleRestart} style={{ background: SCHOOL_COLOR }}>
+            <button className="bg-amber-400 text-amber-800 mt-10 mx-auto block text-lg font-bold py-3.5 px-10 border-none rounded-3xl shadow-[0_2px_14px_rgba(180,83,9,0.27)] cursor-pointer transition-all duration-200 hover:bg-amber-200 hover:text-white" onClick={handleRestart}>
               Restart
             </button>
           </div>
@@ -99,13 +90,12 @@ export default function FlashcardsSchool() {
         <img
           src={img}
           alt={alt}
-          className="flashcardschool-img"
-          style={{ marginRight: "0.6em" }}
+          className="w-[90px] h-[83px] object-cover -mr-2 align-middle"
         />
       );
     }
     return (
-      <span style={{ fontSize: "2.5rem", marginRight: "0.6em" }}>{img}</span>
+      <span className="text-5xl mr-2.5">{img}</span>
     );
   }
 
@@ -113,44 +103,47 @@ export default function FlashcardsSchool() {
     <div>
       <Navbar />
       <BackButton />
-      <div className="flashcardschool-container">
-        <div className="flashcardschool-instructions" style={{ color: SCHOOL_ACCENT }}>
+      <div className="flex flex-col items-center min-h-[450px]">
+        <div className="mt-6 text-amber-700 text-lg opacity-90 text-center mb-3 font-semibold tracking-wide">
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`flashcardschool-card ${animDirection ? 'slide-' + animDirection : ''}`}
+          className={`w-[570px] max-w-[98vw] min-h-[360px] bg-amber-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-white p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
+            animDirection === 'right' 
+              ? 'transform translate-x-80 rotate-[18deg] opacity-0' 
+              : animDirection === 'left' 
+              ? 'transform -translate-x-80 -rotate-[18deg] opacity-0' 
+              : ''
+          }`}
           ref={cardRef}
-          style={{ background: SCHOOL_COLOR, boxShadow: "0 4px 30px #fbbf2477" }}
         >
-          <div className="flashcardschool-category" style={{ background: SCHOOL_ACCENT }}>
+          <div className="bg-amber-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
             {flashcard.category}
           </div>
-          <div className="flashcardschool-word">
+          <div className="text-2xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
             {renderFlashcardImage(flashcard.imageUrl, flashcard.german)}
-            <span style={{ fontWeight: 600, fontSize: "2rem" }}>
+            <span className="font-semibold text-3xl">
               {flashcard.german}
             </span>
           </div>
-          <div className="flashcardschool-translation">{flashcard.translation}</div>
+          <div className="text-xl mt-1 mb-4 text-white">{flashcard.translation}</div>
           {flashcard.use && (
-            <div className="flashcardschool-use">{flashcard.use}</div>
+            <div className="text-lg mt-4 text-white leading-6 text-center max-w-[95%] break-words whitespace-normal block">{flashcard.use}</div>
           )}
         </div>
-        <div className="flashcardschool-progress">
+        <div className="font-semibold mb-6 text-amber-700 text-lg">
           Flashcards Known: {knownCount} of {vocabularySchool.length}
         </div>
-        <div className="flashcardschool-actions">
+        <div className="w-full flex justify-around mt-5 max-sm:flex-col max-sm:gap-5">
           <button
-            className="flashcardschool-btn again"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-amber-200 text-amber-700 shadow-[0_2px_14px_rgba(251,191,36,0.4)] transition-colors duration-150 hover:text-white max-sm:text-base max-sm:w-[95%] max-sm:mx-auto max-sm:py-3 max-sm:px-0"
             onClick={() => handleAction('studyAgain')}
-            style={{ background: "#fde68a", color: "#b45309" }}
           >
             STUDY AGAIN
           </button>
           <button
-            className="flashcardschool-btn know"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-amber-400 text-amber-700 shadow-[0_2px_14px_rgba(251,191,36,0.4)] transition-colors duration-150 hover:text-white max-sm:text-base max-sm:w-[95%] max-sm:mx-auto max-sm:py-3 max-sm:px-0"
             onClick={() => handleAction('know')}
-            style={{ background: "#fbbf24", color: "#b45309" }}
           >
             KNOW
           </button>

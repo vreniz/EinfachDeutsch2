@@ -3,10 +3,6 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { vocabularyTravel } from '../data/VocabularyTravel';
-import './FlashcardsTravel.css';
-
-const TRAVEL_COLOR = "#a78bfa";
-const TRAVEL_ACCENT = "#5b21b6";
 
 export default function FlashcardsTravel() {
   const [queue, setQueue] = useState([...vocabularyTravel]);
@@ -53,15 +49,10 @@ export default function FlashcardsTravel() {
   function BackButton() {
     return (
       <button
-        className="flashcardtravel-back-btn"
-        style={{
-          background: TRAVEL_COLOR,
-          color: "#fff",
-          fontWeight: "bold"
-        }}
+        className="flex items-center gap-2.5 bg-violet-400 border-none py-3 px-8 rounded-3xl font-bold text-xl text-white mt-8 ml-8 mb-5 cursor-pointer shadow-[0_4px_18px_rgba(167,139,250,0.47)] transition-all duration-150 outline-none tracking-wide self-start hover:bg-violet-500 hover:shadow-[0_8px_28px_rgba(167,139,250,0.73)] hover:scale-105 focus:bg-violet-500 focus:shadow-[0_8px_28px_rgba(167,139,250,0.73)] focus:scale-105"
         onClick={() => navigate('/practice')}
       >
-        <span className="flashcardtravel-arrow-icon">←</span>
+        <span className="text-2xl mr-1">←</span>
         <span>TRAVEL</span>
       </button>
     );
@@ -74,13 +65,12 @@ export default function FlashcardsTravel() {
         <img
           src={img}
           alt={alt}
-          className="flashcardtravel-img"
-          style={{ marginRight: "0.6em" }}
+          className="w-[90px] h-[83px] object-cover mr-2 align-middle"
         />
       );
     }
     return (
-      <span style={{ fontSize: "2.5rem", marginRight: "0.6em" }}>{img}</span>
+      <span className="text-5xl mr-2.5">{img}</span>
     );
   }
 
@@ -89,15 +79,15 @@ export default function FlashcardsTravel() {
       <div>
         <Navbar />
         <BackButton />
-        <div className="flashcardtravel-container">
-          <div className="flashcardtravel-card flashcardtravel-finished">
-            <div className="flashcardtravel-category" style={{ background: TRAVEL_ACCENT }}>
+        <div className="flex flex-col items-center min-h-[450px]">
+          <div className="w-[570px] max-w-[98vw] min-h-[360px] bg-violet-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(167,139,250,0.47)] text-violet-800 p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
+            <div className="bg-violet-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
               ¡Well Done!
             </div>
-            <div className="flashcardtravel-word">
+            <div className="text-2xl font-bold mt-10 mb-10 text-center leading-5 text-violet-800">
               You've completed all the flashcards! 🎉<br /> Keep up the good work!
             </div>
-            <button className="flashcardtravel-btn restart" onClick={handleRestart} style={{ background: TRAVEL_COLOR }}>
+            <button className="bg-violet-400 text-violet-800 mt-10 mx-auto block text-lg font-bold py-3.5 px-10 border-none rounded-3xl shadow-[0_2px_14px_rgba(91,33,182,0.27)] cursor-pointer transition-all duration-200 hover:bg-violet-200 hover:text-white" onClick={handleRestart}>
               Restart
             </button>
           </div>
@@ -112,44 +102,47 @@ export default function FlashcardsTravel() {
     <div>
       <Navbar />
       <BackButton />
-      <div className="flashcardtravel-container">
-        <div className="flashcardtravel-instructions" style={{ color: TRAVEL_ACCENT }}>
+      <div className="flex flex-col items-center min-h-[450px]">
+        <div className="mt-6 text-violet-800 text-lg opacity-90 text-center mb-3 font-semibold tracking-wide">
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`flashcardtravel-card ${animDirection ? 'slide-' + animDirection : ''}`}
+          className={`w-[570px] max-w-[98vw] min-h-[360px] bg-violet-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(167,139,250,0.47)] text-white p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
+            animDirection === 'right' 
+              ? 'transform translate-x-80 rotate-[18deg] opacity-0' 
+              : animDirection === 'left' 
+              ? 'transform -translate-x-80 -rotate-[18deg] opacity-0' 
+              : ''
+          }`}
           ref={cardRef}
-          style={{ background: TRAVEL_COLOR, boxShadow: "0 4px 30px #a78bfa77" }}
         >
-          <div className="flashcardtravel-category" style={{ background: TRAVEL_ACCENT }}>
+          <div className="bg-violet-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
             {flashcard.category}
           </div>
-          <div className="flashcardtravel-word">
+          <div className="text-2xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
             {renderFlashcardImage(flashcard.imageUrl, flashcard.german)}
-            <span style={{ fontWeight: 600, fontSize: "2rem" }}>
+            <span className="font-semibold text-3xl">
               {flashcard.german}
             </span>
           </div>
-          <div className="flashcardtravel-translation">{flashcard.translation}</div>
+          <div className="text-xl mt-1 mb-4 text-white">{flashcard.translation}</div>
           {flashcard.use && (
-            <div className="flashcardtravel-use">{flashcard.use}</div>
+            <div className="text-lg mt-4 text-white leading-6 text-center max-w-[95%] break-words whitespace-normal block">{flashcard.use}</div>
           )}
         </div>
-        <div className="flashcardtravel-progress">
+        <div className="font-semibold mb-6 text-violet-800 text-lg">
           Flashcards Known: {knownCount} of {vocabularyTravel.length}
         </div>
-        <div className="flashcardtravel-actions">
+        <div className="w-full flex justify-around mt-5 max-sm:flex-col max-sm:gap-5">
           <button
-            className="flashcardtravel-btn again"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-violet-200 text-violet-800 shadow-[0_2px_14px_rgba(167,139,250,0.4)] transition-colors duration-150 hover:text-white max-sm:text-base max-sm:w-[95%] max-sm:mx-auto max-sm:py-3 max-sm:px-0"
             onClick={() => handleAction('studyAgain')}
-            style={{ background: "#ddd6fe", color: TRAVEL_ACCENT }}
           >
             STUDY AGAIN
           </button>
           <button
-            className="flashcardtravel-btn know"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-violet-300 text-violet-800 shadow-[0_2px_14px_rgba(167,139,250,0.4)] transition-colors duration-150 hover:text-white max-sm:text-base max-sm:w-[95%] max-sm:mx-auto max-sm:py-3 max-sm:px-0"
             onClick={() => handleAction('know')}
-            style={{ background: "#c4b5fd", color: TRAVEL_ACCENT }}
           >
             KNOW
           </button>

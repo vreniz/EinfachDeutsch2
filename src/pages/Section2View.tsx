@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import '../pages/Section1View.css'; // Usa el mismo CSS
 import klaus from '../assets/Klaus002.png';
 import klaus2 from '../assets/Klaus0004.png';
 import nextImg from '../assets/next.png';
@@ -14,6 +13,7 @@ import MarkAsDoneButton from './MarkAsDoneButton';
 import Quiz from './Quiz2.tsx';//cambiar el import per section
 import ProgressReport from './ProgressReport';
 import { useNavigate, useParams } from 'react-router-dom';
+
 // debo crear quiz nuevo con nueva badge siempre y cambiar el nombre del Label finished lesson (al numero de la nueva lesson)
 // Define el estado del progreso de la sección
 type ProgressState = {
@@ -730,20 +730,23 @@ export default function Section2View() {
   return (
     <div>
       <Navbar />
-      <div className="top-section-btn-container">
-        <button className="section-btn" onClick={() => navigate(`/sections/${level}`)}>
+      <div className="relative w-full max-w-7xl mx-auto mt-6 flex items-start z-[2]">
+        <button 
+          className="px-9 py-4 rounded-full font-bold text-xl border-none text-white bg-sky-400 cursor-pointer text-center shadow-lg ml-3 transition-all duration-150 hover:bg-sky-500 hover:shadow-2xl hover:scale-105"
+          onClick={() => navigate(`/sections/${level}`)}
+        >
           ← SECTION {section}
         </button>
       </div>
-      <div className="section-title-centered">
+      <div className="block mx-auto mt-5 bg-blue-500 px-8 py-2.5 rounded-full font-bold text-white text-xl text-center shadow-sm w-fit max-w-[98vw]">
         {/* Cambia el título para Section 2 */}
-        “The Alphabet & Numbers/ Personal pronouns & Present Tense”
+        "The Alphabet & Numbers/ Personal pronouns & Present Tense"
       </div>
-      <div className="section-view-container">
-        <div className="section-sidebar">
+      <div className="flex gap-8 max-w-7xl mx-auto items-start min-h-[80vh] mt-2 overflow-x-auto whitespace-nowrap p-4 min-w-0 break-words overflow-wrap-anywhere max-sm:flex-col max-sm:items-center max-sm:overflow-x-auto max-sm:p-4">
+        <div className="flex flex-col gap-4 min-w-[220px] mt-6 ml-10 max-sm:flex-row max-sm:flex-wrap max-sm:justify-center max-sm:ml-0">
           {/* El resto de la barra lateral puede ser igual */}
           <button
-            className="sidebar-btn"
+            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-sky-400 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
             onClick={() => {
               setShowContent(!showContent);
               setShowActivities(false);
@@ -755,14 +758,14 @@ export default function Section2View() {
             CONTENT ▼
           </button>
           {showContent && (
-            <div className="dropdown-list">
-              <span className="dropdown-item" onClick={() => setLessonView("lesson2")}>
+            <div className="flex flex-col gap-1 pl-6 max-sm:pl-0 max-sm:items-center">
+              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setLessonView("lesson2")}>
                 • Lessons
               </span>
             </div>
           )}
           <button
-            className="sidebar-btn activities-btn"
+            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-sky-600 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
             onClick={() => {
               setShowActivities(!showActivities);
               setShowContent(false);
@@ -774,20 +777,20 @@ export default function Section2View() {
             ACTIVITIES ▼
           </button>
           {showActivities && (
-            <div className="dropdown-list">
-              <span className="dropdown-item" onClick={() => setActivityView("activity1")}>
+            <div className="flex flex-col gap-1 pl-6 max-sm:pl-0 max-sm:items-center">
+              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity1")}>
                 • Activity 1: Flashcards
               </span>
-              <span className="dropdown-item" onClick={() => setActivityView("activity2")}>
+              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity2")}>
                 • Activity 2: Cloze test
               </span>
-              <span className="dropdown-item" onClick={() => setActivityView("activity3")}>
+              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity3")}>
                 • Activity 3: Multiple choice
               </span>
             </div>
           )}
           <button
-            className="sidebar-btn quiz-btn"
+            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-orange-500 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
             onClick={() => {
               setView("quiz");
               setShowContent(false);
@@ -799,20 +802,20 @@ export default function Section2View() {
             QUIZ
           </button>
           <button
-            className="sidebar-btn progress-btn"
+            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-gradient-to-r from-sky-300 to-sky-600 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
             onClick={() => setShowProgress(true)}
           >
-            <img src={Procs} alt="Progress" className="progress-icon" /> PROGRESS
+            <img src={Procs} alt="Progress" className="w-11 h-auto mr-0 align-middle" /> PROGRESS
           </button>
         </div>
 
-        <div className="section-main">
+        <div className="flex-1 flex flex-col items-center min-w-0 w-full">
           {showProgress ? (
             <div style={{ width: "100%", marginTop: 32 }}>
               <ProgressReport progress={progress} />
               <div style={{ textAlign: "center", marginTop: 28 }}>
                 <button
-                  className="section-btn"
+                  className="px-9 py-4 rounded-full font-bold text-xl border-none text-white bg-sky-400 cursor-pointer text-center shadow-lg transition-all duration-150 hover:bg-sky-500 hover:shadow-2xl hover:scale-105"
                   style={{
                     background: "#1769aa",
                     color: "#fff",
@@ -829,19 +832,19 @@ export default function Section2View() {
           ) : (
             <>
               {view === "content" && (
-                <div className="section-content">
+                <div className="flex flex-col items-center text-center mt-9 w-full">
                   {lessonView === "" ? (
                     <>
-                      <div className="klaus-balloon-container">
-                      <span className="intro-reminder tip">
-                          Don’t forget to mark your lessons, activities, quiz,<br />
-                          and section as <span className="done-green">done</span> to track your progress!
+                      <div className="relative flex flex-col items-center mb-6">
+                      <span className="block text-lg text-blue-900 mt-1.5 text-center font-normal tracking-wide max-sm:text-sm max-sm:px-3 max-sm:pb-2 max-sm:break-words max-sm:max-w-[98vw] max-sm:mx-auto max-sm:leading-tight">
+                          Don't forget to mark your lessons, activities, quiz,<br />
+                          and section as <span className="text-emerald-500 font-medium">done</span> to track your progress!
                          </span>
-                        <img src={klaus} className="klaus-img" alt="Klaus mascot" />
+                        <img src={klaus} className="w-[395px] h-auto mb-2.5 drop-shadow-2xl max-sm:w-full max-sm:max-w-[500px] max-sm:block max-sm:mx-auto" alt="Klaus mascot" />
                       </div>
-                      <div className="next-btn-wrapper-intro">
-                        <button className="next-btn" onClick={() => setLessonView("lesson2")}>
-                          <img src={nextImg} alt="Next" className="next-img" />
+                      <div className="w-full flex justify-center mt-[-2.5rem] mb-0 ml-28">
+                        <button className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none" onClick={() => setLessonView("lesson2")}>
+                          <img src={nextImg} alt="Next" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                       </div>
                     </>
@@ -860,18 +863,18 @@ export default function Section2View() {
                         onClick={() => toggleProgress("lessons")}
                         label="Finish Lessons"
                       />
-                      <div className="next-btn-wrapper" style={{ marginTop: 30 }}>
+                      <div className="w-full flex flex-row justify-between px-12 mt-8 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between" style={{ marginTop: 30 }}>
                         <button
-                          className="next-btn"
+                          className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => {
                             setView("activities");
                             setLessonView("");
                           }}
                         >
-                          <img src={nextImg} alt="Next" className="next-img" />
+                          <img src={nextImg} alt="Next" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
-                        <button className="next-btn" onClick={() => setLessonView("")}>
-                          <img src={nextOp} alt="Back" className="next-img" />
+                        <button className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none" onClick={() => setLessonView("")}>
+                          <img src={nextOp} alt="Back" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                       </div>
                     </div>
@@ -879,34 +882,34 @@ export default function Section2View() {
                 </div>
               )}
               {view === "activities" && (
-                <div className="section-content">
+                <div className="flex flex-col items-center text-center mt-9 w-full">
                   {activityView === "" ? (
                     <>
-                      <p>Choose a learning activity from the dropdown menu.</p>
-                      <div className="klaus-activity-container" style={{ marginTop: "60px" }}>
-                        <img src={klaus2} className="klaus-img" alt="Klaus Activity mascot" />
+                      <p className="mb-[-2rem] max-sm:text-sm max-sm:px-3 max-sm:pb-2 max-sm:break-words max-sm:max-w-[98vw] max-sm:mx-auto max-sm:leading-tight">Choose a learning activity from the dropdown menu.</p>
+                      <div className="flex justify-center items-center my-5 mt-15" style={{ marginTop: "60px" }}>
+                        <img src={klaus2} className="w-[395px] h-auto mb-2.5 drop-shadow-2xl max-sm:w-full max-sm:max-w-[500px] max-sm:block max-sm:mx-auto" alt="Klaus Activity mascot" />
                       </div>
-                      <div className="next-btn-wrapper">
+                      <div className="w-full flex flex-row justify-between px-12 mt-8 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between">
                         <button
-                          className="next-btn-actv"
+                          className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => setActivityView("activity1")}
                         >
-                          <img src={nextImg} alt="Next" className="next-img" />
+                          <img src={nextImg} alt="Next" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                         <button
-                          className="next-btn"
+                          className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => {
                             setView("content");
                             setLessonView("lesson2");
                           }}
                         >
-                          <img src={nextOp} alt="Back" className="next-img" />
+                          <img src={nextOp} alt="Back" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                       </div>
                     </>
                   ) : (
                     <>
-                      <p>
+                      <p className="max-sm:text-sm max-sm:px-3 max-sm:pb-2 max-sm:break-words max-sm:max-w-[98vw] max-sm:mx-auto max-sm:leading-tight">
                         <strong>
                           {`Activity ${activityView.replace("activity", "")}: ${
                             activityTitles[activityView]
@@ -943,9 +946,9 @@ export default function Section2View() {
                           />
                         </div>
                       )}
-                      <div className="next-btn-wrapper">
+                      <div className="w-full flex flex-row justify-between px-12 mt-8 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between">
                         <button
-                          className="next-btn-actv"
+                          className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => {
                             if (activityView === "activity1") {
                               setActivityView("activity2");
@@ -957,10 +960,10 @@ export default function Section2View() {
                             }
                           }}
                         >
-                          <img src={nextImg} alt="Next" className="next-img" />
+                          <img src={nextImg} alt="Next" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                         <button
-                          className="next-btn"
+                          className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => {
                             if (activityView === "activity3") {
                               setActivityView("activity2");
@@ -971,7 +974,7 @@ export default function Section2View() {
                             }
                           }}
                         >
-                          <img src={nextOp} alt="Back" className="next-img" />
+                          <img src={nextOp} alt="Back" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>
                       </div>
                     </>
@@ -979,22 +982,22 @@ export default function Section2View() {
                 </div>
               )}
               {view === "quiz" && (
-                <div className="section-content">
+                <div className="flex flex-col items-center text-center mt-9 w-full">
                   <Quiz
                     quizDone={progress.quizDone}
                     setQuizDone={setQuizDone}
                     sectionDone={progress.sectionDone}
                     setSectionDone={setSectionDone}
                   />
-                  <div className="next-btn-wrapper-quiz">
+                  <div className="w-full flex flex-row justify-between px-12 mt-8 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between">
                     <button
-                      className="next-btn"
+                      className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                       onClick={() => {
                         setView("activities");
                         setActivityView("activity3");
                       }}
                     >
-                      <img src={nextOp} alt="Back" className="next-img" />
+                      <img src={nextOp} alt="Back" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                     </button>
                   </div>
                 </div>

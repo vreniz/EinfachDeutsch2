@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LogIn.css';
 import { useUser } from '../Context/UserContext';
 
 export default function LogIn() {
@@ -31,16 +30,16 @@ export default function LogIn() {
   
 
   return (
-    <div className="login-container">
-      <div className="login-left-section">
-        <h2 className="login-title">LOG IN</h2>
-        <p className="login-text">Use your email and password</p>
-        <form className="login-form" onSubmit={handleLogin}>
+    <div className="relative h-screen w-screen flex flex-col lg:flex-row">
+      <div className="flex-[0.85] lg:flex-none lg:w-auto flex flex-col justify-center lg:justify-center items-center p-8 lg:p-8 bg-white order-1 lg:order-none pb-2 lg:pb-8 min-h-[260px] lg:min-h-0 justify-end lg:justify-center">
+        <h2 className="text-blue-800 text-[1.6rem] lg:text-2xl font-bold mb-2">LOG IN</h2>
+        <p className="mb-6 text-base text-black">Use your email and password</p>
+        <form className="w-full max-w-[300px] lg:max-w-[300px] px-1 lg:px-0 flex flex-col gap-4" onSubmit={handleLogin}>
           <input
             type="email"
             name="email"
             placeholder="Email"
-            className="login-input"
+            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
             value={form.email}
             onChange={handleChange}
             required
@@ -49,31 +48,31 @@ export default function LogIn() {
             type="password"
             name="password"
             placeholder="Password"
-            className="login-input"
+            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
             value={form.password}
             onChange={handleChange}
             required
           />
-          <a href="#" className="forgot-link">Forgot your password?</a>
-          <button type="submit" className="login-btn">SIGN IN</button>
+          <a href="#" className="text-center block -mt-2 mb-4 text-black font-medium underline text-[0.95rem]">Forgot your password?</a>
+          <button type="submit" className="bg-blue-800 text-white py-2.5 px-6 border-none rounded-full font-bold cursor-pointer">SIGN IN</button>
         </form>
       </div>
 
-      <div className="login-right-section">
-        <div className="login-right-content">
-          <div className="login-logo-group">
-            <img src="https://flagcdn.com/w320/de.png" alt="German flag" className="login-flag" />
-            <div className="login-logo-text">
-              <span className="login-logo-white">EINFACH</span><span className="login-highlight">DEUTSCH</span>
+      <div className="flex-1 lg:flex-1 bg-blue-800 text-white flex items-center justify-center rounded-bl-[50%_100%] lg:rounded-tl-[50%_100%] lg:rounded-bl-[50%_100%] h-auto lg:h-screen order-2 lg:order-none min-h-[210px] lg:min-h-0 rounded-b-[2.2rem] lg:rounded-b-none pt-6 lg:pt-0 pb-8 lg:pb-0 items-start lg:items-center">
+        <div className="flex flex-col items-center text-center max-w-80 p-4 lg:p-8">
+          <div className="flex items-center justify-center mb-8 lg:mb-10 mt-0 lg:-mt-14">
+            <img src="https://flagcdn.com/w320/de.png" alt="German flag" className="w-[45px] h-auto block mr-2 max-w-full" />
+            <div className="font-bold text-[1.6rem] lg:text-2xl">
+              <span className="text-white">EINFACH</span><span className="text-red-600">DEUTSCH</span>
             </div>
           </div>
-          <h2 className="login-welcome-title">Willkommen!</h2>
-          <div className="login-cta-group">
-            <p className="login-welcome-text">
+          <h2 className="text-2xl lg:text-[2.7rem] font-bold mb-4">Willkommen!</h2>
+          <div className="mt-6 flex flex-col gap-4 items-center">
+            <p className="text-[0.95rem] lg:text-base leading-snug text-center max-w-[280px] lg:max-w-[280px] mx-auto whitespace-normal lg:whitespace-nowrap">
               Sign up and discover how fun German can be. <br /> Learning starts here!
             </p>
             <button
-              className="login-signup-btn"
+              className="bg-sky-400 text-white border-none py-2.5 px-6 rounded-full font-bold cursor-pointer"
               onClick={() => navigate('/signup')}
             >
               SIGN UP

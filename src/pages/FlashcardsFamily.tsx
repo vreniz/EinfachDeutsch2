@@ -3,10 +3,6 @@ import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import { vocabularyFamily } from '../data/VocabularyFamily';
-import './FlashcardsFamily.css';
-
-const FAMILY_COLOR = "#ef4444";
-const FAMILY_ACCENT = "#b91c1c";
 
 export default function FlashcardsFamily() {
   const [queue, setQueue] = useState([...vocabularyFamily]);
@@ -22,7 +18,7 @@ export default function FlashcardsFamily() {
       setAnimDirection('');
       if (queue.length === 0) return;
 
-      let newQueue = [...queue];
+      const newQueue = [...queue];
       if (action === 'know') {
         newQueue.splice(currentIndex, 1);
         setKnownCount(kc => kc + 1);
@@ -53,15 +49,10 @@ export default function FlashcardsFamily() {
   function BackButton() {
     return (
       <button
-        className="flashcardfamily-back-btn"
-        style={{
-          background: FAMILY_COLOR,
-          color: "#fff",
-          fontWeight: "bold"
-        }}
+        className="flex items-center gap-2 bg-red-500 border-none py-3 px-8 rounded-3xl font-bold text-xl text-white mt-8 ml-8 mb-5 cursor-pointer shadow-lg hover:bg-red-600 hover:shadow-xl hover:scale-105 transition-all duration-150 outline-none tracking-wide self-start"
         onClick={() => navigate('/practice')}
       >
-        <span className="flashcardfamily-arrow-icon">←</span>
+        <span className="text-xl">←</span>
         <span>FAMILY</span>
       </button>
     );
@@ -74,13 +65,12 @@ export default function FlashcardsFamily() {
         <img
           src={img}
           alt={alt}
-          className="flashcardfamily-img"
-          style={{ marginRight: "0.6em" }}
+          className="w-20 h-20 object-cover -mr-2 align-middle"
         />
       );
     }
     return (
-      <span style={{ fontSize: "2.5rem", marginRight: "0.6em" }}>{img}</span>
+      <span className="text-4xl mr-2">{img}</span>
     );
   }
 
@@ -89,15 +79,15 @@ export default function FlashcardsFamily() {
       <div>
         <Navbar />
         <BackButton />
-        <div className="flashcardfamily-container">
-          <div className="flashcardfamily-card flashcardfamily-finished">
-            <div className="flashcardfamily-category" style={{ background: FAMILY_ACCENT }}>
+        <div className="flex flex-col items-center min-h-screen pt-20">
+          <div className="bg-red-100 text-red-800 p-10 rounded-3xl shadow-xl max-w-md w-full mx-auto text-center border-2 border-red-200">
+            <div className="bg-red-700 text-white text-xl font-bold rounded-2xl rounded-b-none py-3 px-6 -mt-10 mb-6 w-full text-center tracking-wide box-border">
               ¡Well Done!
             </div>
-            <div className="flashcardfamily-word">
+            <div className="text-red-700 text-3xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
               You've completed all the flashcards! 🎉<br /> Keep up the good work!
             </div>
-            <button className="flashcardfamily-btn restart" onClick={handleRestart} style={{ background: FAMILY_COLOR }}>
+            <button className="bg-red-500 text-red-700 font-bold text-lg py-3 px-10 border-none rounded-3xl shadow-md cursor-pointer transition-colors duration-150 hover:bg-red-600 hover:text-white mx-auto mt-10 block" onClick={handleRestart}>
               Restart
             </button>
           </div>
@@ -112,44 +102,41 @@ export default function FlashcardsFamily() {
     <div>
       <Navbar />
       <BackButton />
-      <div className="flashcardfamily-container">
-        <div className="flashcardfamily-instructions" style={{ color: FAMILY_ACCENT }}>
+      <div className="flex flex-col items-center min-h-screen pt-20">
+        <div className="text-red-700 text-lg font-medium mb-6 text-center tracking-wide">
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`flashcardfamily-card ${animDirection ? 'slide-' + animDirection : ''}`}
+          className={`bg-red-500 shadow-2xl p-10 rounded-3xl max-w-md w-full mx-auto text-center text-white relative transition-transform duration-300 ${animDirection === 'left' ? '-translate-x-full opacity-0' : animDirection === 'right' ? 'translate-x-full opacity-0' : ''} sm:w-[97vw] sm:min-w-0 sm:px-3 sm:py-8`}
           ref={cardRef}
-          style={{ background: FAMILY_COLOR, boxShadow: "0 4px 30px #ef444477" }}
         >
-          <div className="flashcardfamily-category" style={{ background: FAMILY_ACCENT }}>
+          <div className="bg-red-700 text-white text-xl font-bold rounded-2xl rounded-b-none py-3 px-6 -mt-10 mb-6 w-full text-center tracking-wide box-border">
             {flashcard.category}
           </div>
-          <div className="flashcardfamily-word">
+          <div className="text-white text-2xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
             {renderFlashcardImage(flashcard.imageUrl, flashcard.german)}
-            <span style={{ fontWeight: 600, fontSize: "2rem" }}>
+            <span className="font-semibold text-3xl">
               {flashcard.german}
             </span>
           </div>
-          <div className="flashcardfamily-translation">{flashcard.translation}</div>
+          <div className="text-red-100 text-xl mt-1 mb-4">{flashcard.translation}</div>
           {flashcard.use && (
-            <div className="flashcardfamily-use">{flashcard.use}</div>
+            <div className="text-red-100 text-lg mt-4 leading-relaxed text-center max-w-[95%] break-words whitespace-normal block">{flashcard.use}</div>
           )}
         </div>
-        <div className="flashcardfamily-progress">
+        <div className="font-semibold mb-6 text-red-700 text-lg">
           Flashcards Known: {knownCount} of {vocabularyFamily.length}
         </div>
-        <div className="flashcardfamily-actions">
+        <div className="w-full flex justify-around mt-5 sm:flex-col sm:gap-5">
           <button
-            className="flashcardfamily-btn again"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-red-300 text-red-700 shadow-md transition-colors duration-150 hover:text-white sm:text-base sm:w-[95%] sm:mx-auto sm:py-3 sm:px-0"
             onClick={() => handleAction('studyAgain')}
-            style={{ background: "#fca5a5", color: FAMILY_ACCENT }}
           >
             STUDY AGAIN
           </button>
           <button
-            className="flashcardfamily-btn know"
+            className="py-3 px-9 rounded-3xl border-none font-bold text-lg mx-5 cursor-pointer bg-red-400 text-red-700 shadow-md transition-colors duration-150 hover:text-white sm:text-base sm:w-[95%] sm:mx-auto sm:py-3 sm:px-0"
             onClick={() => handleAction('know')}
-            style={{ background: "#f87171", color: FAMILY_ACCENT }}
           >
             KNOW
           </button>

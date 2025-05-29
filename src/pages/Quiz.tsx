@@ -3,7 +3,6 @@ import { quizQuestions } from "../data/quiz1";
 import klausIntro from "../assets/KlausIntro2.png";
 import klausScore from "../assets/KlausSc.png";
 import MarkAsDoneButton from "./MarkAsDoneButton";
-import './Quiz.css';
 import BadgeUnlocked from "./BadgeUnlocked1";
 
 type QuizProps = {
@@ -43,40 +42,40 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
 
   if (step === "intro") {
     return (
-      <div className="quiz-intro-container">
-          
-        <div className="quiz-intro-row">
-          <div className="quiz-cloud">
-            <div>
-              <div style={{ textAlign: "center" }}>
-                <span style={{
-                 color: "#ffffff", background: "#1769aa"
-                 , borderRadius: 8, padding: "2px 8px", marginRight: 6,fontSize:"1.3rem"
-                }}>
-                  INSTRUCTIONS
-                </span>
-              </div>
-              <br /><br />
-              <b>
-                <span>Hi there! Now that you've completed the lessons and activities, <br>
-                </br>it's time to start your quiz. </span>
-
-                <span style={{ color: "#ffd94d" }}>Remember</span>
-                {", you'll need at least "}
-                <span style={{ color: "#19ffa3" }}>50%</span>
-                {" to move on to the next section."}
-              </b>
-              <br /><br />
-              <span style={{ color: "#d1f7ff" }}>Good luck — you're going to do <b style={{ color: "#fff" }}>great</b>! 🚀</span>
-              <br />
-              <span style={{ color: "#fff" }}>
-                If you don’t pass, you can always go back, review the lesson and activities,<br /> and <b style={{ color: "#19ffa3" }}> try again</b>.
+      <div className="flex flex-col items-center mt-12 mb-8">
+        <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center gap-3 lg:gap-4">
+          <div className="bg-gradient-to-br from-blue-500 via-blue-500 to-cyan-400 text-white rounded-[2.5rem] p-8 lg:p-9 font-bold text-justify shadow-lg shadow-blue-500/20 max-w-[820px] w-full lg:ml-28 overflow-wrap-break-word word-break-break-word order-2 lg:order-1">
+            <div className="text-center">
+              <span className="text-white bg-blue-800 rounded-lg px-2 py-1 mr-1.5 text-xl">
+                INSTRUCTIONS
               </span>
             </div>
+            <br /><br />
+            <b>
+              <span>Hi there! Now that you've completed the lessons and activities, <br />
+              it's time to start your quiz. </span>
+              <span className="text-yellow-300">Remember</span>
+              {", you'll need at least "}
+              <span className="text-green-300">50%</span>
+              {" to move on to the next section."}
+            </b>
+            <br /><br />
+            <span className="text-cyan-100">Good luck — you're going to do <b className="text-white">great</b>! 🚀</span>
+            <br />
+            <span className="text-white">
+              If you don't pass, you can always go back, review the lesson and activities,<br /> and <b className="text-green-300"> try again</b>.
+            </span>
           </div>
-          <img src={klausIntro} alt="Klaus" className="klaus-intro-img" />
+          <img 
+            src={klausIntro} 
+            alt="Klaus" 
+            className="w-[150px] h-auto max-w-none min-w-0 block mt-0 lg:-mt-6 lg:-ml-[3.8rem] drop-shadow-[0_8px_32px_rgba(56,189,248,0.5)] order-1 lg:order-2"
+          />
         </div>
-        <button className="start-quiz-btn" onClick={() => setStep("quiz")}>
+        <button 
+          className="mt-9 bg-orange-400 text-white border-none rounded-[2.5rem] font-bold text-2xl px-14 py-4 cursor-pointer shadow-lg shadow-orange-400/20 transition-colors duration-150 hover:bg-orange-500 w-full max-w-sm lg:w-auto"
+          onClick={() => setStep("quiz")}
+        >
           START QUIZ
         </button>
       </div>
@@ -126,33 +125,39 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
     const passed = score >= 50;
 
     return (
-      <div className="quiz-score-container">
-        <div style={{ marginBottom: 20, textAlign: "center" }}>
-          <div style={{ fontWeight: 700, color: "#1353bd", fontSize: "2.1rem", letterSpacing: 2 }}>QUIZ</div>
+      <div className="flex flex-col items-center min-h-[55vh] justify-center my-10 w-full">
+        <div className="mb-5 text-center">
+          <div className="font-bold text-blue-800 text-[2.1rem] tracking-[2px]">QUIZ</div>
         </div>
-        <div className="quiz-score-row">
-          <div className="Klaus-contenedor">
-            <img src={klausScore} alt="Klaus" className="klaus-score-img" />
+        <div className="flex flex-row items-center justify-center gap-4 mb-5 w-full max-w-[430px]">
+          <div className="flex items-center justify-start min-w-[150px] drop-shadow-[0_8px_32px_rgba(56,189,248,0.5)]">
+            <img src={klausScore} alt="Klaus" className="w-[145px] mx-auto block" />
           </div>
-          <div className="quiz-score-main">
-            <span style={{ fontWeight: 700, fontSize: "2.6rem", color: "#1353bd" }}>SCORE</span>
+          <div className="font-bold text-blue-800 text-center mb-8">
+            <span className="font-bold text-[2.6rem] text-blue-800">SCORE</span>
             <br />
-            <span style={{ fontWeight: 700, fontSize: "4rem", color: "#1353bd" }}>{score}%</span>
+            <span className="font-bold text-[4rem] text-blue-800">{score}%</span>
           </div>
         </div>
         {passed ? (
-          <div className="quiz-score-btns">
+          <div className="flex justify-center gap-5 mb-6">
             <MarkAsDoneButton
               done={quizDone}
               onClick={setQuizDone}
               label="Mark quiz as done"
             />
-            <button className="quiz-badge-btn" onClick={() => setShowBadge(true)}>
+            <button 
+              className="bg-orange-400 text-purple-700 border-none rounded-2xl font-bold text-[1.15rem] px-9 py-3 my-4 mx-5 cursor-pointer transition-colors duration-150 hover:bg-orange-500"
+              onClick={() => setShowBadge(true)}
+            >
               GET BADGE
             </button>
           </div>
         ) : (
-          <button className="quiz-tryagain-btn" onClick={restartQuiz}>
+          <button 
+            className="bg-yellow-400 text-white border-none rounded-2xl font-bold text-[1.18rem] px-10 py-3 cursor-pointer shadow-lg shadow-blue-500/20 my-4 mx-2 transition-colors duration-150 hover:bg-yellow-500"
+            onClick={restartQuiz}
+          >
             TRY AGAIN
           </button>
         )}
@@ -162,33 +167,36 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
 
   // Quiz pregunta a pregunta
   return (
-    <div className="quiz-main-container">
-      <div className="quiz-header">
-        <span className="quiz-title">QUIZ</span>
+    <div className="flex flex-col items-center min-h-[55vh] justify-start my-10 w-full">
+      <div className="flex items-center gap-10 mb-3 text-[2.2rem] font-bold text-blue-800">
+        <span className="text-[1.7rem]">QUIZ</span>
       </div>
-      <div className="quiz-question-card">
-        <span className="quiz-count">{current + 1}/7</span>
-        <div className="quiz-instructions">
+      <div className="bg-white rounded-[2.3rem] text-blue-700 shadow-lg shadow-blue-900/5 my-3 px-9 py-9 max-w-[800px] min-w-[380px] w-full break-words text-center flex flex-col items-center transition-all duration-200">
+        <span className="text-2xl ml-auto">{current + 1}/7</span>
+        <div className="text-slate-600 text-[1.18rem] font-medium mb-6 -mt-1 text-center tracking-wider">
           Choose the only correct answer to the following questions.
         </div>
-        <div className="quiz-question">
-          <span style={{ color: "#e11d48", fontWeight: "bold", fontSize: "1.4rem" }}>❓</span>{" "}
+        <div className="bg-blue-500 text-white text-[1.35rem] font-bold px-5 py-4 rounded-3xl mb-7 w-full max-w-[650px] min-w-[180px] text-center inline-block shadow-lg shadow-blue-500/10 overflow-wrap-break-word break-words whitespace-pre-line">
+          <span className="text-rose-600 font-bold text-[1.4rem]">❓</span>{" "}
           {q.question}
         </div>
-        <div className="quiz-options">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-9 w-full justify-items-center my-4">
           {q.options.map((opt: string, idx: number) => (
             <button
               key={idx}
               className={
-                "quiz-option" +
-                (selected === idx ? " selected" : "") +
-                (checked && selected === idx && selected === q.answer ? " correct" : "") +
-                (checked && selected === idx && selected !== q.answer ? " incorrect" : "")
+                `bg-sky-400 text-white font-bold text-[1.08rem] px-5 py-4 border-none rounded-[1.8rem] min-w-[180px] max-w-[320px] w-full my-1 mx-2 cursor-pointer transition-all duration-150 text-left shadow-lg shadow-sky-400/15 flex items-center justify-start break-words ${
+                  selected === idx ? "bg-sky-300 text-blue-900" : ""
+                } ${
+                  checked && selected === idx && selected === q.answer ? "bg-emerald-500 text-white" : ""
+                } ${
+                  checked && selected === idx && selected !== q.answer ? "bg-red-400 text-white" : ""
+                }`
               }
               onClick={() => handleSelect(idx)}
               disabled={checked}
             >
-              <span className="option-letter" style={{ marginRight: 8, whiteSpace: "nowrap" }}>
+              <span className="font-bold mr-2 text-[1.11rem] tracking-wider whitespace-nowrap">
                {String.fromCharCode(65 + idx)}.
               </span>
               {opt}
@@ -196,25 +204,26 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
           ))}
         </div>
         <button
-          className="quiz-check-btn"
+          className={`bg-blue-500 text-white border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer my-7 mx-auto transition-colors duration-200 block shadow-lg shadow-blue-500/10 tracking-wider ${
+            selected === null || checked ? "bg-blue-200 text-white cursor-not-allowed" : "hover:bg-blue-600"
+          }`}
           onClick={handleCheck}
           disabled={selected === null || checked}
         >
           {current === randomQuestions.length - 1 ? "FINISH" : "CHECK"}
         </button>
         {checked && (
-          <div className="quiz-feedback" style={{ marginTop: 10 }}>
+          <div className="text-[1.18rem] mt-5 font-bold">
             {selected === q.answer ? (
-              <span style={{ color: "#10b981" }}>✅ Correct!</span>
+              <span className="text-emerald-500">✅ Correct!</span>
             ) : (
-              <span style={{ color: "#e11d48" }}>❌ Incorrect.</span>
+              <span className="text-rose-600">❌ Incorrect.</span>
             )}
           </div>
         )}
         {checked && (
           <button
-            className="quiz-next-btn"
-            style={{ marginTop: 10 }}
+            className="bg-blue-500 text-white border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer mt-3 mx-auto transition-colors duration-200 block shadow-lg shadow-blue-500/10 tracking-wider hover:bg-blue-600"
             onClick={handleNext}
           >
             {current === randomQuestions.length - 1 ? "Show Score" : "Next"}
