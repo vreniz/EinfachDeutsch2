@@ -4,7 +4,6 @@ import klaus from '../../assets/Klaus002.png';
 import klaus2 from '../../assets/Klaus0004.png';
 import nextImg from '../../assets/next.png';
 import nextOp from '../../assets/nextop.png';
-import Procs from '../../assets/procs.png';
 import LessonBoard from '../../components/LESSON_BOARD';
 import ClozeTest from '../../components/CLOZETEST_S2'; // tengo que crearme otro tsx con su nuevo ts (sin css)
 import Flashcards from '../../components/FLASHCARDS_2';// tengo que crearme otro tsx con su nuevo ts (sin css)
@@ -714,88 +713,179 @@ export default function Section2View() {
 
   // --- RENDER ---
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <Navbar />
-      <div className="relative w-full max-w-7xl mx-auto mt-6 flex items-start z-[2]">
+
+      {/* Header Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        {/* Back Button */}
         <button 
-          className="px-9 py-4 rounded-full font-bold text-xl border-none text-white bg-sky-400 cursor-pointer text-center shadow-lg ml-3 transition-all duration-150 hover:bg-sky-500 hover:shadow-2xl hover:scale-105"
+          className="inline-flex items-center space-x-2 px-6 py-3 bg-white rounded-xl shadow-lg hover:shadow-xl border border-gray-100 text-gray-700 hover:text-blue-600 transition-all duration-200 font-medium"
           onClick={() => navigate(`/sections/${level}`)}
         >
-          ← SECTION {section}
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          <span>SECTION {section}</span>
         </button>
-      </div>
-      <div className="block mx-auto mt-5 bg-blue-500 px-8 py-2.5 rounded-full font-bold text-white text-xl text-center shadow-sm w-fit max-w-[98vw]">
-        {/* Cambia el título para Section 2 */}
-        "The Alphabet & Numbers/ Personal pronouns & Present Tense"
-      </div>
-      <div className="flex gap-8 max-w-7xl mx-auto items-start min-h-[80vh] mt-2 p-4 break-words overflow-wrap-anywhere max-sm:flex-col max-sm:items-center max-sm:p-4">
-        <div className="flex flex-col gap-4 min-w-[220px] mt-6 ml-10 max-sm:flex-row max-sm:flex-wrap max-sm:justify-center max-sm:ml-0">
-          {/* El resto de la barra lateral puede ser igual */}
-          <button
-            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-sky-400 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
-            onClick={() => {
-              setShowContent(!showContent);
-              setShowActivities(false);
-              setView("content");
-              setLessonView("");
-              setActivityView("");
-            }}
-          >
-            CONTENT ▼
-          </button>
-          {showContent && (
-            <div className="flex flex-col gap-1 pl-6 max-sm:pl-0 max-sm:items-center">
-              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setLessonView("lesson2")}>
-                • Lessons
-              </span>
-            </div>
-          )}
-          <button
-            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-sky-600 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
-            onClick={() => {
-              setShowActivities(!showActivities);
-              setShowContent(false);
-              setView("activities");
-              setLessonView("");
-              setActivityView("");
-            }}
-          >
-            ACTIVITIES ▼
-          </button>
-          {showActivities && (
-            <div className="flex flex-col gap-1 pl-6 max-sm:pl-0 max-sm:items-center">
-              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity1")}>
-                • Activity 1: Flashcards
-              </span>
-              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity2")}>
-                • Activity 2: Cloze test
-              </span>
-              <span className="text-lg text-blue-600 cursor-pointer my-0.5 font-medium underline" onClick={() => setActivityView("activity3")}>
-                • Activity 3: Multiple choice
-              </span>
-            </div>
-          )}
-          <button
-            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-orange-500 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
-            onClick={() => {
-              setView("quiz");
-              setShowContent(false);
-              setShowActivities(false);
-              setLessonView("");
-              setActivityView("");
-            }}
-          >
-            QUIZ
-          </button>
-          <button
-            className="py-4 px-0 rounded-full font-bold text-lg border-none text-white bg-gradient-to-r from-sky-300 to-sky-600 cursor-pointer text-center mb-0.5 shadow-lg transition-colors duration-200 max-sm:w-full max-sm:mb-3"
-            onClick={() => setShowProgress(true)}
-          >
-            <img src={Procs} alt="Progress" className="w-11 h-auto mr-0 align-middle" /> PROGRESS
-          </button>
-        </div>
 
-        <div className="flex-1 flex flex-col items-center w-full">
+        {/* Topic Banner */}
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-2xl shadow-lg">
+            <h1 className="text-xl font-semibold">The Alphabet & Numbers / Personal pronouns & Present Tense</h1>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Content Layout */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Modern Sidebar Navigation */}
+          <div className="lg:w-80 w-full">
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-6">
+              <h2 className="text-lg font-semibold text-gray-800 mb-6">Navigation</h2>
+              
+              {/* Content Section */}
+              <div className="mb-6">
+                <button
+                  className={`w-full flex items-center justify-between p-4 rounded-xl font-medium transition-all duration-200 ${
+                    showContent 
+                      ? 'bg-blue-50 text-blue-700 border-2 border-blue-200' 
+                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent'
+                  }`}
+                  onClick={() => {
+                    setShowContent(!showContent);
+                    setShowActivities(false);
+                    setView("content");
+                    setLessonView("");
+                    setActivityView("");
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                    <span>Content</span>
+                  </div>
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${showContent ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showContent && (
+                  <div className="mt-3 ml-4 space-y-2">
+                    <button
+                      className="flex items-center gap-2 p-2 text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg w-full text-left transition-colors duration-200"
+                      onClick={() => setLessonView("lesson2")}
+                    >
+                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                      <span>Lessons</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Activities Section */}
+              <div className="mb-6">
+                <button
+                  className={`w-full flex items-center justify-between p-4 rounded-xl font-medium transition-all duration-200 ${
+                    showActivities 
+                      ? 'bg-purple-50 text-purple-700 border-2 border-purple-200' 
+                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent'
+                  }`}
+                  onClick={() => {
+                    setShowActivities(!showActivities);
+                    setShowContent(false);
+                    setView("activities");
+                    setLessonView("");
+                    setActivityView("");
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    <span>Activities</span>
+                  </div>
+                  <svg className={`w-4 h-4 transition-transform duration-200 ${showActivities ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {showActivities && (
+                  <div className="mt-3 ml-4 space-y-2">
+                    <button
+                      className="flex items-center gap-2 p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-lg w-full text-left transition-colors duration-200"
+                      onClick={() => setActivityView("activity1")}
+                    >
+                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <span>Activity 1: Flashcards</span>
+                    </button>
+                    <button
+                      className="flex items-center gap-2 p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-lg w-full text-left transition-colors duration-200"
+                      onClick={() => setActivityView("activity2")}
+                    >
+                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <span>Activity 2: Cloze test</span>
+                    </button>
+                    <button
+                      className="flex items-center gap-2 p-2 text-purple-600 hover:text-purple-800 hover:bg-purple-50 rounded-lg w-full text-left transition-colors duration-200"
+                      onClick={() => setActivityView("activity3")}
+                    >
+                      <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+                      <span>Activity 3: Multiple choice</span>
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Quiz Section */}
+              <div className="mb-6">
+                <button
+                  className={`w-full flex items-center justify-between p-4 rounded-xl font-medium transition-all duration-200 ${
+                    view === "quiz"
+                      ? 'bg-orange-50 text-orange-700 border-2 border-orange-200' 
+                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent'
+                  }`}
+                  onClick={() => {
+                    setView("quiz");
+                    setShowContent(false);
+                    setShowActivities(false);
+                    setLessonView("");
+                    setActivityView("");
+                  }}
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Quiz</span>
+                  </div>
+                </button>
+              </div>
+
+              {/* Progress Section */}
+              <div>
+                <button
+                  className={`w-full flex items-center justify-between p-4 rounded-xl font-medium transition-all duration-200 ${
+                    showProgress
+                      ? 'bg-green-50 text-green-700 border-2 border-green-200' 
+                      : 'bg-gray-50 text-gray-700 hover:bg-gray-100 border-2 border-transparent'
+                  }`}
+                  onClick={() => setShowProgress(true)}
+                >
+                  <div className="flex items-center gap-3">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                    </svg>
+                    <span>Progress</span>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Main Content Area */}
+          <div className="flex-1 bg-white rounded-2xl shadow-lg border border-gray-100 p-8 min-h-[600px]">
+            <div className="flex-1 flex flex-col items-center w-full">
           {showProgress ? (
             <div style={{ width: "100%", marginTop: 32 }}>
               <ProgressReport progress={progress} />
@@ -992,6 +1082,8 @@ export default function Section2View() {
               )}
             </>
           )}
+            </div>
+          </div>
         </div>
       </div>
     </div>
