@@ -1,6 +1,7 @@
 // src/pages/SignUp.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { useUser } from '../../Context/UserContext';
 
 export default function SignUp() {
@@ -30,11 +31,18 @@ export default function SignUp() {
     setError(null);
     setIsLoading(true);
 
+    // Show loading toast
+    const loadingToast = toast.loading('Creating your account...');
+
     try {
       await register(form);
+      toast.dismiss(loadingToast);
+      toast.success('Account created successfully! Welcome to EinfachDeutsch!');
       navigate('/home');
     } catch (error) {
       console.error('Registration error:', error);
+      toast.dismiss(loadingToast);
+      toast.error('Registration failed. Please check your information and try again.');
       setError('Registration failed. Please check your information and try again.');
     } finally {
       setIsLoading(false);

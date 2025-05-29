@@ -12,6 +12,7 @@ import Quiz from '../../components/QUIZ';
 import ProgressReport from '../../components/PROGRESS_REPORT';
 import { useUser } from '../../Context/UserContext';
 import type { ProgressField } from '../../api/api';
+import toast from 'react-hot-toast';
 
 // Define el estado del progreso de la sección
 type ProgressState = {
@@ -218,7 +219,7 @@ export default function Section3View() {
       setProgress((prev) => ({ ...prev, [key]: newValue }));
     } catch (error) {
       console.error('Failed to update progress:', error);
-      // Could show error message to user here
+      toast.error('Failed to update progress. Please try again.');
     }
   };
 
@@ -228,6 +229,7 @@ export default function Section3View() {
       setProgress((prev) => ({ ...prev, quizDone: true }));
     } catch (error) {
       console.error('Failed to update quiz progress:', error);
+      toast.error('Failed to update quiz progress. Please try again.');
     }
   };
 
@@ -238,6 +240,7 @@ export default function Section3View() {
       unlockNextSection(section);
     } catch (error) {
       console.error('Failed to update section progress:', error);
+      toast.error('Failed to complete section. Please try again.');
     }
   };
 

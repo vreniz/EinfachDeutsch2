@@ -1,6 +1,7 @@
 // src/Context/UserContext.tsx
 import { createContext, useContext, useState, useEffect } from "react";
 import type { ReactNode } from "react";
+import toast from 'react-hot-toast';
 import { 
   login as apiLogin, 
   register as apiRegister, 
@@ -10,7 +11,6 @@ import {
   fetchProgress,
   doProgress,
   undoProgress,
-  type UserInfo,
   type UpdateUserPayload,
   type ProgressPayload,
   type SectionName,
@@ -221,14 +221,26 @@ export function UserProvider({ children }: { children: ReactNode }) {
       
       if (value) {
         await doProgress(payload);
+        // Show success toast for positive progress
+        if (field === 'section_complete') {
+          toast.success(`🎉 Section ${section.replace('section', '')} completed! Great job!`);
+        } else if (field === 'quiz') {
+          toast.success('✅ Quiz completed successfully!');
+        } else if (field === 'lessons') {
+          toast.success('📚 Lessons marked as complete!');
+        } else {
+          toast.success('✨ Progress updated!');
+        }
       } else {
         await undoProgress(payload);
+        toast('Progress updated');
       }
       
       // Refresh progress after successful update
       await refreshProgress();
     } catch (error) {
       console.error('Error updating progress:', error);
+      toast.error('Failed to update progress. Please try again.');
       throw error;
     }
   };

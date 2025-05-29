@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { useUser } from '../../Context/UserContext';
 
 export default function LogIn() {
@@ -20,11 +21,18 @@ export default function LogIn() {
     setError(null);
     setIsLoading(true);
 
+    // Show loading toast
+    const loadingToast = toast.loading('Signing in...');
+
     try {
       await login(form.email, form.password);
+      toast.dismiss(loadingToast);
+      toast.success('Welcome back! Successfully signed in.');
       navigate('/home');
     } catch (error) {
       console.error('Login error:', error);
+      toast.dismiss(loadingToast);
+      toast.error('Invalid email or password. Please try again.');
       setError('Invalid email or password. Please try again.');
     } finally {
       setIsLoading(false);

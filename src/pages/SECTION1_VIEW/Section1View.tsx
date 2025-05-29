@@ -12,6 +12,7 @@ import Questions from '../../components/QUESTIONS';
 import MarkAsDoneButton from '../../components/MARK_AS_DONE_BUTTON';
 import Quiz from '../../components/QUIZ';
 import ProgressReport from '../../components/PROGRESS_REPORT';
+import toast from 'react-hot-toast';
 import { useUser } from '../../Context/UserContext';
 import type { ProgressField } from '../../api/api';
 
@@ -596,7 +597,7 @@ export default function Section1View() {
       setProgress((prev) => ({ ...prev, [key]: newValue }));
     } catch (error) {
       console.error('Failed to update progress:', error);
-      // Could show error message to user here
+      toast.error('Failed to update progress. Please try again.');
     }
   };
 
@@ -606,6 +607,7 @@ export default function Section1View() {
       setProgress((prev) => ({ ...prev, quizDone: true }));
     } catch (error) {
       console.error('Failed to update quiz progress:', error);
+      toast.error('Failed to update quiz progress. Please try again.');
     }
   };
 
@@ -616,6 +618,7 @@ export default function Section1View() {
       unlockNextSection(section);
     } catch (error) {
       console.error('Failed to update section progress:', error);
+      toast.error('Failed to complete section. Please try again.');
     }
   };
 

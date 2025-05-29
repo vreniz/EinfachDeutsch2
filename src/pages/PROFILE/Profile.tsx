@@ -3,6 +3,7 @@ import Navbar from '../../components/NAVBAR';
 import { useUser } from '../../Context/UserContext';
 import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 export default function Profile() {
   const { user, updateUser } = useUser();
@@ -55,6 +56,9 @@ export default function Profile() {
     setError(null);
     setIsLoading(true);
 
+    // Show loading toast
+    const loadingToast = toast.loading('Updating your profile...');
+
     try {
       // Only send fields that can be updated (exclude email)
       const updates = {
@@ -65,9 +69,13 @@ export default function Profile() {
       };
 
       await updateUser(updates);
+      toast.dismiss(loadingToast);
+      toast.success('Profile updated successfully!');
       setEditing(false);
     } catch (error) {
       console.error('Profile update error:', error);
+      toast.dismiss(loadingToast);
+      toast.error('Failed to update profile. Please try again.');
       setError('Failed to update profile. Please try again.');
     } finally {
       setIsLoading(false);

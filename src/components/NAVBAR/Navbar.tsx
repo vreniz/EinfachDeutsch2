@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { useUser } from '../../Context/UserContext';
 
 export default function Navbar() {
@@ -10,6 +11,7 @@ export default function Navbar() {
 
   const handleSignOut = () => {
     logout();
+    toast.success('Successfully signed out. See you soon!');
     navigate('/');
   };
 
