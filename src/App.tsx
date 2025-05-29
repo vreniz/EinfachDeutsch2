@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SignUp from './pages/SignUp';
-import LogIn from './pages/LogIn';
-import Home from './pages/Home';
-import A1Sections from './pages/A1sections';
-import Section1View from './pages/Section1View'; // 
-import Section2View from './pages/Section2View';
-import PracticeView from './pages/PracticeView';
-import FlashcardsHouse from './pages/FlashcardsHouse';
-import FlashcardsSchool from './pages/FlashcardsSchool';
-import FlashcardsFood from './pages/FlashcardsFood';
-import FlashcardsTravel from './pages/FlashcardsTravel';
-import FlashcardsFamily from './pages/FlashcardsFamily'; // <-- Importa el componente
-import Profile from './pages/Profile';
-
-import OverallProgress from './pages/OverallProgress';
-import Section3View from './pages/Section3View';
+import SignUp from './pages/SIGNUP';
+import LogIn from './pages/LOGIN';
+import Home from './pages/HOME';
+import A1Sections from './pages/A1SECTIONS';
+import Section1View from './pages/SECTION1_VIEW';
+import Section2View from './pages/SECTION2_VIEW';
+import PracticeView from './pages/PRACTICE_VIEW';
+import FlashcardsHouse from './pages/FLASHCARDS_HOUSE';
+import FlashcardsSchool from './pages/FLASHCARDS_SCHOOL';
+import FlashcardsFood from './pages/FLASHCARDS_FOOD';
+import FlashcardsTravel from './pages/FLASHCARDS_TRAVEL';
+import FlashcardsFamily from './pages/FLASHCARDS_FAMILY';
+import Profile from './pages/PROFILE';
+import OverallProgress from './pages/OVERALL_PROGRESS';
+import Section3View from './pages/SECTION3_VIEW';
 
 function App() {
   return (
