@@ -6,15 +6,37 @@ import { useNavigate } from 'react-router-dom';
 export default function PracticeView() {
   const navigate = useNavigate();
 
-  // 3 hexágonos arriba, 2 abajo
-  const row1 = [
-    { label: 'House', color: '#f472b6' },
-    { label: 'School', color: '#fbbf24' },
-    { label: 'Food', color: '#22c55e' },
-  ];
-  const row2 = [
-    { label: 'Travel', color: '#a78bfa' },
-    { label: 'Family', color: '#ef4444' },
+  const topics = [
+    { 
+      label: 'House', 
+      color: 'from-pink-500 to-pink-600',
+      icon: '🏠',
+      description: 'Learn vocabulary about home and furniture'
+    },
+    { 
+      label: 'School', 
+      color: 'from-amber-500 to-orange-500',
+      icon: '🎓',
+      description: 'Educational terms and classroom objects'
+    },
+    { 
+      label: 'Food', 
+      color: 'from-green-500 to-emerald-600',
+      icon: '🍎',
+      description: 'Kitchen, meals, and food vocabulary'
+    },
+    { 
+      label: 'Travel', 
+      color: 'from-violet-500 to-purple-600',
+      icon: '✈️',
+      description: 'Transportation and travel phrases'
+    },
+    { 
+      label: 'Family', 
+      color: 'from-red-500 to-rose-600',
+      icon: '👨‍👩‍👧‍👦',
+      description: 'Relationships and family members'
+    },
   ];
 
   const handleClick = (topic: string) => {
@@ -22,66 +44,129 @@ export default function PracticeView() {
   };
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <Navbar />
-      <div className="relative min-h-[75vh] flex flex-col">
-        <button 
-          className="flex items-center gap-2.5 bg-sky-400 border-none py-3 px-10 rounded-full font-bold text-xl text-white mt-10 ml-10 mb-4 cursor-pointer shadow-[0_4px_18px_rgba(56,189,248,0.47)] transition-all duration-150 outline-none tracking-wide self-start hover:bg-sky-500 hover:shadow-[0_8px_28px_rgba(56,189,248,0.6)] hover:scale-105 focus:bg-sky-500 focus:shadow-[0_8px_28px_rgba(56,189,248,0.6)] focus:scale-105"
-          onClick={() => navigate('/home')}
-        >
-          <span className="text-2xl mr-1">←</span>
-          <span>PRACTICE</span>
-        </button>
-        
-        <div className="mt-3 mb-5 text-xl text-center text-slate-700 bg-slate-50 py-4 px-3 rounded-3xl max-w-[650px] mx-auto shadow-[0_2px_16px_rgba(56,189,248,0.12)] tracking-wide">
-          <strong>
-            Choose a topic below to practice your vocabulary with themed flashcards.
-          </strong>
-          <span className="text-blue-500 italic text-lg block mt-1">
-            Wähle ein Thema und erweitere deinen Wortschatz! (Choose a topic and expand your vocabulary!)
-          </span>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <button 
+            className="flex items-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 shadow-lg"
+            onClick={() => navigate('/home')}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            <span>Back to Home</span>
+          </button>
+          
+          <h1 className="text-4xl font-light text-gray-900">Practice</h1>
         </div>
-        
-        <div className="flex flex-col items-center justify-start min-h-[50vh] w-full mb-10 gap-2">
-          <div className="flex justify-center items-center gap-9 mb-6">
-            {row1.map((topic) => (
-              <div
-                key={topic.label}
-                className="w-[185px] h-[165px] flex items-center justify-center font-bold text-white text-xl cursor-pointer shadow-[0_4px_32px_rgba(0,0,0,0.13),0_1px_6px_rgba(0,0,0,0.2)] transition-all duration-150 relative z-10 outline-none select-none hover:scale-110 hover:-rotate-2 hover:shadow-[0_8px_42px_rgba(56,189,248,0.54),0_3px_16px_rgba(0,0,0,0.07)] hover:brightness-110 hover:z-20 hover:drop-shadow-[0_4px_20px_rgba(255,255,255,0.13)] focus:scale-110 focus:-rotate-2 focus:shadow-[0_8px_42px_rgba(56,189,248,0.54),0_3px_16px_rgba(0,0,0,0.07)] focus:brightness-110 focus:z-20 focus:drop-shadow-[0_4px_20px_rgba(255,255,255,0.13)] max-sm:w-[62vw] max-sm:max-w-[130px] max-sm:min-w-[75px] max-sm:h-[14vw] max-sm:max-h-[74px] max-sm:min-h-[48px] max-sm:text-base max-sm:mx-1 max-[400px]:w-[85vw] max-[400px]:min-w-[34px] max-[400px]:max-w-[96px] max-[400px]:h-[18vw] max-[400px]:max-h-[44px] max-[400px]:text-xs max-[400px]:p-0"
-                style={{ 
-                  backgroundColor: topic.color,
-                  clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)'
-                }}
-                onClick={() => handleClick(topic.label)}
-              >
-                {topic.label}
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center items-center gap-9 mb-0">
-            <div className="w-[95px] h-[1px] max-sm:hidden" />
-            {row2.map((topic) => (
-              <div
-                key={topic.label}
-                className="w-[185px] h-[165px] flex items-center justify-center font-bold text-white text-xl cursor-pointer shadow-[0_4px_32px_rgba(0,0,0,0.13),0_1px_6px_rgba(0,0,0,0.2)] transition-all duration-150 relative z-10 outline-none select-none hover:scale-110 hover:-rotate-2 hover:shadow-[0_8px_42px_rgba(56,189,248,0.54),0_3px_16px_rgba(0,0,0,0.07)] hover:brightness-110 hover:z-20 hover:drop-shadow-[0_4px_20px_rgba(255,255,255,0.13)] focus:scale-110 focus:-rotate-2 focus:shadow-[0_8px_42px_rgba(56,189,248,0.54),0_3px_16px_rgba(0,0,0,0.07)] focus:brightness-110 focus:z-20 focus:drop-shadow-[0_4px_20px_rgba(255,255,255,0.13)] max-sm:w-[62vw] max-sm:max-w-[130px] max-sm:min-w-[75px] max-sm:h-[14vw] max-sm:max-h-[74px] max-sm:min-h-[48px] max-sm:text-base max-sm:mx-1 max-[400px]:w-[85vw] max-[400px]:min-w-[34px] max-[400px]:max-w-[96px] max-[400px]:h-[18vw] max-[400px]:max-h-[44px] max-[400px]:text-xs max-[400px]:p-0"
-                style={{ 
-                  backgroundColor: topic.color,
-                  clipPath: 'polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%)'
-                }}
-                onClick={() => handleClick(topic.label)}
-              >
-                {topic.label}
-              </div>
-            ))}
-            <div className="w-[95px] h-[1px] max-sm:hidden" />
+
+        {/* Introduction */}
+        <div className="text-center mb-12">
+          <div className="max-w-3xl mx-auto bg-white rounded-2xl shadow-lg border border-gray-100 p-8">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">
+              Choose a Topic to Practice
+            </h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-2">
+              Expand your German vocabulary with themed flashcards and interactive exercises.
+            </p>
+            <p className="text-blue-600 italic font-medium">
+              Wähle ein Thema und erweitere deinen Wortschatz!
+            </p>
           </div>
         </div>
-        
-        <img 
-          src={klausP} 
-          alt="Klaus" 
-          className="fixed bottom-9 right-8 w-[425px] max-w-[38vw] z-[5] drop-shadow-[0_6px_28px_rgba(56,189,248,0.42)] pointer-events-none select-none transition-all duration-200 max-[1210px]:static max-[1210px]:block max-[1210px]:mx-auto max-[1210px]:mt-9 max-[1210px]:mb-2 max-[1210px]:w-[44vw] max-[1210px]:min-w-[110px] max-[1210px]:max-w-[340px] max-[1210px]:right-auto max-[1210px]:bottom-auto max-[1210px]:z-[3] max-sm:w-[90vw] max-sm:max-w-[260px] max-sm:min-w-[110px] max-sm:mt-9 max-sm:mb-3 max-[400px]:w-[98vw] max-[400px]:min-w-[90px] max-[400px]:max-w-[330px] max-[400px]:mt-6 max-[400px]:mb-1" 
-        />
+
+        {/* Main Content Area */}
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Topic Cards */}
+          <div className="flex-1 w-full max-w-4xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {topics.map((topic) => (
+                <div
+                  key={topic.label}
+                  className="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 overflow-hidden cursor-pointer"
+                  onClick={() => handleClick(topic.label)}
+                >
+                  {/* Background Gradient */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${topic.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  
+                  {/* Content */}
+                  <div className="relative z-10 p-8 text-center">
+                    {/* Icon */}
+                    <div className="text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                      {topic.icon}
+                    </div>
+                    
+                    {/* Title */}
+                    <h3 className="text-2xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300 mb-2">
+                      {topic.label}
+                    </h3>
+                    
+                    {/* Description */}
+                    <p className="text-gray-600 group-hover:text-white/90 transition-colors duration-300 text-sm leading-relaxed">
+                      {topic.description}
+                    </p>
+                  </div>
+
+                  {/* Action Indicator */}
+                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                      <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Hover Ring */}
+                  <div className="absolute inset-0 ring-2 ring-blue-500 ring-opacity-0 group-hover:ring-opacity-50 rounded-2xl transition-all duration-300"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Coming Soon Card */}
+            <div className="mt-6 bg-white rounded-2xl shadow-lg border border-gray-100 p-6 text-center">
+              <div className="text-4xl mb-3">🔮</div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">More Topics Coming Soon!</h3>
+              <p className="text-gray-600 text-sm">
+                We're working on adding more vocabulary themes to help you master German.
+              </p>
+            </div>
+          </div>
+
+          {/* Klaus Character */}
+          <div className="flex-shrink-0 lg:ml-8">
+            <div className="relative">
+              <img 
+                src={klausP} 
+                alt="Klaus Practice Mascot" 
+                className="w-80 md:w-96 lg:w-80 xl:w-96 h-auto filter drop-shadow-2xl"
+              />
+              <div className="absolute -inset-8 bg-gradient-to-r from-blue-200/20 to-purple-200/20 rounded-full blur-3xl -z-10"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Tips */}
+        <div className="mt-16 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6">
+          <div className="flex items-start space-x-4">
+            <div className="flex-shrink-0">
+              <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800 mb-1">💡 Practice Tips</h3>
+              <p className="text-blue-700 leading-relaxed">
+                Start with topics you encounter daily like <span className="font-semibold">House</span> and <span className="font-semibold">Food</span>. 
+                Regular practice with flashcards will help you remember new words faster!
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

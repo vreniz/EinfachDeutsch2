@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function Home() {
-  const [showModal, setShowModal] = useState(false); // Estado para mostrar el pop-up
+  const [showModal, setShowModal] = useState(false);
 
   function handleUnavailableLevel() {
     setShowModal(true);
@@ -16,41 +16,124 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       <Navbar />
-      <h1 className="text-center text-5xl sm:text-3xl font-bold mt-8 sm:mt-4 mb-4 sm:mb-2 text-blue-800 font-sans">Willkommen</h1>
-     
-       <p className="text-center text-xl sm:text-lg text-slate-700 mb-2 font-sans px-4">
-         Ready to learn <span className="text-blue-700 font-semibold">Deutsch</span> with Klaus? <strong>Wähle dein Level und fang an!</strong>
-         </p>
-        <p className="text-center text-base sm:text-sm text-slate-500 mb-6 sm:mb-4 italic px-4">
-        <em>"Choose your level and get started!"</em>
-        </p>
-      <div className="flex flex-col sm:flex-col lg:flex-row justify-center items-center lg:items-start p-8 sm:p-4 gap-6 sm:gap-4 mt-4 sm:mt-2">
-      <img src={klaus} alt="Klaus" className="max-w-[300px] sm:max-w-[200px] h-auto drop-shadow-[0_8px_32px_rgba(56,189,248,0.5)] order-1 lg:order-1" />
+      
+      {/* Hero Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-16">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-6xl sm:text-4xl md:text-5xl font-light text-gray-900 mb-6 tracking-tight">
+            Willkommen
+          </h1>
+          <div className="max-w-2xl mx-auto">
+            <p className="text-xl sm:text-lg text-gray-700 mb-3 font-normal">
+              Ready to learn <span className="text-blue-600 font-medium">Deutsch</span> with Klaus? 
+              <br className="hidden sm:block" />
+              <span className="font-medium">Wähle dein Level und fang an!</span>
+            </p>
+            <p className="text-base text-gray-500 italic">
+              "Choose your level and get started!"
+            </p>
+          </div>
+        </div>
 
-      <div className="flex justify-center items-center flex-1 lg:-ml-60 order-2 lg:order-2">
-        <div className="grid grid-cols-3 sm:grid-cols-2 gap-8 sm:gap-4 max-w-3xl sm:max-w-sm w-full">
-        <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-sky-400" onClick={() => navigate('/sections/a1')}>A1</button>
-       <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-pink-500" onClick={handleUnavailableLevel}>A2</button>
-       <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-indigo-500" onClick={handleUnavailableLevel}>B1</button>
-       <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-violet-500" onClick={handleUnavailableLevel}>B2</button>
-       <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-blue-500" onClick={handleUnavailableLevel}>C1</button>
-       <button className="py-12 sm:py-6 px-12 sm:px-6 text-4xl sm:text-2xl font-bold border-none rounded-3xl sm:rounded-2xl text-white cursor-pointer transition-transform duration-200 shadow-lg hover:scale-105 bg-orange-500" onClick={handleUnavailableLevel}>C2</button>
+        {/* Main Content */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-16 lg:gap-24">
+          {/* Klaus Image */}
+          <div className="flex-shrink-0 order-2 lg:order-1">
+            <div className="relative">
+              <img 
+                src={klaus} 
+                alt="Klaus" 
+                className="w-80 sm:w-64 md:w-72 lg:w-80 h-auto filter drop-shadow-2xl"
+              />
+              <div className="absolute -inset-4 bg-gradient-to-r from-blue-200/20 to-indigo-200/20 rounded-full blur-2xl -z-10"></div>
+            </div>
+          </div>
+
+          {/* Level Cards */}
+          <div className="order-1 lg:order-2 w-full max-w-2xl">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              {/* A1 - Available */}
+              <button 
+                className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 overflow-hidden"
+                onClick={() => navigate('/sections/a1')}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative z-10">
+                  <div className="w-12 h-12 bg-blue-500 rounded-xl flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 transition-colors duration-300">
+                    <span className="text-white text-xl font-bold group-hover:text-white">A1</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">A1</h3>
+                  <p className="text-sm text-gray-500 mt-2 group-hover:text-blue-100 transition-colors duration-300">Beginner</p>
+                </div>
+                <div className="absolute inset-0 ring-2 ring-blue-500 ring-opacity-0 group-hover:ring-opacity-50 rounded-2xl transition-all duration-300"></div>
+              </button>
+
+              {/* A2-C2 - Coming Soon */}
+              {[
+                { level: 'A2', color: 'from-pink-500 to-pink-600', bg: 'bg-pink-500', desc: 'Elementary' },
+                { level: 'B1', color: 'from-indigo-500 to-indigo-600', bg: 'bg-indigo-500', desc: 'Intermediate' },
+                { level: 'B2', color: 'from-purple-500 to-purple-600', bg: 'bg-purple-500', desc: 'Upper Int.' },
+                { level: 'C1', color: 'from-emerald-500 to-emerald-600', bg: 'bg-emerald-500', desc: 'Advanced' },
+                { level: 'C2', color: 'from-orange-500 to-orange-600', bg: 'bg-orange-500', desc: 'Proficient' }
+              ].map((item) => (
+                <button 
+                  key={item.level}
+                  className="group relative bg-white rounded-2xl p-8 md:p-10 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100 overflow-hidden"
+                  onClick={handleUnavailableLevel}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
+                  <div className="relative z-10">
+                    <div className={`w-12 h-12 ${item.bg} rounded-xl flex items-center justify-center mb-4 mx-auto group-hover:bg-white/20 transition-colors duration-300`}>
+                      <span className="text-white text-xl font-bold">{item.level}</span>
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">{item.level}</h3>
+                    <p className="text-sm text-gray-500 mt-2 group-hover:text-white/80 transition-colors duration-300">{item.desc}</p>
+                  </div>
+                  <div className="absolute top-3 right-3 opacity-30">
+                    <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                    </svg>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-     {/* Modal */}
-     {showModal && (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-20 flex justify-center items-center z-50">
-          <div className="bg-white rounded-3xl shadow-[0_4px_32px_rgba(56,189,248,0.33)] p-8 text-center max-w-md mx-4">
-            <h3 className="text-2xl font-bold mb-4 text-slate-800">🚧 Coming Soon</h3>
-            <p className="text-slate-600 mb-6">This level is not available yet. Stay tuned for updates!</p>
-            <button className="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-xl transition-colors duration-200" onClick={handleCloseModal}>OK</button>
+
+      {/* Modal with Material Design */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full mx-4 overflow-hidden transform transition-all duration-300 scale-100">
+            {/* Modal Header */}
+            <div className="px-6 pt-6 pb-4">
+              <div className="flex items-center justify-center w-16 h-16 bg-amber-100 rounded-full mx-auto mb-4">
+                <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-semibold text-gray-900 text-center mb-2">Coming Soon</h3>
+              <p className="text-gray-600 text-center leading-relaxed">
+                This level is not available yet. We're working hard to bring you more content!
+              </p>
+            </div>
+            
+            {/* Modal Actions */}
+            <div className="px-6 pb-6 pt-2">
+              <button 
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-xl transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                onClick={handleCloseModal}
+              >
+                Got it
+              </button>
+            </div>
           </div>
         </div>
       )}
-  </div>
+    </div>
   );
 }
 
