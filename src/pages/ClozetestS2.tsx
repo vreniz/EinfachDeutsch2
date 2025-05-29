@@ -36,10 +36,10 @@ const ClozeTest = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="mt-6 text-blue-700 text-lg opacity-90 text-center mb-3 font-semibold tracking-wide">
+      <div className="mt-6 text-blue-700 text-sm sm:text-lg opacity-90 text-center mb-3 font-semibold tracking-wide px-4 max-w-[95vw] break-words">
         Select or type the words below in the correct order.
       </div>
-      <div className="bg-white rounded-[2.2rem] shadow-[0_4px_30px_rgba(59,130,246,0.15)] p-8 w-[570px] max-w-[98vw] mb-6 border border-blue-100">
+      <div className="bg-white rounded-[2.2rem] shadow-[0_4px_30px_rgba(59,130,246,0.15)] p-4 sm:p-8 w-[95vw] sm:w-[570px] max-w-[98vw] mb-6 border border-blue-100">
         <div className="bg-blue-600 rounded-t-2xl py-3 px-6 -mt-8 mb-6 text-xl font-bold w-full text-center tracking-wide text-white shadow-[0_2px_8px_rgba(59,130,246,0.3)]">
           Vervollständige die Sätze
         </div>
@@ -85,11 +85,11 @@ const ClozeTest = () => {
           </div>
         )}
       </div>
-      <div className="flex gap-3 flex-wrap justify-center mb-6 max-w-4xl">
+      <div className="flex gap-2 sm:gap-3 flex-wrap justify-center mb-6 w-[95vw] sm:w-full max-w-[95vw] sm:max-w-4xl px-2 sm:px-0">
         {setData.options.map((option, idx) => (
           <button
             key={idx}
-            className={`py-3 px-6 rounded-2xl font-semibold transition-all duration-200 border-2 shadow-sm ${
+            className={`py-2 sm:py-3 px-3 sm:px-6 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base transition-all duration-200 border-2 shadow-sm min-w-0 flex-shrink ${
               inputs.includes(option) 
                 ? "bg-gray-200 border-gray-300 text-gray-500 cursor-not-allowed" 
                 : "bg-white border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-500 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
@@ -101,11 +101,11 @@ const ClozeTest = () => {
           </button>
         ))}
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center w-[95vw] sm:w-full max-w-[95vw] px-2 sm:px-0">
         <button
           onClick={() => handleNav(-1)}
           disabled={currentSet === 0}
-          className={`w-12 h-12 rounded-full font-bold text-xl transition-all duration-200 shadow-sm ${
+          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
             currentSet === 0 
               ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
               : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
@@ -116,7 +116,7 @@ const ClozeTest = () => {
         {clozeTestSets.map((_, i) => (
           <button
             key={i}
-            className={`w-12 h-12 rounded-full font-bold transition-all duration-200 shadow-sm ${
+            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-sm flex-shrink-0 ${
               i === currentSet 
                 ? "bg-blue-700 text-white scale-110 shadow-[0_2px_8px_rgba(59,130,246,0.35)]" 
                 : "bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
@@ -133,7 +133,7 @@ const ClozeTest = () => {
         <button
           onClick={() => handleNav(1)}
           disabled={currentSet === clozeTestSets.length - 1}
-          className={`w-12 h-12 rounded-full font-bold text-xl transition-all duration-200 shadow-sm ${
+          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
             currentSet === clozeTestSets.length - 1 
               ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
               : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"

@@ -757,7 +757,7 @@ export default function Section1View() {
 
           {/* Main Content Area */}
           <div className="flex-1 bg-white rounded-2xl shadow-lg border border-gray-100 p-8 min-h-[600px]">
-        <div className="flex-1 flex flex-col items-center min-w-0 w-full">
+        <div className="flex-1 flex flex-col items-center w-full">
           {showProgress ? (
             <div style={{ width: "100%", marginTop: 32 }}>
               <ProgressReport progress={progress} />

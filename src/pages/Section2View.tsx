@@ -728,7 +728,7 @@ export default function Section2View() {
         {/* Cambia el título para Section 2 */}
         "The Alphabet & Numbers/ Personal pronouns & Present Tense"
       </div>
-      <div className="flex gap-8 max-w-7xl mx-auto items-start min-h-[80vh] mt-2 overflow-x-auto whitespace-nowrap p-4 min-w-0 break-words overflow-wrap-anywhere max-sm:flex-col max-sm:items-center max-sm:overflow-x-auto max-sm:p-4">
+      <div className="flex gap-8 max-w-7xl mx-auto items-start min-h-[80vh] mt-2 p-4 break-words overflow-wrap-anywhere max-sm:flex-col max-sm:items-center max-sm:p-4">
         <div className="flex flex-col gap-4 min-w-[220px] mt-6 ml-10 max-sm:flex-row max-sm:flex-wrap max-sm:justify-center max-sm:ml-0">
           {/* El resto de la barra lateral puede ser igual */}
           <button
@@ -795,7 +795,7 @@ export default function Section2View() {
           </button>
         </div>
 
-        <div className="flex-1 flex flex-col items-center min-w-0 w-full">
+        <div className="flex-1 flex flex-col items-center w-full">
           {showProgress ? (
             <div style={{ width: "100%", marginTop: 32 }}>
               <ProgressReport progress={progress} />

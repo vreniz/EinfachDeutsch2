@@ -80,7 +80,7 @@ export default function FlashcardsFamily() {
         <Navbar />
         <BackButton />
         <div className="flex flex-col items-center min-h-[450px]">
-          <div className="w-[570px] max-w-[98vw] min-h-[360px] bg-purple-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(168,85,247,0.47)] text-purple-800 p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
+          <div className="w-[95vw] sm:w-[570px] max-w-[98vw] min-h-[360px] bg-purple-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(168,85,247,0.47)] text-purple-800 p-6 sm:p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
             <div className="bg-purple-700 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
               ¡Well Done!
             </div>
@@ -107,7 +107,7 @@ export default function FlashcardsFamily() {
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`w-[570px] max-w-[98vw] min-h-[360px] bg-purple-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(168,85,247,0.47)] text-white p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
+          className={`w-[95vw] sm:w-[570px] max-w-[98vw] min-h-[360px] bg-purple-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(168,85,247,0.47)] text-white p-6 sm:p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
             animDirection === 'right' 
               ? 'transform translate-x-80 rotate-[18deg] opacity-0' 
               : animDirection === 'left' 

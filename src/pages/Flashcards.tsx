@@ -23,7 +23,7 @@ export default function Flashcards() {
       setAnimDirection('');
       if (queue.length === 0) return;
 
-      let newQueue = [...queue];
+      const newQueue = [...queue];
       if (action === 'know') {
         newQueue.splice(currentIndex, 1);
         setKnownCount(kc => kc + 1); // <-- suma 1 solo si conoció la tarjeta
@@ -66,7 +66,7 @@ export default function Flashcards() {
   if (queue.length === 0) {
     return (
       <div className="flex flex-col items-center min-h-[450px]">
-        <div className="w-[555px] max-w-[98vw] min-h-[330px] bg-sky-400 rounded-[2.2rem] mt-8 mb-9 shadow-[0_4px_30px_rgba(23,91,255,0.19)] text-white p-10 flex flex-col items-center transition-all duration-300 ease-out break-words">
+        <div className="w-[95vw] sm:w-[555px] max-w-[98vw] min-h-[330px] bg-sky-400 rounded-[2.2rem] mt-8 mb-9 shadow-[0_4px_30px_rgba(23,91,255,0.19)] text-white p-6 sm:p-10 flex flex-col items-center transition-all duration-300 ease-out break-words">
           <div className="bg-blue-700 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide box-border">¡Well Done!</div>
           <div className="text-xl font-bold text-white text-center mt-10 mb-10 leading-5 break-words text-[20px]">You've completed all the flashcards! 🎉<br /> Keep up the good work!</div>
           <button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-200 transform hover:scale-105 cursor-pointer border-none text-lg min-w-[140px]" onClick={handleRestart}>
@@ -85,7 +85,7 @@ export default function Flashcards() {
         Press 'Know' if you know it, or 'Study Again' to review.
       </div>
       <div
-        className={`w-[555px] max-w-[98vw] min-h-[330px] bg-blue-500 rounded-[2.2rem] mt-8 mb-9 shadow-[0_4px_30px_rgba(23,91,255,0.19)] text-white p-10 flex flex-col items-center transition-all duration-300 ease-out break-words ${
+        className={`w-[95vw] sm:w-[555px] max-w-[98vw] min-h-[330px] bg-blue-500 rounded-[2.2rem] mt-8 mb-9 shadow-[0_4px_30px_rgba(23,91,255,0.19)] text-white p-6 sm:p-10 flex flex-col items-center transition-all duration-300 ease-out break-words ${
           animDirection === 'right' ? 'transform translate-x-80 rotate-[18deg] opacity-0' : 
           animDirection === 'left' ? 'transform -translate-x-80 rotate-[-18deg] opacity-0' : ''
         }`}

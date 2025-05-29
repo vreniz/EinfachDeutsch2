@@ -18,7 +18,7 @@ export default function FlashcardsSchool() {
       setAnimDirection('');
       if (queue.length === 0) return;
 
-      let newQueue = [...queue];
+      const newQueue = [...queue];
       if (action === 'know') {
         newQueue.splice(currentIndex, 1);
         setKnownCount(kc => kc + 1);
@@ -65,7 +65,7 @@ export default function FlashcardsSchool() {
         <Navbar />
         <BackButton />
         <div className="flex flex-col items-center min-h-[450px]">
-          <div className="w-[570px] max-w-[98vw] min-h-[360px] bg-amber-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-amber-800 p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
+          <div className="w-[95vw] sm:w-[570px] max-w-[98vw] min-h-[360px] bg-amber-200 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-amber-800 p-6 sm:p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words">
             <div className="bg-amber-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
               ¡Well Done!
             </div>
@@ -108,7 +108,7 @@ export default function FlashcardsSchool() {
           Press 'Know' if you know it, or 'Study Again' to review.
         </div>
         <div
-          className={`w-[570px] max-w-[98vw] min-h-[360px] bg-amber-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-white p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
+          className={`w-[95vw] sm:w-[570px] max-w-[98vw] min-h-[360px] bg-amber-400 rounded-[2.2rem] mb-9 mt-5 shadow-[0_4px_30px_rgba(251,191,36,0.47)] text-white p-6 sm:p-10 pt-8 flex flex-col items-center transition-all duration-300 break-words ${
             animDirection === 'right' 
               ? 'transform translate-x-80 rotate-[18deg] opacity-0' 
               : animDirection === 'left' 
