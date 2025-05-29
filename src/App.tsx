@@ -12,7 +12,7 @@ import FlashcardsFood from './pages/FlashcardsFood';
 import FlashcardsTravel from './pages/FlashcardsTravel';
 import FlashcardsFamily from './pages/FlashcardsFamily'; // <-- Importa el componente
 import Profile from './pages/Profile';
-import Reminder from './pages/Reminder';
+
 import OverallProgress from './pages/OverallProgress';
 import Section3View from './pages/Section3View';
 
@@ -33,7 +33,7 @@ function App() {
         <Route path="/practice/travel" element={<FlashcardsTravel />} />
         <Route path="/practice/family" element={<FlashcardsFamily />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/reminder" element={<Reminder />} />
+
         <Route path="/progress" element={<OverallProgress />} />
         <Route path="/sections/a1/section-3" element={<Section3View />} />
 

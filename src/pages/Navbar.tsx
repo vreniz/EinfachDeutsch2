@@ -81,16 +81,7 @@ export default function Navbar() {
                     </svg>
                     <span>Profile</span>
                   </button>
-                  <button
-                    onClick={() => { setShowDropdown(false); navigate('/reminder'); }}
-                    className="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-2"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-5 5v-5z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 19H6.5A2.5 2.5 0 014 16.5v-9A2.5 2.5 0 016.5 5H18a2 2 0 012 2v7" />
-                    </svg>
-                    <span>Reminder</span>
-                  </button>
+
                   <hr className="my-2 border-gray-100" />
                   <button
                     onClick={handleSignOut}
@@ -161,12 +152,7 @@ export default function Navbar() {
                 >
                   Profile
                 </button>
-                <button
-                  onClick={() => { setMenuOpen(false); navigate('/reminder'); }}
-                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200"
-                >
-                  Reminder
-                </button>
+
                 <button
                   onClick={() => { setMenuOpen(false); handleSignOut(); }}
                   className="block w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
