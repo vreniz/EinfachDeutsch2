@@ -4,40 +4,41 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../Context/UserContext';
 
 export default function SignUp() {
-  const { setUser } = useUser(); // ahora sí lo usas
+  const { register } = useUser();
   const [form, setForm] = useState({
-    name: '',
-    lastName: '',
+    first_name: '',
+    last_name: '',
     email: '',
     password: '',
-    birthDate: '',
+    birth_date: '',
     country: '',
   });
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
+  
   const isFormComplete = Object.values(form).every(v => v.trim() !== "");
 
-
-  const handleSignup = (e: React.FormEvent) => {
+  const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    setIsLoading(true);
 
-    // Puedes guardar el usuario en localStorage aquí si quieres persistencia real
-
-    // Registra en el contexto de usuario (sin la password)
-    setUser({
-      name: form.name,
-      lastName: form.lastName,
-      email: form.email,
-      birthDate: form.birthDate,
-      country: form.country,
-      photoUrl: '', // aún vacío, lo puede editar después
-    });
-
-    // Redirige a home
-    navigate('/home');
+    try {
+      await register(form);
+      navigate('/home');
+    } catch (error) {
+      console.error('Registration error:', error);
+      setError('Registration failed. Please check your information and try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -64,25 +65,34 @@ export default function SignUp() {
       <div className="flex-1 lg:flex-1 flex flex-col justify-center lg:justify-center items-center p-8 lg:p-8 order-1 lg:order-none bg-white min-h-[260px] lg:min-h-0 justify-end lg:justify-center pb-2 lg:pb-8">
         <h2 className="text-blue-800 text-[1.6rem] lg:text-2xl font-bold mb-2">SIGN UP</h2>
         <p className="mb-6 text-base">Please fill in all your details to create an account.</p>
+        
+        {error && (
+          <div className="w-full max-w-[500px] mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+            {error}
+          </div>
+        )}
+        
         <form className="w-full max-w-[500px] flex flex-col items-center gap-5" onSubmit={handleSignup}>
        <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
        <input
        type="text"
-       name="name"
+       name="first_name"
        placeholder="First Name"
        className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
-       value={form.name}
+       value={form.first_name}
        onChange={handleChange}
        required
+       disabled={isLoading}
         /> 
        <input
        type="text"
-       name="lastName"
+       name="last_name"
        placeholder="Last Name"
        className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
-       value={form.lastName}
+       value={form.last_name}
        onChange={handleChange}
        required
+       disabled={isLoading}
       />
     <input
       type="password"
@@ -92,15 +102,17 @@ export default function SignUp() {
       value={form.password}
       onChange={handleChange}
       required
+      disabled={isLoading}
     />
     <input
       type="date"
-      name="birthDate"
+      name="birth_date"
       placeholder="Birthdate"
       className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
-      value={form.birthDate}
+      value={form.birth_date}
       onChange={handleChange}
       required
+      disabled={isLoading}
     />
     <input
       type="email"
@@ -110,6 +122,7 @@ export default function SignUp() {
       value={form.email}
       onChange={handleChange}
       required
+      disabled={isLoading}
     />
     <input
       type="text"
@@ -119,9 +132,16 @@ export default function SignUp() {
       value={form.country}
       onChange={handleChange}
       required
+      disabled={isLoading}
     />
   </div>
-  <button type="submit" className="w-full mt-5 text-lg lg:text-[1.15rem] py-3 lg:py-3 bg-sky-400 text-white border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(56,189,248,0.3),_0_2px_12px_rgba(56,189,248,0.2)] hover:bg-sky-500 hover:scale-105 hover:shadow-[0_4px_25px_rgba(56,189,248,0.4),_0_3px_15px_rgba(56,189,248,0.3)] disabled:bg-slate-400 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:hover:scale-100" disabled={!isFormComplete}>SIGN UP</button>
+  <button 
+    type="submit" 
+    className="w-full mt-5 text-lg lg:text-[1.15rem] py-3 lg:py-3 bg-sky-400 text-white border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(56,189,248,0.3),_0_2px_12px_rgba(56,189,248,0.2)] hover:bg-sky-500 hover:scale-105 hover:shadow-[0_4px_25px_rgba(56,189,248,0.4),_0_3px_15px_rgba(56,189,248,0.3)] disabled:bg-slate-400 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:hover:scale-100" 
+    disabled={!isFormComplete || isLoading}
+  >
+    {isLoading ? 'SIGNING UP...' : 'SIGN UP'}
+  </button>
 </form>
 
       </div>

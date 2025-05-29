@@ -4,28 +4,31 @@ import { useUser } from '../../Context/UserContext';
 
 export default function LogIn() {
   const [form, setForm] = useState({ email: '', password: '' });
-  const { setUser } = useUser();
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useUser();
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // Clear error when user starts typing
+    if (error) setError(null);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    // 🚀 Simulación de login (en futuro, aquí irá tu llamada al backend)
-    setUser({
-      name: 'Vanessa',
-      lastName: 'Reniz',           // <-- Añadido
-      email: form.email,
-      birthDate: '2001-05-15',     // <-- Añadido
-      country: 'Colombia',         // <-- Añadido
-      photoUrl: undefined          // <-- Opcional
-    });
-  
-    // Redirige al home
-    navigate('/home');
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      await login(form.email, form.password);
+      navigate('/home');
+    } catch (error) {
+      console.error('Login error:', error);
+      setError('Invalid email or password. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
   
 
@@ -34,6 +37,13 @@ export default function LogIn() {
       <div className="flex-[0.85] lg:flex-none lg:w-auto flex flex-col justify-center lg:justify-center items-center p-8 lg:p-8 bg-white order-1 lg:order-none pb-2 lg:pb-8 min-h-[260px] lg:min-h-0 justify-end lg:justify-center">
         <h2 className="text-blue-800 text-[1.6rem] lg:text-2xl font-bold mb-2">LOG IN</h2>
         <p className="mb-6 text-base text-black">Use your email and password</p>
+        
+        {error && (
+          <div className="w-full max-w-[300px] mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+            {error}
+          </div>
+        )}
+        
         <form className="w-full max-w-[300px] lg:max-w-[300px] px-1 lg:px-0 flex flex-col gap-4" onSubmit={handleLogin}>
           <input
             type="email"
@@ -43,6 +53,7 @@ export default function LogIn() {
             value={form.email}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
           <input
             type="password"
@@ -52,9 +63,16 @@ export default function LogIn() {
             value={form.password}
             onChange={handleChange}
             required
+            disabled={isLoading}
           />
           <a href="#" className="text-center block -mt-2 mb-4 text-blue-600 font-medium underline text-[0.95rem] transition-colors duration-200 hover:text-blue-800">Forgot your password?</a>
-          <button type="submit" className="bg-blue-800 text-white py-2.5 px-6 border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(30,64,175,0.3),_0_2px_12px_rgba(30,64,175,0.2)] hover:bg-blue-900 hover:scale-105 hover:shadow-[0_4px_25px_rgba(30,64,175,0.4),_0_3px_15px_rgba(30,64,175,0.3)]">SIGN IN</button>
+          <button 
+            type="submit" 
+            className="bg-blue-800 text-white py-2.5 px-6 border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(30,64,175,0.3),_0_2px_12px_rgba(30,64,175,0.2)] hover:bg-blue-900 hover:scale-105 hover:shadow-[0_4px_25px_rgba(30,64,175,0.4),_0_3px_15px_rgba(30,64,175,0.3)] disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:hover:scale-100"
+            disabled={isLoading}
+          >
+            {isLoading ? 'SIGNING IN...' : 'SIGN IN'}
+          </button>
         </form>
       </div>
 

@@ -14,6 +14,7 @@ import FlashcardsFamily from './pages/FLASHCARDS_FAMILY';
 import Profile from './pages/PROFILE';
 import OverallProgress from './pages/OVERALL_PROGRESS';
 import Section3View from './pages/SECTION3_VIEW';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -21,21 +22,19 @@ function App() {
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/home" element={<Home />} /> {/* 👈 agrega ruta nueva */}
-        <Route path="/sections/a1" element={<A1Sections />} />
-        <Route path="/sections/a1/section-1" element={<Section1View />} />
-        <Route path="/sections/a1/section-2" element={<Section2View />} />
-        <Route path="/practice" element={<PracticeView />} />
-        <Route path="/practice/house" element={<FlashcardsHouse />} />
-        <Route path="/practice/school" element={<FlashcardsSchool />} />
-        <Route path="/practice/food" element={<FlashcardsFood />} />
-        <Route path="/practice/travel" element={<FlashcardsTravel />} />
-        <Route path="/practice/family" element={<FlashcardsFamily />} />
-        <Route path="/profile" element={<Profile />} />
-
-        <Route path="/progress" element={<OverallProgress />} />
-        <Route path="/sections/a1/section-3" element={<Section3View />} />
-
+        <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+        <Route path="/sections/a1" element={<ProtectedRoute><A1Sections /></ProtectedRoute>} />
+        <Route path="/sections/a1/section-1" element={<ProtectedRoute><Section1View /></ProtectedRoute>} />
+        <Route path="/sections/a1/section-2" element={<ProtectedRoute><Section2View /></ProtectedRoute>} />
+        <Route path="/practice" element={<ProtectedRoute><PracticeView /></ProtectedRoute>} />
+        <Route path="/practice/house" element={<ProtectedRoute><FlashcardsHouse /></ProtectedRoute>} />
+        <Route path="/practice/school" element={<ProtectedRoute><FlashcardsSchool /></ProtectedRoute>} />
+        <Route path="/practice/food" element={<ProtectedRoute><FlashcardsFood /></ProtectedRoute>} />
+        <Route path="/practice/travel" element={<ProtectedRoute><FlashcardsTravel /></ProtectedRoute>} />
+        <Route path="/practice/family" element={<ProtectedRoute><FlashcardsFamily /></ProtectedRoute>} />
+        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+        <Route path="/progress" element={<ProtectedRoute><OverallProgress /></ProtectedRoute>} />
+        <Route path="/sections/a1/section-3" element={<ProtectedRoute><Section3View /></ProtectedRoute>} />
       </Routes>
     </Router>
   );

@@ -28,7 +28,7 @@ export interface AuthResponse {
 }
 
 // Nombres de sección válidos
-export type SectionName = 'section1' | 'section2';
+export type SectionName = 'section1' | 'section2' | 'section3';
 
 // Campos de progreso válidos
 export type ProgressField =
@@ -56,6 +56,7 @@ export interface FetchResponse {
   progress: {
     section1: Record<ProgressField, boolean>;
     section2: Record<ProgressField, boolean>;
+    section3: Record<ProgressField, boolean>;
   };
 }
 
@@ -66,7 +67,6 @@ export interface UserInfo {
   birth_date: string;    // ISO string
   email: string;
   country: string;
-  created_at?: string;   // ISO string
 }
 
 // Payload para updateUserInfo

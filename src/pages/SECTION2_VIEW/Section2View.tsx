@@ -5,15 +5,16 @@ import klaus2 from '../../assets/Klaus0004.png';
 import nextImg from '../../assets/next.png';
 import nextOp from '../../assets/nextop.png';
 import LessonBoard from '../../components/LESSON_BOARD';
-import ClozeTest from '../../components/CLOZETEST_S2'; // tengo que crearme otro tsx con su nuevo ts (sin css)
-import Flashcards from '../../components/FLASHCARDS_2';// tengo que crearme otro tsx con su nuevo ts (sin css)
-import Questions from '../../components/QUESTIONS_S2';// tengo que crearme otro tsx con su nuevo ts (sin css)
+import ClozeTest from '../../components/CLOZETEST_S2';
+import Flashcards from '../../components/FLASHCARDS_2';
+import Questions from '../../components/QUESTIONS_S2';
 import MarkAsDoneButton from '../../components/MARK_AS_DONE_BUTTON';
-import Quiz from '../../components/QUIZ_2';//cambiar el import per section
+import Quiz from '../../components/QUIZ_2';
 import ProgressReport from '../../components/PROGRESS_REPORT';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useUser } from '../../Context/UserContext';
+import type { ProgressField } from '../../api/api';
 
-// debo crear quiz nuevo con nueva badge siempre y cambiar el nombre del Label finished lesson (al numero de la nueva lesson)
 // Define el estado del progreso de la sección
 type ProgressState = {
   lessons: boolean;
@@ -23,25 +24,6 @@ type ProgressState = {
   quizDone: boolean;
   sectionDone: boolean;
 };
-
-// Utils para guardar/cargar progreso
-function loadSectionProgress(level: string, section: number): ProgressState {
-  const key = `progress_${level}_section${section}`;
-  const saved = localStorage.getItem(key);
-  if (saved) return JSON.parse(saved);
-  return {
-    lessons: false,
-    activity1: false,
-    activity2: false,
-    activity3: false,
-    quizDone: false,
-    sectionDone: false,
-  };
-}
-function saveSectionProgress(level: string, section: number, state: ProgressState) {
-  const key = `progress_${level}_section${section}`;
-  localStorage.setItem(key, JSON.stringify(state));
-}
 
 // Aquí defines el contenido para Section 2
 const lessonBoards2 = [
@@ -668,19 +650,59 @@ const lessonBoards2 = [
 ];
 
 export default function Section2View() {
-  // Igual que Section1View
+  // API-based progress system
   const rawParams = useParams();
   const level = (rawParams.level as string) || "A1";
   const section = Number(rawParams.id) || 2;
   const navigate = useNavigate();
+  const { progress: userProgress, updateProgress } = useUser();
 
-  const [progress, setProgress] = useState<ProgressState>(
-    () => loadSectionProgress(level, section)
-  );
+  // Helper function to map API progress fields to component format
+  const mapFromAPI = (apiProgress: Record<ProgressField, boolean> | undefined) => {
+    if (!apiProgress) return null;
+    return {
+      lessons: apiProgress.lessons || false,
+      activity1: apiProgress.activity_1 || false,
+      activity2: apiProgress.activity_2 || false,
+      activity3: apiProgress.activity_3 || false,
+      quizDone: apiProgress.quiz || false,
+      sectionDone: apiProgress.section_complete || false,
+    };
+  };
 
+  // Helper function to map component field names to API field names
+  const mapToAPIField = (field: keyof ProgressState): ProgressField => {
+    const mapping: Record<keyof ProgressState, ProgressField> = {
+      lessons: 'lessons',
+      activity1: 'activity_1',
+      activity2: 'activity_2', 
+      activity3: 'activity_3',
+      quizDone: 'quiz',
+      sectionDone: 'section_complete'
+    };
+    return mapping[field];
+  };
+
+  // Estado local del progreso basado en el progreso del usuario desde la API
+  const [progress, setProgress] = useState<ProgressState>(() => {
+    const mappedProgress = mapFromAPI(userProgress?.section2);
+    return mappedProgress || {
+      lessons: false,
+      activity1: false,
+      activity2: false,
+      activity3: false,
+      quizDone: false,
+      sectionDone: false,
+    };
+  });
+
+  // Sync with API progress when userProgress changes
   useEffect(() => {
-    saveSectionProgress(level, section, progress);
-  }, [progress, level, section]);
+    const mappedProgress = mapFromAPI(userProgress?.section2);
+    if (mappedProgress) {
+      setProgress(mappedProgress);
+    }
+  }, [userProgress]);
 
   const [view, setView] = useState<'content' | 'activities' | 'quiz'>('content');
   const [showContent, setShowContent] = useState(false);
@@ -696,20 +718,44 @@ export default function Section2View() {
     activity3: "Multiple choice",
   };
 
-  function unlockNextSection(currentSectionId: number) {
+  const unlockNextSection = (currentSectionId: number) => {
     const nextSectionId = currentSectionId + 1;
     localStorage.setItem(`section${nextSectionId}Unlocked`, "true");
-  }
-  function toggleProgress(key: keyof ProgressState) {
-    setProgress((prev) => ({ ...prev, [key]: !prev[key] }));
-  }
-  function setQuizDone() {
-    setProgress((prev) => ({ ...prev, quizDone: true }));
-  }
-  function setSectionDone() {
-    setProgress((prev) => ({ ...prev, sectionDone: true }));
-    unlockNextSection(section);
-  }
+  };
+
+  const toggleProgress = async (key: keyof ProgressState) => {
+    const newValue = !progress[key];
+    
+    try {
+      // Map local field name to API field name
+      const apiField = mapToAPIField(key);
+      await updateProgress('section2', apiField, newValue);
+      
+      // Update local state for immediate UI feedback
+      setProgress((prev) => ({ ...prev, [key]: newValue }));
+    } catch (error) {
+      console.error('Failed to update progress:', error);
+    }
+  };
+
+  const setQuizDone = async () => {
+    try {
+      await updateProgress('section2', 'quiz', true);
+      setProgress((prev) => ({ ...prev, quizDone: true }));
+    } catch (error) {
+      console.error('Failed to update quiz progress:', error);
+    }
+  };
+
+  const setSectionDone = async () => {
+    try {
+      await updateProgress('section2', 'section_complete', true);
+      setProgress((prev) => ({ ...prev, sectionDone: true }));
+      unlockNextSection(section);
+    } catch (error) {
+      console.error('Failed to update section progress:', error);
+    }
+  };
 
   // --- RENDER ---
   return (

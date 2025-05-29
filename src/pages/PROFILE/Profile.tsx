@@ -1,24 +1,40 @@
 // src/pages/Profile.tsx
 import Navbar from '../../components/NAVBAR';
 import { useUser } from '../../Context/UserContext';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
-  const { user, setUser } = useUser();
+  const { user, updateUser } = useUser();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [editing, setEditing] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   // Estado local para el formulario de edición
   const [form, setForm] = useState({
-    name: user?.name || "",
-    lastName: user?.lastName || "",
+    first_name: user?.first_name || "",
+    last_name: user?.last_name || "",
     email: user?.email || "",
     country: user?.country || "",
-    birthDate: user?.birthDate || "",
+    birth_date: user?.birth_date || "",
     photoUrl: user?.photoUrl || "",
   });
+
+  // Update form when user changes
+  useEffect(() => {
+    if (user) {
+      setForm({
+        first_name: user.first_name || "",
+        last_name: user.last_name || "",
+        email: user.email || "",
+        country: user.country || "",
+        birth_date: user.birth_date || "",
+        photoUrl: user.photoUrl || "",
+      });
+    }
+  }, [user]);
 
   // Cambiar foto
   const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,19 +44,34 @@ export default function Profile() {
     reader.onload = () => {
       if (reader.result) {
         setForm(prev => ({ ...prev, photoUrl: reader.result as string }));
-        if (!editing && user) {
-          setUser({ ...user, photoUrl: reader.result as string });
-        }
       }
     };
     reader.readAsDataURL(file);
   };
 
   // Guardar cambios
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setUser({ ...user, ...form });
-    setEditing(false);
+    setError(null);
+    setIsLoading(true);
+
+    try {
+      // Only send fields that can be updated (exclude email)
+      const updates = {
+        first_name: form.first_name,
+        last_name: form.last_name,
+        birth_date: form.birth_date,
+        country: form.country,
+      };
+
+      await updateUser(updates);
+      setEditing(false);
+    } catch (error) {
+      console.error('Profile update error:', error);
+      setError('Failed to update profile. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   // Avatar
@@ -89,14 +120,19 @@ export default function Profile() {
 
           {!editing ? (
             <>
+              {error && (
+                <div className="w-full mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
               <h2 className="text-3xl text-blue-600 font-bold mb-1 text-center">
-                {user?.name} {user?.lastName}
+                {user?.first_name} {user?.last_name}
               </h2>
               <p className="text-blue-500 text-base mb-5 font-medium text-center">{user?.email}</p>
               <div className="mt-5 w-full">
                 <div className="flex justify-between text-lg my-3">
                   <span className="text-blue-600 font-semibold">Birthdate:</span>
-                  <span className="text-blue-500">{user?.birthDate}</span>
+                  <span className="text-blue-500">{user?.birth_date}</span>
                 </div>
                 <div className="flex justify-between text-lg my-3">
                   <span className="text-blue-600 font-semibold">Country:</span>
@@ -112,21 +148,28 @@ export default function Profile() {
             </>
           ) : (
             <form className="w-full flex flex-col gap-4" onSubmit={handleSave}>
+              {error && (
+                <div className="w-full mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                  {error}
+                </div>
+              )}
               <input
                 className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="text"
-                value={form.name}
-                placeholder="Name"
-                onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                value={form.first_name}
+                placeholder="First Name"
+                onChange={e => setForm(f => ({ ...f, first_name: e.target.value }))}
                 required
+                disabled={isLoading}
               />
               <input
                 className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="text"
-                value={form.lastName}
+                value={form.last_name}
                 placeholder="Last Name"
-                onChange={e => setForm(f => ({ ...f, lastName: e.target.value }))}
+                onChange={e => setForm(f => ({ ...f, last_name: e.target.value }))}
                 required
+                disabled={isLoading}
               />
               <input
                 className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
@@ -135,14 +178,17 @@ export default function Profile() {
                 placeholder="Email"
                 onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
                 required
+                disabled={true}
+                title="Email cannot be changed"
               />
               <input
                 className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
                 type="date"
-                value={form.birthDate}
+                value={form.birth_date}
                 placeholder="Birthdate"
-                onChange={e => setForm(f => ({ ...f, birthDate: e.target.value }))}
+                onChange={e => setForm(f => ({ ...f, birth_date: e.target.value }))}
                 required
+                disabled={isLoading}
               />
               <input
                 className="w-full py-3 px-4 border-2 border-blue-200 rounded-xl text-base focus:border-blue-500 focus:outline-none transition-colors duration-200"
@@ -151,25 +197,29 @@ export default function Profile() {
                 placeholder="Country"
                 onChange={e => setForm(f => ({ ...f, country: e.target.value }))}
                 required
+                disabled={isLoading}
               />
               <div className="flex gap-3 mt-4">
                 <button
-                  className="flex-1 bg-blue-500 text-white font-bold text-base py-3 rounded-xl hover:bg-blue-600 transition-colors duration-200 cursor-pointer"
+                  className="flex-1 bg-blue-500 text-white font-bold text-base py-3 rounded-xl hover:bg-blue-600 transition-colors duration-200 cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed"
                   type="submit"
+                  disabled={isLoading}
                 >
-                  Save
+                  {isLoading ? 'Saving...' : 'Save'}
                 </button>
                 <button
                   className="flex-1 bg-gray-300 text-gray-700 font-bold text-base py-3 rounded-xl hover:bg-gray-400 transition-colors duration-200 cursor-pointer"
                   type="button"
+                  disabled={isLoading}
                   onClick={() => {
                     setEditing(false);
+                    setError(null);
                     setForm({
-                      name: user?.name || "",
-                      lastName: user?.lastName || "",
+                      first_name: user?.first_name || "",
+                      last_name: user?.last_name || "",
                       email: user?.email || "",
                       country: user?.country || "",
-                      birthDate: user?.birthDate || "",
+                      birth_date: user?.birth_date || "",
                       photoUrl: user?.photoUrl || "",
                     });
                   }}

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from '../../components/NAVBAR';
 import klaus from '../../assets/Klaus002.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import nextImg from '../../assets/next.png';
 import nextOp from '../../assets/nextop.png';
 import LessonBoard from '../../components/LESSON_BOARD';
@@ -10,11 +10,10 @@ import ClozeTest from '../../components/CLOZETEST';
 import Flashcards from '../../components/FLASHCARDS';
 import Questions from '../../components/QUESTIONS';
 import MarkAsDoneButton from '../../components/MARK_AS_DONE_BUTTON';
-import Quiz from '../../components/QUIZ'; // Ajusta la ruta si es diferente
+import Quiz from '../../components/QUIZ';
 import ProgressReport from '../../components/PROGRESS_REPORT';
-import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-
+import { useUser } from '../../Context/UserContext';
+import type { ProgressField } from '../../api/api';
 
 // Define el estado del progreso de la sección
 type ProgressState = {
@@ -26,26 +25,40 @@ type ProgressState = {
   sectionDone: boolean;
 };
 
-// Utilidad para guardar/cargar progreso en localStorage
-function loadSectionProgress(level: string, section: number): ProgressState {
-  const key = `progress_${level}_section${section}`;
-  const saved = localStorage.getItem(key);
-  if (saved) return JSON.parse(saved);
+// Helper functions to map between local format and API format
+const mapFromAPI = (apiProgress: Record<ProgressField, boolean> | undefined): ProgressState => {
+  if (!apiProgress) {
+    return {
+      lessons: false,
+      activity1: false,
+      activity2: false,
+      activity3: false,
+      quizDone: false,
+      sectionDone: false,
+    };
+  }
+  
   return {
-    lessons: false,
-    activity1: false,
-    activity2: false,
-    activity3: false,
-    quizDone: false,
-    sectionDone: false,
+    lessons: apiProgress.lessons || false,
+    activity1: apiProgress.activity_1 || false,
+    activity2: apiProgress.activity_2 || false,
+    activity3: apiProgress.activity_3 || false,
+    quizDone: apiProgress.quiz || false,
+    sectionDone: apiProgress.section_complete || false,
   };
-}
+};
 
-function saveSectionProgress(level: string, section: number, state: ProgressState) {
-  const key = `progress_${level}_section${section}`;
-  localStorage.setItem(key, JSON.stringify(state));
-}
-
+const mapToAPIField = (localField: keyof ProgressState): ProgressField => {
+  const mapping: Record<keyof ProgressState, ProgressField> = {
+    lessons: 'lessons',
+    activity1: 'activity_1',
+    activity2: 'activity_2',
+    activity3: 'activity_3',
+    quizDone: 'quiz',
+    sectionDone: 'section_complete',
+  };
+  return mapping[localField];
+};
 
 // Boards para el LessonBoard
 
@@ -538,16 +551,17 @@ export default function Section1View() {
   const level = (rawParams.level as string) || "A1";
   const section = Number(rawParams.id) || 1;
   const navigate = useNavigate();
+  const { progress: userProgress, updateProgress } = useUser();
 
-  // Estado global del progreso, guardado/cargado desde localStorage
-  const [progress, setProgress] = useState<ProgressState>(
-    () => loadSectionProgress(level, section)
-  );
+  // Estado local del progreso basado en el progreso del usuario desde la API
+  const [progress, setProgress] = useState<ProgressState>(() => {
+    return mapFromAPI(userProgress?.section1);
+  });
 
-  // Cada vez que cambia el progreso, guárdalo automáticamente
+  // Sync with API progress when userProgress changes
   useEffect(() => {
-    saveSectionProgress(level, section, progress);
-  }, [progress, level, section]);
+    setProgress(mapFromAPI(userProgress?.section1));
+  }, [userProgress]);
 
   // Estados de navegación/vista
   const [view, setView] = useState<'content' | 'activities' | 'quiz'>('content');
@@ -565,23 +579,45 @@ export default function Section1View() {
   };
 
   // Funciones para marcar progreso y desbloquear la siguiente sección
-  function unlockNextSection(currentSectionId: number) {
+  const unlockNextSection = (currentSectionId: number) => {
     const nextSectionId = currentSectionId + 1;
     localStorage.setItem(`section${nextSectionId}Unlocked`, "true");
-  }
+  };
 
-  function toggleProgress(key: keyof ProgressState) {
-    setProgress((prev) => ({ ...prev, [key]: !prev[key] }));
-  }
+  const toggleProgress = async (key: keyof ProgressState) => {
+    const newValue = !progress[key];
+    
+    try {
+      // Map local field name to API field name  
+      const apiField = mapToAPIField(key);
+      await updateProgress('section1', apiField, newValue);
+      
+      // Update local state for immediate UI feedback
+      setProgress((prev) => ({ ...prev, [key]: newValue }));
+    } catch (error) {
+      console.error('Failed to update progress:', error);
+      // Could show error message to user here
+    }
+  };
 
-  function setQuizDone() {
-    setProgress((prev) => ({ ...prev, quizDone: true }));
-  }
+  const setQuizDone = async () => {
+    try {
+      await updateProgress('section1', 'quiz', true);
+      setProgress((prev) => ({ ...prev, quizDone: true }));
+    } catch (error) {
+      console.error('Failed to update quiz progress:', error);
+    }
+  };
 
-  function setSectionDone() {
-    setProgress((prev) => ({ ...prev, sectionDone: true }));
-    unlockNextSection(section);
-  }
+  const setSectionDone = async () => {
+    try {
+      await updateProgress('section1', 'section_complete', true);
+      setProgress((prev) => ({ ...prev, sectionDone: true }));
+      unlockNextSection(section);
+    } catch (error) {
+      console.error('Failed to update section progress:', error);
+    }
+  };
 
   // --- RENDER ---
   return (

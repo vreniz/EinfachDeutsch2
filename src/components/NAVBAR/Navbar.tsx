@@ -61,10 +61,10 @@ export default function Navbar() {
               >
                 <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
                   <span className="text-blue-600 font-semibold text-sm">
-                    {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                    {user?.first_name?.charAt(0)?.toUpperCase() || 'U'}
                   </span>
                 </div>
-                <span>{user?.name || 'User'}</span>
+                <span>{user?.first_name || 'User'}</span>
                 <svg className={`w-4 h-4 transition-transform duration-200 ${showDropdown ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -139,10 +139,10 @@ export default function Navbar() {
               <div className="flex items-center space-x-3 mb-3">
                 <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                   <span className="text-blue-600 font-semibold">
-                    {user?.name?.charAt(0)?.toUpperCase() || 'U'}
+                    {user?.first_name?.charAt(0)?.toUpperCase() || 'U'}
                   </span>
                 </div>
-                <span className="font-medium text-gray-900">{user?.name || 'User'}</span>
+                <span className="font-medium text-gray-900">{user?.first_name || 'User'}</span>
               </div>
               
               <div className="space-y-1 ml-2">
