@@ -857,13 +857,15 @@ export default function Section2View() {
                         alignItems: "center",
                       }}
                     >
-                      <LessonBoard boards={lessonBoards2} />
-                      <MarkAsDoneButton
-                        done={progress.lessons}
-                        onClick={() => toggleProgress("lessons")}
-                        label="Finish Lessons"
-                      />
-                      <div className="w-full flex flex-row justify-between px-12 mt-8 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between" style={{ marginTop: 30 }}>
+                      <div className="flex flex-col items-center gap-6 my-8">
+                        <LessonBoard boards={lessonBoards2} />
+                        <MarkAsDoneButton
+                          done={progress.lessons}
+                          onClick={() => toggleProgress("lessons")}
+                          label="Finish Lessons"
+                        />
+                      </div>
+                      <div className="w-full flex flex-row justify-between px-12 gap-4 flex-row-reverse max-sm:px-4 max-sm:justify-between">
                         <button
                           className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none"
                           onClick={() => {
@@ -917,7 +919,7 @@ export default function Section2View() {
                         </strong>
                       </p>
                       {activityView === "activity1" && (
-                        <div style={{ margin: "30px 0" }}>
+                        <div className="flex flex-col items-center gap-6 my-8">
                           <Flashcards />
                           <MarkAsDoneButton
                             done={progress.activity1}
@@ -927,7 +929,7 @@ export default function Section2View() {
                         </div>
                       )}
                       {activityView === "activity2" && (
-                        <div style={{ margin: "30px 0" }}>
+                        <div className="flex flex-col items-center gap-6 my-8">
                           <ClozeTest />
                           <MarkAsDoneButton
                             done={progress.activity2}
@@ -937,7 +939,7 @@ export default function Section2View() {
                         </div>
                       )}
                       {activityView === "activity3" && (
-                        <div style={{ margin: "30px 0" }}>
+                        <div className="flex flex-col items-center gap-6 my-8">
                           <Questions />
                           <MarkAsDoneButton
                             done={progress.activity3}

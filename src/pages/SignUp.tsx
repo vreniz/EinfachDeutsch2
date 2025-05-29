@@ -54,7 +54,7 @@ export default function SignUp() {
               Time to pick up where you left off. <br />
               Log in and continue learning!
             </p>
-            <button className="bg-blue-800 text-white border-none py-2.5 px-6 rounded-full font-bold cursor-pointer" onClick={() => navigate('/')}>
+            <button className="bg-blue-800 text-white border-none py-2.5 px-6 rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(30,64,175,0.3),_0_2px_12px_rgba(30,64,175,0.2)] hover:bg-blue-900 hover:scale-105 hover:shadow-[0_4px_25px_rgba(30,64,175,0.4),_0_3px_15px_rgba(30,64,175,0.3)]" onClick={() => navigate('/')}>
               SIGN IN
             </button>
           </div>
@@ -70,7 +70,7 @@ export default function SignUp() {
        type="text"
        name="name"
        placeholder="First Name"
-       className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+       className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
        value={form.name}
        onChange={handleChange}
        required
@@ -79,7 +79,7 @@ export default function SignUp() {
        type="text"
        name="lastName"
        placeholder="Last Name"
-       className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+       className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
        value={form.lastName}
        onChange={handleChange}
        required
@@ -88,7 +88,7 @@ export default function SignUp() {
       type="password"
       name="password"
       placeholder="Password"
-      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
       value={form.password}
       onChange={handleChange}
       required
@@ -97,7 +97,7 @@ export default function SignUp() {
       type="date"
       name="birthDate"
       placeholder="Birthdate"
-      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
       value={form.birthDate}
       onChange={handleChange}
       required
@@ -106,7 +106,7 @@ export default function SignUp() {
       type="email"
       name="email"
       placeholder="Email"
-      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
       value={form.email}
       onChange={handleChange}
       required
@@ -115,13 +115,13 @@ export default function SignUp() {
       type="text"
       name="country"
       placeholder="Country"
-      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100"
+      className="w-full p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
       value={form.country}
       onChange={handleChange}
       required
     />
   </div>
-  <button type="submit" className="w-full mt-5 text-lg lg:text-[1.15rem] py-3 lg:py-3 bg-sky-400 text-white border-none rounded-full font-bold cursor-pointer disabled:bg-slate-400 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none" disabled={!isFormComplete}>SIGN UP</button>
+  <button type="submit" className="w-full mt-5 text-lg lg:text-[1.15rem] py-3 lg:py-3 bg-sky-400 text-white border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(56,189,248,0.3),_0_2px_12px_rgba(56,189,248,0.2)] hover:bg-sky-500 hover:scale-105 hover:shadow-[0_4px_25px_rgba(56,189,248,0.4),_0_3px_15px_rgba(56,189,248,0.3)] disabled:bg-slate-400 disabled:cursor-not-allowed disabled:opacity-70 disabled:shadow-none disabled:hover:scale-100" disabled={!isFormComplete}>SIGN UP</button>
 </form>
 
       </div>

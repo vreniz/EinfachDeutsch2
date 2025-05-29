@@ -7,21 +7,12 @@ type Props = {
 export default function MarkAsDoneButton({ done, onClick, label }: Props) {
   return (
     <button
-      className={`mark-as-done-btn ${done ? 'done' : ''}`}
+      className={`border-none rounded-2xl font-bold px-8 py-3 text-lg cursor-pointer transition-all duration-200 ${
+        done 
+          ? 'bg-green-500 text-white hover:bg-green-600 hover:shadow-[0_4px_25px_rgba(34,197,94,0.4),_0_2px_12px_rgba(34,197,94,0.3)] shadow-[0_3px_20px_rgba(34,197,94,0.25)] transform hover:scale-105' 
+          : 'bg-amber-400 text-amber-800 hover:bg-amber-500 hover:text-white hover:shadow-[0_4px_25px_rgba(245,158,11,0.4),_0_2px_12px_rgba(245,158,11,0.3)] shadow-[0_3px_20px_rgba(245,158,11,0.25)] transform hover:scale-105'
+      }`}
       onClick={onClick}
-      style={{
-        background: done ? '#10b981' : '#fbbf24',
-        color: done ? '#fff' : '#00375e',
-        border: 'none',
-        borderRadius: '2rem',
-        fontWeight: 700,
-        padding: '0.75rem 2.3rem',
-        fontSize: '1.09rem',
-        cursor: 'pointer',
-        marginTop: 20,
-        marginBottom: 10,
-        transition: 'background 0.18s'
-      }}
     >
       {done ? (label ? `✔ ${label} (Done)` : '✔ Marked as done') : (label ? label : 'Mark as done')}
     </button>

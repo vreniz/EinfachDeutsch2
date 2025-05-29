@@ -36,21 +36,28 @@ const ClozeTest = () => {
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="mt-8 text-blue-600 text-base opacity-85 text-center mb-4">Select or type the words below in the correct order.</div>
-      <div className="bg-blue-500 p-8 rounded-3xl shadow-lg w-[498px] mb-4 max-w-[96vw] sm:w-[98vw] sm:min-w-0 sm:p-5">
-        <div className="text-white font-bold mb-4 text-center text-lg">
-          Vervollständige die Sätze (Complete the sentences):
+      <div className="mt-6 text-blue-700 text-lg opacity-90 text-center mb-3 font-semibold tracking-wide">
+        Select or type the words below in the correct order.
+      </div>
+      <div className="bg-white rounded-[2.2rem] shadow-[0_4px_30px_rgba(59,130,246,0.15)] p-8 w-[570px] max-w-[98vw] mb-6 border border-blue-100">
+        <div className="bg-blue-600 rounded-t-2xl py-3 px-6 -mt-8 mb-6 text-xl font-bold w-full text-center tracking-wide text-white shadow-[0_2px_8px_rgba(59,130,246,0.3)]">
+          Vervollständige die Sätze
         </div>
-        <div className="mb-5">
+        <div className="space-y-4 mb-6">
           {setData.sentences.map((sent, idx) => {
             const parts = sent.split("_____");
             return (
-              <div className="text-white text-lg mb-3" key={idx}>
+              <div className="flex items-center gap-2 text-lg text-slate-700 flex-wrap" key={idx}>
                 {parts[0]}
                 <input
-                  className={`w-[90px] mx-1 py-1 px-2 rounded-lg border-2 text-base ${
-                    result ? (result[idx] ? "border-green-400 bg-green-50" : "border-red-400 bg-red-50") : "border-blue-300"
-                  } sm:w-[60px] sm:text-base sm:py-0.5 sm:px-1`}
+                  className={`border-2 rounded-xl px-4 py-2 text-center font-semibold text-blue-800 min-w-[120px] transition-all duration-200 shadow-sm ${
+                    result 
+                      ? (result[idx] 
+                          ? "border-green-500 bg-green-50 shadow-[0_2px_8px_rgba(34,197,94,0.2)]" 
+                          : "border-red-500 bg-red-50 shadow-[0_2px_8px_rgba(239,68,68,0.2)]"
+                        ) 
+                      : "border-blue-300 bg-blue-50 focus:border-blue-500 focus:outline-none focus:shadow-[0_2px_8px_rgba(59,130,246,0.25)]"
+                  }`}
                   value={inputs[idx]}
                   onChange={(e) => handleInputChange(idx, e.target.value)}
                   maxLength={16}
@@ -60,22 +67,33 @@ const ClozeTest = () => {
             );
           })}
         </div>
-        <button className="mt-2 mx-auto block py-2.5 px-8 rounded-3xl font-bold bg-blue-800 text-white border-none text-lg cursor-pointer hover:bg-blue-900 transition-colors duration-200" onClick={handleCheck}>
+        <button 
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-2xl transition-all duration-200 w-full mb-4 shadow-[0_2px_14px_rgba(59,130,246,0.25)] hover:shadow-[0_4px_20px_rgba(59,130,246,0.35)] transform hover:scale-[1.02]" 
+          onClick={handleCheck}
+        >
           CHECK
         </button>
         {result && (
-          <div className="mt-3 text-center font-bold text-white text-green-300">
+          <div className={`text-center font-semibold py-3 px-4 rounded-xl ${
+            result.every(Boolean) 
+              ? "bg-green-100 text-green-800 border border-green-200" 
+              : "bg-red-100 text-red-800 border border-red-200"
+          }`}>
             {result.every(Boolean)
               ? "All right! Well done!"
               : "Check your answers and try again."}
           </div>
         )}
       </div>
-      <div className="flex justify-center flex-wrap gap-4 bg-sky-400 rounded-3xl p-4 w-[550px] mb-4 max-w-[98vw] sm:w-[98vw] sm:min-w-0 sm:p-3 sm:gap-2">
+      <div className="flex gap-3 flex-wrap justify-center mb-6 max-w-4xl">
         {setData.options.map((option, idx) => (
           <button
             key={idx}
-            className="bg-sky-600 text-white border-none rounded-2xl py-3 px-6 text-base font-bold cursor-pointer hover:bg-sky-700 transition-colors duration-200 disabled:bg-sky-200 disabled:text-slate-600 disabled:cursor-not-allowed"
+            className={`py-3 px-6 rounded-2xl font-semibold transition-all duration-200 border-2 shadow-sm ${
+              inputs.includes(option) 
+                ? "bg-gray-200 border-gray-300 text-gray-500 cursor-not-allowed" 
+                : "bg-white border-blue-300 text-blue-700 hover:bg-blue-50 hover:border-blue-500 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
+            }`}
             onClick={() => handleOptionClick(option)}
             disabled={inputs.includes(option)}
           >
@@ -83,20 +101,26 @@ const ClozeTest = () => {
           </button>
         ))}
       </div>
-      <div className="flex justify-center items-center gap-2 mb-4 sm:flex-wrap sm:gap-2 sm:justify-center sm:items-start sm:w-[98vw] sm:mx-auto sm:mb-3 sm:min-h-[4.6rem]">
+      <div className="flex items-center gap-4">
         <button
           onClick={() => handleNav(-1)}
           disabled={currentSet === 0}
-          className="bg-transparent border-none text-sky-400 text-3xl cursor-pointer disabled:text-slate-300 disabled:cursor-not-allowed sm:text-2xl sm:mx-1"
+          className={`w-12 h-12 rounded-full font-bold text-xl transition-all duration-200 shadow-sm ${
+            currentSet === 0 
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+              : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
+          }`}
         >
           {"<"}
         </button>
         {clozeTestSets.map((_, i) => (
           <button
             key={i}
-            className={`border-none rounded-xl text-lg font-bold mx-0.5 w-8 h-10 cursor-pointer transition-colors duration-150 flex items-center justify-center p-0 ${
-              i === currentSet ? "bg-sky-400 text-white" : "bg-sky-200"
-            } sm:w-9 sm:h-8 sm:text-base sm:mx-1 sm:my-1`}
+            className={`w-12 h-12 rounded-full font-bold transition-all duration-200 shadow-sm ${
+              i === currentSet 
+                ? "bg-blue-700 text-white scale-110 shadow-[0_2px_8px_rgba(59,130,246,0.35)]" 
+                : "bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
+            }`}
             onClick={() => {
               setCurrentSet(i);
               setInputs(["", "", "", ""]);
@@ -109,7 +133,11 @@ const ClozeTest = () => {
         <button
           onClick={() => handleNav(1)}
           disabled={currentSet === clozeTestSets.length - 1}
-          className="bg-transparent border-none text-sky-400 text-3xl cursor-pointer disabled:text-slate-300 disabled:cursor-not-allowed sm:text-2xl sm:mx-1"
+          className={`w-12 h-12 rounded-full font-bold text-xl transition-all duration-200 shadow-sm ${
+            currentSet === clozeTestSets.length - 1 
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+              : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
+          }`}
         >
           {">"}
         </button>

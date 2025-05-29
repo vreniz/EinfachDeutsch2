@@ -44,9 +44,9 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
     return (
       <div className="flex flex-col items-center mt-12 mb-8">
         <div className="flex flex-col lg:flex-row items-center lg:items-end justify-center gap-3 lg:gap-4">
-          <div className="bg-gradient-to-br from-blue-500 via-blue-500 to-cyan-400 text-white rounded-[2.5rem] p-8 lg:p-9 font-bold text-justify shadow-lg shadow-blue-500/20 max-w-[820px] w-full lg:ml-28 overflow-wrap-break-word word-break-break-word order-2 lg:order-1">
+          <div className="bg-gradient-to-br from-blue-500 via-blue-500 to-cyan-400 text-white rounded-[2.5rem] p-8 lg:p-9 font-bold text-justify shadow-[0_6px_32px_rgba(59,130,246,0.25)] max-w-[820px] w-full lg:ml-28 overflow-wrap-break-word word-break-break-word order-2 lg:order-1">
             <div className="text-center">
-              <span className="text-white bg-blue-800 rounded-lg px-2 py-1 mr-1.5 text-xl">
+              <span className="text-white bg-blue-800 rounded-lg px-3 py-2 mr-1.5 text-xl shadow-[0_2px_8px_rgba(30,64,175,0.3)]">
                 INSTRUCTIONS
               </span>
             </div>
@@ -73,7 +73,7 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
           />
         </div>
         <button 
-          className="mt-9 bg-orange-400 text-white border-none rounded-[2.5rem] font-bold text-2xl px-14 py-4 cursor-pointer shadow-lg shadow-orange-400/20 transition-colors duration-150 hover:bg-orange-500 w-full max-w-sm lg:w-auto"
+          className="mt-9 bg-orange-400 text-white border-none rounded-[2.5rem] font-bold text-2xl px-14 py-4 cursor-pointer shadow-[0_4px_20px_rgba(251,146,60,0.35)] transition-all duration-200 hover:bg-orange-500 hover:shadow-[0_6px_28px_rgba(251,146,60,0.45)] transform hover:scale-105 w-full max-w-sm lg:w-auto"
           onClick={() => setStep("quiz")}
         >
           START QUIZ
@@ -140,14 +140,14 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
           </div>
         </div>
         {passed ? (
-          <div className="flex justify-center gap-5 mb-6">
+          <div className="flex flex-col gap-4 items-center">
             <MarkAsDoneButton
               done={quizDone}
               onClick={setQuizDone}
               label="Mark quiz as done"
             />
             <button 
-              className="bg-orange-400 text-purple-700 border-none rounded-2xl font-bold text-[1.15rem] px-9 py-3 my-4 mx-5 cursor-pointer transition-colors duration-150 hover:bg-orange-500"
+              className="bg-orange-400 text-white border-none rounded-2xl font-bold text-[1.15rem] px-9 py-3 cursor-pointer transition-all duration-200 hover:bg-orange-500 hover:shadow-[0_4px_25px_rgba(251,146,60,0.4),_0_2px_12px_rgba(251,146,60,0.3)] transform hover:scale-105 shadow-[0_3px_20px_rgba(251,146,60,0.25)]"
               onClick={() => setShowBadge(true)}
             >
               GET BADGE
@@ -155,7 +155,7 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
           </div>
         ) : (
           <button 
-            className="bg-yellow-400 text-white border-none rounded-2xl font-bold text-[1.18rem] px-10 py-3 cursor-pointer shadow-lg shadow-blue-500/20 my-4 mx-2 transition-colors duration-150 hover:bg-yellow-500"
+            className="bg-yellow-400 text-white border-none rounded-2xl font-bold text-[1.18rem] px-10 py-3 cursor-pointer shadow-[0_2px_14px_rgba(250,204,21,0.25)] my-4 mx-2 transition-all duration-200 hover:bg-yellow-500 hover:shadow-[0_4px_20px_rgba(250,204,21,0.35)] transform hover:scale-105"
             onClick={restartQuiz}
           >
             TRY AGAIN
@@ -171,12 +171,12 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
       <div className="flex items-center gap-10 mb-3 text-[2.2rem] font-bold text-blue-800">
         <span className="text-[1.7rem]">QUIZ</span>
       </div>
-      <div className="bg-white rounded-[2.3rem] text-blue-700 shadow-lg shadow-blue-900/5 my-3 px-9 py-9 max-w-[800px] min-w-[380px] w-full break-words text-center flex flex-col items-center transition-all duration-200">
-        <span className="text-2xl ml-auto">{current + 1}/7</span>
+      <div className="bg-white rounded-[2.3rem] text-blue-700 shadow-[0_6_32px_rgba(59,130,246,0.12)] my-3 px-9 py-9 max-w-[800px] min-w-[380px] w-full break-words text-center flex flex-col items-center transition-all duration-200 border border-blue-50">
+        <span className="text-2xl ml-auto font-bold text-blue-700">{current + 1}/7</span>
         <div className="text-slate-600 text-[1.18rem] font-medium mb-6 -mt-1 text-center tracking-wider">
           Choose the only correct answer to the following questions.
         </div>
-        <div className="bg-blue-500 text-white text-[1.35rem] font-bold px-5 py-4 rounded-3xl mb-7 w-full max-w-[650px] min-w-[180px] text-center inline-block shadow-lg shadow-blue-500/10 overflow-wrap-break-word break-words whitespace-pre-line">
+        <div className="bg-blue-500 text-white text-[1.35rem] font-bold px-5 py-4 rounded-3xl mb-7 w-full max-w-[650px] min-w-[180px] text-center inline-block shadow-[0_2px_14px_rgba(59,130,246,0.25)] overflow-wrap-break-word break-words whitespace-pre-line">
           <span className="text-rose-600 font-bold text-[1.4rem]">❓</span>{" "}
           {q.question}
         </div>
@@ -185,12 +185,12 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
             <button
               key={idx}
               className={
-                `bg-sky-400 text-white font-bold text-[1.08rem] px-5 py-4 border-none rounded-[1.8rem] min-w-[180px] max-w-[320px] w-full my-1 mx-2 cursor-pointer transition-all duration-150 text-left shadow-lg shadow-sky-400/15 flex items-center justify-start break-words ${
-                  selected === idx ? "bg-sky-300 text-blue-900" : ""
+                `bg-sky-400 text-white font-bold text-[1.08rem] px-5 py-4 border-none rounded-[1.8rem] min-w-[180px] max-w-[320px] w-full my-1 mx-2 cursor-pointer transition-all duration-200 text-left shadow-[0_2px_14px_rgba(56,189,248,0.25)] flex items-center justify-start break-words hover:shadow-[0_4px_20px_rgba(56,189,248,0.35)] transform hover:scale-[1.02] ${
+                  selected === idx ? "bg-sky-300 text-blue-900 shadow-[0_4px_20px_rgba(56,189,248,0.35)]" : ""
                 } ${
-                  checked && selected === idx && selected === q.answer ? "bg-emerald-500 text-white" : ""
+                  checked && selected === idx && selected === q.answer ? "bg-emerald-500 text-white shadow-[0_4px_20px_rgba(34,197,94,0.35)]" : ""
                 } ${
-                  checked && selected === idx && selected !== q.answer ? "bg-red-400 text-white" : ""
+                  checked && selected === idx && selected !== q.answer ? "bg-red-400 text-white shadow-[0_4px_20px_rgba(239,68,68,0.35)]" : ""
                 }`
               }
               onClick={() => handleSelect(idx)}
@@ -204,8 +204,10 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
           ))}
         </div>
         <button
-          className={`bg-blue-500 text-white border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer my-7 mx-auto transition-colors duration-200 block shadow-lg shadow-blue-500/10 tracking-wider ${
-            selected === null || checked ? "bg-blue-200 text-white cursor-not-allowed" : "hover:bg-blue-600"
+          className={`border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer my-7 mx-auto transition-all duration-200 block tracking-wider ${
+            selected === null || checked 
+              ? "bg-blue-200 text-white cursor-not-allowed shadow-[0_2px_8px_rgba(148,163,184,0.25)]" 
+              : "bg-blue-500 text-white shadow-[0_2px_14px_rgba(59,130,246,0.25)] hover:bg-blue-600 hover:shadow-[0_4px_20px_rgba(59,130,246,0.35)] transform hover:scale-105"
           }`}
           onClick={handleCheck}
           disabled={selected === null || checked}
@@ -223,7 +225,7 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
         )}
         {checked && (
           <button
-            className="bg-blue-500 text-white border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer mt-3 mx-auto transition-colors duration-200 block shadow-lg shadow-blue-500/10 tracking-wider hover:bg-blue-600"
+            className="bg-blue-500 text-white border-none rounded-2xl font-bold text-[1.13rem] px-12 py-3 cursor-pointer mt-3 mx-auto transition-all duration-200 block shadow-[0_2px_14px_rgba(59,130,246,0.25)] tracking-wider hover:bg-blue-600 hover:shadow-[0_4px_20px_rgba(59,130,246,0.35)] transform hover:scale-105"
             onClick={handleNext}
           >
             {current === randomQuestions.length - 1 ? "Show Score" : "Next"}

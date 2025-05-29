@@ -39,7 +39,7 @@ export default function LogIn() {
             type="email"
             name="email"
             placeholder="Email"
-            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
+            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
             value={form.email}
             onChange={handleChange}
             required
@@ -48,13 +48,13 @@ export default function LogIn() {
             type="password"
             name="password"
             placeholder="Password"
-            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-100 text-gray-800"
+            className="p-2.5 px-4 border border-gray-300 rounded-lg bg-gray-50 text-gray-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white hover:bg-white hover:border-gray-400"
             value={form.password}
             onChange={handleChange}
             required
           />
-          <a href="#" className="text-center block -mt-2 mb-4 text-black font-medium underline text-[0.95rem]">Forgot your password?</a>
-          <button type="submit" className="bg-blue-800 text-white py-2.5 px-6 border-none rounded-full font-bold cursor-pointer">SIGN IN</button>
+          <a href="#" className="text-center block -mt-2 mb-4 text-blue-600 font-medium underline text-[0.95rem] transition-colors duration-200 hover:text-blue-800">Forgot your password?</a>
+          <button type="submit" className="bg-blue-800 text-white py-2.5 px-6 border-none rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(30,64,175,0.3),_0_2px_12px_rgba(30,64,175,0.2)] hover:bg-blue-900 hover:scale-105 hover:shadow-[0_4px_25px_rgba(30,64,175,0.4),_0_3px_15px_rgba(30,64,175,0.3)]">SIGN IN</button>
         </form>
       </div>
 
@@ -72,7 +72,7 @@ export default function LogIn() {
               Sign up and discover how fun German can be. <br /> Learning starts here!
             </p>
             <button
-              className="bg-sky-400 text-white border-none py-2.5 px-6 rounded-full font-bold cursor-pointer"
+              className="bg-sky-400 text-white border-none py-2.5 px-6 rounded-full font-bold cursor-pointer transition-all duration-200 shadow-[0_3px_20px_rgba(56,189,248,0.3),_0_2px_12px_rgba(56,189,248,0.2)] hover:bg-sky-500 hover:scale-105 hover:shadow-[0_4px_25px_rgba(56,189,248,0.4),_0_3px_15px_rgba(56,189,248,0.3)]"
               onClick={() => navigate('/signup')}
             >
               SIGN UP
