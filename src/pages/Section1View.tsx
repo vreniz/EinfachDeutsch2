@@ -355,12 +355,7 @@ const lessonBoards = [
         </p>
 
         <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-            gap: "15px",
-            margin: "20px 0",
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 my-5"
         >
           <div style={{ display: "flex", alignItems: "center" }}>
             <span style={{ fontSize: "1.5rem", marginRight: "10px" }}>👩‍🏫</span>

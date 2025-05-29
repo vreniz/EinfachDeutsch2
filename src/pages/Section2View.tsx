@@ -304,14 +304,7 @@ const lessonBoards2 = [
             </span>
           </div>
           {/* Tabla visual de terminaciones */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(6, minmax(54px,1fr))",
-            gap: "0px 4px",
-            fontSize: "1.02rem",
-            margin: "0 0 12px 0",
-            textAlign: "center",
-          }}>
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-x-1 gap-y-2 text-center text-sm sm:text-base mb-3">
             <div><b>ich</b></div>
             <div><b>du</b></div>
             <div><b>er<br />sie<br />es</b></div>
@@ -326,14 +319,7 @@ const lessonBoards2 = [
             <div style={{ color: "#22c55e", fontWeight: 600 }}>-en</div>
           </div>
           {/* Verbos comunes en dos columnas y uno abajo */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "0 32px",
-            marginTop: 22,
-            marginBottom: 4,
-            alignItems: "start"
-          }}>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 mt-6 mb-1">
             <div>
               <b>lernen</b> <span style={{ color: "#64748b" }}>(to learn):</span><br />
               <span style={{ color: "#0ea5e9" }}>lerne, lernst, lernt, lernen, lernt, lernen</span>

@@ -171,21 +171,21 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
       <div className="flex items-center gap-10 mb-3 text-[2.2rem] font-bold text-blue-800">
         <span className="text-[1.7rem]">QUIZ</span>
       </div>
-      <div className="bg-white rounded-[2.3rem] text-blue-700 shadow-[0_6_32px_rgba(59,130,246,0.12)] my-3 px-9 py-9 max-w-[800px] min-w-[380px] w-full break-words text-center flex flex-col items-center transition-all duration-200 border border-blue-50">
+      <div className="bg-white rounded-[2.3rem] text-blue-700 shadow-[0_6_32px_rgba(59,130,246,0.12)] my-3 px-4 sm:px-9 py-6 sm:py-9 max-w-[800px] min-w-0 w-[95vw] sm:w-full break-words text-center flex flex-col items-center transition-all duration-200 border border-blue-50">
         <span className="text-2xl ml-auto font-bold text-blue-700">{current + 1}/7</span>
         <div className="text-slate-600 text-[1.18rem] font-medium mb-6 -mt-1 text-center tracking-wider">
           Choose the only correct answer to the following questions.
         </div>
-        <div className="bg-blue-500 text-white text-[1.35rem] font-bold px-5 py-4 rounded-3xl mb-7 w-full max-w-[650px] min-w-[180px] text-center inline-block shadow-[0_2px_14px_rgba(59,130,246,0.25)] overflow-wrap-break-word break-words whitespace-pre-line">
-          <span className="text-rose-600 font-bold text-[1.4rem]">❓</span>{" "}
+        <div className="bg-blue-500 text-white text-base sm:text-[1.35rem] font-bold px-3 sm:px-5 py-3 sm:py-4 rounded-2xl sm:rounded-3xl mb-5 sm:mb-7 w-full max-w-[95vw] sm:max-w-[650px] min-w-0 text-center shadow-[0_2px_14px_rgba(59,130,246,0.25)] overflow-wrap-break-word break-words whitespace-pre-line">
+          <span className="text-rose-600 font-bold text-lg sm:text-[1.4rem]">❓</span>{" "}
           {q.question}
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-9 w-full justify-items-center my-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4 lg:gap-9 w-full justify-items-center my-4 px-2 sm:px-0">
           {q.options.map((opt: string, idx: number) => (
             <button
               key={idx}
               className={
-                `bg-sky-400 text-white font-bold text-[1.08rem] px-5 py-4 border-none rounded-[1.8rem] min-w-[180px] max-w-[320px] w-full my-1 mx-2 cursor-pointer transition-all duration-200 text-left shadow-[0_2px_14px_rgba(56,189,248,0.25)] flex items-center justify-start break-words hover:shadow-[0_4px_20px_rgba(56,189,248,0.35)] transform hover:scale-[1.02] ${
+                `bg-sky-400 text-white font-bold text-sm sm:text-[1.08rem] px-3 sm:px-5 py-3 sm:py-4 border-none rounded-xl sm:rounded-[1.8rem] min-w-0 max-w-full w-full my-1 mx-0 sm:mx-2 cursor-pointer transition-all duration-200 text-left shadow-[0_2px_14px_rgba(56,189,248,0.25)] flex items-center justify-start break-words hover:shadow-[0_4px_20px_rgba(56,189,248,0.35)] transform hover:scale-[1.02] ${
                   selected === idx ? "bg-sky-300 text-blue-900 shadow-[0_4px_20px_rgba(56,189,248,0.35)]" : ""
                 } ${
                   checked && selected === idx && selected === q.answer ? "bg-emerald-500 text-white shadow-[0_4px_20px_rgba(34,197,94,0.35)]" : ""
@@ -196,7 +196,7 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
               onClick={() => handleSelect(idx)}
               disabled={checked}
             >
-              <span className="font-bold mr-2 text-[1.11rem] tracking-wider whitespace-nowrap">
+              <span className="font-bold mr-2 text-sm sm:text-[1.11rem] tracking-wider whitespace-nowrap">
                {String.fromCharCode(65 + idx)}.
               </span>
               {opt}
