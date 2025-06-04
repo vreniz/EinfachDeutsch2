@@ -64,7 +64,7 @@ export default function OverallProgress() {
 
             {/* Experience Bar Section */}
             <div className="mb-8">
-              <ExpBar level="A1" />
+              <ExpBar />
             </div>
 
             {/* Progress Stats */}
