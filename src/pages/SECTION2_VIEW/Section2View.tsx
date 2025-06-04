@@ -968,7 +968,7 @@ export default function Section2View() {
                          </span>
                         <img src={klaus} className="w-[395px] h-auto mb-2.5 drop-shadow-2xl max-sm:w-full max-sm:max-w-[500px] max-sm:block max-sm:mx-auto" alt="Klaus mascot" />
                       </div>
-                      <div className="w-full flex justify-center mt-[-2.5rem] mb-0 ml-28">
+                      <div className="w-full flex justify-center mt-[-2.5rem] mb-0">
                         <button className="bg-transparent border-none cursor-pointer p-0 flex items-center justify-center shadow-none" onClick={() => setLessonView("lesson2")}>
                           <img src={nextImg} alt="Next" className="w-[70px] h-[70px] object-contain block bg-transparent rounded-none shadow-none" />
                         </button>

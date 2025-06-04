@@ -75,7 +75,11 @@ export default function Quiz({ quizDone, setQuizDone, sectionDone, setSectionDon
               </div>
             </div>
           </div>
-          <img src={klausIntro} alt="Klaus" className="w-[150px] h-auto block mt-[-1.5rem] ml-[-3.8rem] filter drop-shadow-[0_8px_32px_rgba(56,189,248,0.5)]" />
+          <img 
+            src={klausIntro} 
+            alt="Klaus" 
+            className="w-[150px] h-auto max-w-none min-w-0 block mt-0 lg:-mt-6 lg:-ml-[3.8rem] drop-shadow-[0_8px_32px_rgba(56,189,248,0.5)] order-1 lg:order-2"
+          />
         </div>
         <button 
           className="mt-9 bg-orange-400 text-white border-none rounded-[2.5rem] font-bold text-2xl px-14 py-4 cursor-pointer shadow-[0_4px_20px_rgba(251,146,60,0.35)] transition-all duration-200 hover:bg-orange-500 hover:shadow-[0_6px_28px_rgba(251,146,60,0.45)] transform hover:scale-105 w-full max-w-sm lg:w-auto"
