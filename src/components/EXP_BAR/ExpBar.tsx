@@ -1,11 +1,7 @@
 // ExpBar.tsx
 import { useUser } from "../../Context/UserContext";
 
-type ExpBarProps = {
-  level: string; // Ej: "A1"
-};
-
-export default function ExpBar({ level }: ExpBarProps) {
+export default function ExpBar() {
   const { progress } = useUser();
 
   // Calculate progress based on the UserContext progress data
