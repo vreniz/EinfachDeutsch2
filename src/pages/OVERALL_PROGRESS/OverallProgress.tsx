@@ -1,9 +1,53 @@
 import ExpBar from '../../components/EXP_BAR';
 import Navbar from '../../components/NAVBAR';
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../Context/UserContext";
 
 export default function OverallProgress() {
   const navigate = useNavigate();
+  const { progress } = useUser();
+
+  // Calculate completed sections (section_complete = true)
+  const calculateCompletedSections = (): number => {
+    if (!progress) return 0;
+
+    let completedSections = 0;
+    if (progress.section1?.section_complete) completedSections++;
+    if (progress.section2?.section_complete) completedSections++;
+    if (progress.section3?.section_complete) completedSections++;
+
+    return completedSections;
+  };
+
+  // Calculate total completed activities (all activities marked as completed)
+  const calculateCompletedActivities = (): number => {
+    if (!progress) return 0;
+
+    let totalActivities = 0;
+
+    // Count completed activities from all sections
+    // Each section has: lessons, activity_1, activity_2, activity_3, quiz
+    [progress.section1, progress.section2, progress.section3].forEach(section => {
+      if (section) {
+        if (section.lessons) totalActivities++;
+        if (section.activity_1) totalActivities++;
+        if (section.activity_2) totalActivities++;
+        if (section.activity_3) totalActivities++;
+        if (section.quiz) totalActivities++;
+      }
+    });
+
+    return totalActivities;
+  };
+
+  // Calculate XP points: 100 points per completed activity
+  const calculateXP = (): number => {
+    return calculateCompletedActivities() * 100; // 100 XP per completed activity
+  };
+
+  const completedSections = calculateCompletedSections();
+  const completedActivities = calculateCompletedActivities();
+  const xpPoints = calculateXP();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
@@ -75,7 +119,7 @@ export default function OverallProgress() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-green-700 mb-1">5</h3>
+                <h3 className="text-2xl font-bold text-green-700 mb-1">{completedSections}</h3>
                 <p className="text-green-600 font-medium">Lessons Completed</p>
               </div>
 
@@ -85,7 +129,7 @@ export default function OverallProgress() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-blue-700 mb-1">850</h3>
+                <h3 className="text-2xl font-bold text-blue-700 mb-1">{xpPoints}</h3>
                 <p className="text-blue-600 font-medium">Experience Points</p>
               </div>
 
@@ -95,7 +139,7 @@ export default function OverallProgress() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-purple-700 mb-1">12</h3>
+                <h3 className="text-2xl font-bold text-purple-700 mb-1">{completedActivities}</h3>
                 <p className="text-purple-600 font-medium">Activities Done</p>
               </div>
             </div>

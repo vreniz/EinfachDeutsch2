@@ -25,6 +25,7 @@ export default function ExpBar() {
 
   return (
     <div style={{ width: "100%", maxWidth: 350, margin: "30px auto 20px auto" }}>
+      {/* Experience Bar */}
       <div style={{
         background: "#e5e7eb",
         borderRadius: 16,
