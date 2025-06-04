@@ -2,11 +2,13 @@ import Navbar from '../../components/NAVBAR';
 import { useNavigate } from 'react-router-dom';
 import lockIcon from '../../assets/lock.png';
 import { useState, useEffect } from 'react';
+import { useUser } from '../../Context/UserContext';
 
 const NUM_SECTIONS = 8; // Cambia esto si tienes más/menos secciones
 
 export default function A1Sections() {
   const navigate = useNavigate();
+  const { progress } = useUser();
 
   // Estado dinámico según número de secciones
   const [sections, setSections] = useState(
@@ -16,16 +18,37 @@ export default function A1Sections() {
     }))
   );
 
+  // Función para verificar si una sección está 100% completada
+  const isSectionCompleted = (sectionNumber: number): boolean => {
+    if (!progress) return false;
+    
+    const sectionKey = `section${sectionNumber}` as 'section1' | 'section2' | 'section3';
+    const sectionProgress = progress[sectionKey];
+    
+    if (!sectionProgress) return false;
+    
+    // Una sección está 100% completada si section_complete es true
+    return sectionProgress.section_complete || false;
+  };
+
   useEffect(() => {
     setSections(prevSections =>
-      prevSections.map(section => ({
-        ...section,
-        unlocked:
-          section.id === 1 ||
-          localStorage.getItem(`section${section.id}Unlocked`) === 'true'
-      }))
+      prevSections.map(section => {
+        // Section 1 siempre está desbloqueada
+        if (section.id === 1) {
+          return { ...section, unlocked: true };
+        }
+        
+        // Las demás secciones se desbloquean si la anterior está 100% completada
+        const previousSectionCompleted = isSectionCompleted(section.id - 1);
+        
+        return {
+          ...section,
+          unlocked: previousSectionCompleted
+        };
+      })
     );
-  }, []);
+  }, [progress]); // Re-evaluar cuando el progreso cambie
 
   return (
     <div className="bg-white min-h-screen overflow-x-hidden">

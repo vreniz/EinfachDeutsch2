@@ -580,10 +580,8 @@ export default function Section1View() {
   };
 
   // Funciones para marcar progreso y desbloquear la siguiente sección
-  const unlockNextSection = (currentSectionId: number) => {
-    const nextSectionId = currentSectionId + 1;
-    localStorage.setItem(`section${nextSectionId}Unlocked`, "true");
-  };
+  // El desbloqueo ahora se basa automáticamente en el progreso API
+  // La siguiente sección se desbloqueará cuando esta sección esté 100% completada
 
   const toggleProgress = async (key: keyof ProgressState) => {
     const newValue = !progress[key];
@@ -615,7 +613,7 @@ export default function Section1View() {
     try {
       await updateProgress('section1', 'section_complete', true);
       setProgress((prev) => ({ ...prev, sectionDone: true }));
-      unlockNextSection(section);
+      // La siguiente sección se desbloqueará automáticamente basándose en este progreso
     } catch (error) {
       console.error('Failed to update section progress:', error);
       toast.error('Failed to complete section. Please try again.');
