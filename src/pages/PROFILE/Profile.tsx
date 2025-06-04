@@ -95,13 +95,13 @@ export default function Profile() {
         <div className="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 relative border border-blue-100">
           {/* X Cerrar */}
           <button
-            className="absolute top-6 right-6 w-8 h-8 flex items-center justify-center rounded-full bg-blue-50 hover:bg-blue-100 transition-colors duration-200 cursor-pointer"
+            className="absolute top-4 right-4 w-12 h-12 flex items-center justify-center rounded-full bg-blue-50 hover:bg-blue-100 transition-all duration-200 cursor-pointer shadow-sm hover:shadow-md z-10"
             title="Back to Home"
             onClick={() => navigate('/home')}
           >
-            <svg width="22" height="22" viewBox="0 0 22 22">
-              <line x1="5" y1="5" x2="17" y2="17" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round"/>
-              <line x1="17" y1="5" x2="5" y2="17" stroke="#2563eb" strokeWidth="2.5" strokeLinecap="round"/>
+            <svg width="20" height="20" viewBox="0 0 20 20" className="text-blue-600">
+              <line x1="4" y1="4" x2="16" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+              <line x1="16" y1="4" x2="4" y2="16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
             </svg>
           </button>
 
