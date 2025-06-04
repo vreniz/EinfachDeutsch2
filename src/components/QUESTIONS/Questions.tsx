@@ -67,8 +67,10 @@ export default function Questions() {
         </div>
       ) : (
         <>
-          <div className="w-full flex justify-end pr-6 sm:pr-2 -mb-4 sm:-mb-2">
-            <span className="text-blue-800 font-bold text-2xl tracking-wider select-none">{current + 1}/{questions.length}</span>
+          <div className="w-full flex justify-center mb-4">
+            <div className="bg-blue-100 text-blue-800 font-bold text-lg px-4 py-2 rounded-full shadow-sm">
+              {current + 1}/{questions.length}
+            </div>
           </div>
           <div className="flex flex-col items-center w-[97%] sm:w-full mx-auto mb-3 sm:mb-2 bg-transparent">
             <div className="bg-blue-500 text-white text-[1.35rem] sm:text-base font-bold px-5 sm:px-3 py-4 sm:py-3 rounded-3xl sm:rounded-2xl mb-7 sm:mb-5 w-full max-w-[95vw] sm:max-w-[99vw] min-w-0 text-center shadow-[0_2px_14px_rgba(59,130,246,0.25)] break-words whitespace-normal overflow-wrap-break-word">
