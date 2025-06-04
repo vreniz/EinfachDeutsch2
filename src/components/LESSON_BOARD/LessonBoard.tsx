@@ -22,43 +22,41 @@ const LessonBoard: React.FC<LessonBoardProps> = ({ boards }) => {
           {boards[current].content}
         </div>
       </div>
-      <div className="flex justify-center items-center gap-4 my-5">
+      <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center w-[95vw] sm:w-full max-w-[95vw] px-2 sm:px-0">
         <button
-          className={`w-12 h-12 rounded-xl font-bold text-xl transition-all duration-200 shadow-sm border-none ${
-            current === 0
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-              : "bg-slate-600 text-white hover:bg-slate-700 hover:shadow-[0_2px_8px_rgba(71,85,105,0.35)] transform hover:scale-110"
-          }`}
           onClick={() => setCurrent((prev) => Math.max(prev - 1, 0))}
           disabled={current === 0}
-        >
-          &lt;
-        </button>
-        <div className="flex gap-2">
-          {boards.map((_, idx) => (
-            <button
-              key={idx}
-              className={`w-10 h-10 rounded-xl font-bold text-sm transition-all duration-200 border-none shadow-sm ${
-                current === idx
-                  ? "bg-slate-600 text-white shadow-[0_2px_8px_rgba(71,85,105,0.35)] scale-110"
-                  : "bg-gray-200 hover:bg-gray-300 text-gray-700 hover:shadow-[0_2px_8px_rgba(107,114,128,0.25)] transform hover:scale-105"
-              }`}
-              onClick={() => setCurrent(idx)}
-            >
-              {idx + 1}
-            </button>
-          ))}
-        </div>
-        <button
-          className={`w-12 h-12 rounded-xl font-bold text-xl transition-all duration-200 shadow-sm border-none ${
-            current === boards.length - 1
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-              : "bg-slate-600 text-white hover:bg-slate-700 hover:shadow-[0_2px_8px_rgba(71,85,105,0.35)] transform hover:scale-110"
+          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
+            current === 0 
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+              : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
           }`}
+        >
+          {"<"}
+        </button>
+        {boards.map((_, idx) => (
+          <button
+            key={idx}
+            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-sm flex-shrink-0 ${
+              idx === current 
+                ? "bg-blue-700 text-white scale-110 shadow-[0_2px_8px_rgba(59,130,246,0.35)]" 
+                : "bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
+            }`}
+            onClick={() => setCurrent(idx)}
+          >
+            {idx + 1}
+          </button>
+        ))}
+        <button
           onClick={() => setCurrent((prev) => Math.min(prev + 1, boards.length - 1))}
           disabled={current === boards.length - 1}
+          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
+            current === boards.length - 1 
+              ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+              : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
+          }`}
         >
-          &gt;
+          {">"}
         </button>
       </div>
     </div>

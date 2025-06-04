@@ -115,37 +115,41 @@ export default function Questions() {
               </div>
             )}
           </div>
-          <div className="flex flex-wrap sm:flex-wrap items-center justify-center mt-8 sm:mt-6 gap-4 sm:gap-2">
-            <button 
-              onClick={handlePrev} 
-              disabled={current === 0} 
-              className={`bg-transparent text-blue-500 text-[2.3rem] sm:text-2xl border-none cursor-pointer px-2 font-bold leading-none select-none transition-all duration-200 ${
-                current === 0 ? "text-slate-300 cursor-not-allowed" : "hover:text-blue-600 transform hover:scale-110"
+          <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center w-[95vw] sm:w-full max-w-[95vw] px-2 sm:px-0">
+            <button
+              onClick={handlePrev}
+              disabled={current === 0}
+              className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
+                current === 0 
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+                  : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
               }`}
             >
-              {'<'}
+              {"<"}
             </button>
             {questions.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => handleNav(idx)}
-                className={`border-none rounded-lg sm:rounded-md font-bold text-[1.1rem] sm:text-base mx-1 sm:mx-0.5 w-[42px] h-[42px] sm:w-8 sm:h-8 cursor-pointer transition-all duration-200 flex items-center justify-center p-0 shadow-sm ${
+                className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-sm sm:text-base transition-all duration-200 shadow-sm flex-shrink-0 ${
                   idx === current 
-                    ? "bg-blue-600 text-white shadow-[0_2px_8px_rgba(59,130,246,0.35)] scale-110" 
-                    : "bg-blue-100 hover:bg-blue-200 text-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
+                    ? "bg-blue-700 text-white scale-110 shadow-[0_2px_8px_rgba(59,130,246,0.35)]" 
+                    : "bg-blue-100 text-blue-700 hover:bg-blue-200 hover:shadow-[0_2px_8px_rgba(59,130,246,0.25)] transform hover:scale-105"
                 }`}
               >
                 {idx + 1}
               </button>
             ))}
-            <button 
-              onClick={handleNext} 
-              disabled={current === questions.length - 1} 
-              className={`bg-transparent text-blue-500 text-[2.3rem] sm:text-2xl border-none cursor-pointer px-2 font-bold leading-none select-none transition-all duration-200 ${
-                current === questions.length - 1 ? "text-slate-300 cursor-not-allowed" : "hover:text-blue-600 transform hover:scale-110"
+            <button
+              onClick={handleNext}
+              disabled={current === questions.length - 1}
+              className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-bold text-lg sm:text-xl transition-all duration-200 shadow-sm flex-shrink-0 ${
+                current === questions.length - 1 
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+                  : "bg-blue-600 text-white hover:bg-blue-700 hover:shadow-[0_2px_8px_rgba(59,130,246,0.35)] transform hover:scale-110"
               }`}
             >
-              {'>'}
+              {">"}
             </button>
           </div>
         </>
