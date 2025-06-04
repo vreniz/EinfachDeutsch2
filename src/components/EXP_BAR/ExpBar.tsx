@@ -1,25 +1,31 @@
 // ExpBar.tsx
-import { useEffect, useState } from "react";
-import { getExpPercentage } from "../../utils/ExpUtils";
-
+import { useUser } from "../../Context/UserContext";
 
 type ExpBarProps = {
   level: string; // Ej: "A1"
 };
 
 export default function ExpBar({ level }: ExpBarProps) {
-  const [exp, setExp] = useState(0);
+  const { progress } = useUser();
 
-  useEffect(() => {
-    function updateExp() {
-      setExp(getExpPercentage(level));
-    }
-    updateExp();
+  // Calculate progress based on the UserContext progress data
+  const calculateExpPercentage = (): number => {
+    if (!progress) return 0;
 
-    // Optional: escucha cambios de storage para actualización en tiempo real
-    window.addEventListener("storage", updateExp);
-    return () => window.removeEventListener("storage", updateExp);
-  }, [level]);
+    // Count completed sections
+    let completedSections = 0;
+    const totalSections = 8; // section1, section2, section3
+
+    // Check each section if it's complete
+    if (progress.section1?.section_complete) completedSections++;
+    if (progress.section2?.section_complete) completedSections++;
+    if (progress.section3?.section_complete) completedSections++;
+
+    // Calculate percentage
+    return Math.round((completedSections / totalSections) * 100);
+  };
+
+  const exp = calculateExpPercentage();
 
   return (
     <div style={{ width: "100%", maxWidth: 350, margin: "30px auto 20px auto" }}>
