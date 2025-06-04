@@ -98,17 +98,19 @@ export default function Flashcards() {
         <div className="bg-blue-700 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide box-border max-sm:text-lg max-sm:py-2 max-sm:px-3">
           {flashcard.category.charAt(0) + flashcard.category.slice(1).toLowerCase()}
         </div>
-        <div className="text-4xl font-bold my-5 tracking-wide max-w-full break-words text-center whitespace-normal hyphens-auto max-sm:text-lg max-sm:px-1">
+        <div className="flex flex-col items-center gap-4 my-5 w-full max-w-full">
           {flashcard.imageUrl && (
-            <img
-              src={flashcard.imageUrl}
-              alt={flashcard.german}
-              className="w-20 h-20 object-cover -mr-4 align-middle"
-            />
+            <div className="flex-shrink-0">
+              <img
+                src={flashcard.imageUrl}
+                alt={flashcard.german}
+                className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl border-2 border-white/20 bg-white/10 p-2"
+              />
+            </div>
           )}
-          <span style={{ fontWeight: 600, fontSize: "2rem", marginLeft: flashcard.imageUrl ? "0.5em" : 0 }}>
+          <div className="text-2xl sm:text-3xl font-bold tracking-wide text-center break-words whitespace-normal hyphens-auto px-2">
             {flashcard.german}
-          </span>
+          </div>
         </div>
         <div className="text-xl my-1 text-blue-100 max-sm:text-lg">{flashcard.translation}</div>
         <div className="text-lg mt-4 text-blue-50 leading-6 max-sm:text-base max-sm:leading-5 max-sm:max-w-[99%]">{flashcard.use}</div>

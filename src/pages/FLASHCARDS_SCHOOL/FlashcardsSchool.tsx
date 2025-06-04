@@ -87,15 +87,17 @@ export default function FlashcardsSchool() {
     if (!img) return null;
     if (img.startsWith("/") || img.startsWith("http")) {
       return (
-        <img
-          src={img}
-          alt={alt}
-          className="w-[90px] h-[83px] object-cover -mr-2 align-middle"
-        />
+        <div className="flex-shrink-0 mb-4">
+          <img
+            src={img}
+            alt={alt}
+            className="w-24 h-24 sm:w-28 sm:h-28 object-contain rounded-xl border-2 border-white/20 bg-white/10 p-2 mx-auto"
+          />
+        </div>
       );
     }
     return (
-      <span className="text-5xl mr-2.5">{img}</span>
+      <span className="text-5xl mb-4">{img}</span>
     );
   }
 
@@ -120,11 +122,11 @@ export default function FlashcardsSchool() {
           <div className="bg-amber-800 rounded-t-2xl py-3 px-6 -mt-10 mb-6 text-xl font-bold w-full text-center tracking-wide text-white">
             {flashcard.category}
           </div>
-          <div className="text-2xl font-bold mt-5 mb-1 tracking-wide flex items-center justify-center gap-4 flex-wrap break-words w-full text-center">
+          <div className="flex flex-col items-center w-full text-center mt-5 mb-1">
             {renderFlashcardImage(flashcard.imageUrl, flashcard.german)}
-            <span className="font-semibold text-3xl">
+            <div className="text-2xl sm:text-3xl font-bold tracking-wide break-words px-2">
               {flashcard.german}
-            </span>
+            </div>
           </div>
           <div className="text-xl mt-1 mb-4 text-white">{flashcard.translation}</div>
           {flashcard.use && (
